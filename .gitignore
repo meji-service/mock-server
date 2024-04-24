@@ -132,3 +132,4 @@ dist
 
 # custom
 __mock__
+__test__

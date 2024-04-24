@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@enhances/mock-server':
+        specifier: workspace:^
+        version: 'link:'
       '@mock-server/core':
         specifier: workspace:^
         version: link:src/packages/core
@@ -17,6 +20,9 @@ importers:
       axios:
         specifier: ^1.6.8
         version: 1.6.8
+      commander:
+        specifier: ^12.0.0
+        version: 12.0.0
       cors:
         specifier: ^2.8.5
         version: 2.8.5
@@ -30,6 +36,12 @@ importers:
       nodemon:
         specifier: ^3.1.0
         version: 3.1.0
+
+  __test__:
+    dependencies:
+      '@enhances/mock-server':
+        specifier: workspace:^
+        version: link:..
 
   src/packages/core: {}
 
@@ -154,6 +166,11 @@ packages:
     engines: {node: '>= 0.8'}
     dependencies:
       delayed-stream: 1.0.0
+    dev: false
+
+  /commander@12.0.0:
+    resolution: {integrity: sha512-MwVNWlYjDTtOjX5PiD7o5pK0UrFU/OYgcJfjjK4RaHZETNtjJqrZa9Y9ds88+A+f+d5lv+561eZ+yCKoS3gbAA==}
+    engines: {node: '>=18'}
     dev: false
 
   /concat-map@0.0.1:

@@ -1,0 +1,33 @@
+{
+  "name": "@service/mock-server",
+  "version": "0.0.1",
+  "description": "",
+  "type": "commonjs",
+  "main": "src/packages/index.js",
+  "scripts": {
+    "@service/mock-server": "node src/packages/index.js",
+    "@service/dev": "nodemon src/packages/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/meji-service/mock-server.git"
+  },
+  "dependencies": {
+    "@mock-server/core": "workspace:^",
+    "@mock-server/utils": "workspace:^",
+    "axios": "^1.6.8",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
+    "lodash": "^4.17.21"
+  }
+}

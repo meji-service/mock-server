@@ -1,0 +1,1 @@
+exports.configFileName = 'mock-config.js';

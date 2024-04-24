@@ -1,9 +1,10 @@
-const fs = require('node:fs');
-const vm = require('node:vm');
-const path = require('node:path');
-const util = require('node:util');
-const os = require('node:os');
-const options = require('@mock-server/core/options');
+const fs = require('fs');
+const path = require('path');
+const util = require('util');
+const os = require('os');
+const vm = require('vm');
+const getOptions = require('@mock-server/core/options').getOptions;
+const options = getOptions();
 
 /**
  * 获取本地ip
@@ -45,25 +46,34 @@ exports.printInColor = function printInColor(prints) {
    return _str;
 }
 
+const context = vm.createContext({
+   exports: {},
+   module: {
+      exports: {}
+   }
+}); // 创建一个空的上下文对象
 /**
 * @param {*} path 
 * @returns 
 */
-exports.requireMockFile = function requireMockFile(path) {
+exports.requireMockFile = function requireMockFile(pathStr) {
    try {
-      return require(path);
+      const config = fs.readFileSync(pathStr, { encoding: 'utf8' });
+      vm.runInContext(config, context);
+      return context.exports;
    } catch {
    }
 }
 
 exports.logger = function logger(...arg) {
+   const _option = options;
    try {
-      const logWritPath = path.resolve(__dirname, options.cwd, options.logDir);
+      const logWritPath = path.resolve(__dirname, _option.cwd, _option.logDir);
       const flang = fs.existsSync(logWritPath);
       if (!flang) {
          fs.mkdirSync(logWritPath);
       }
-      fs.appendFileSync(path.join(logWritPath, options.logFileName), `${util.inspect(...arg)}\n\n`);
+      fs.appendFileSync(path.join(logWritPath, _option.logFileName), `${util.inspect(...arg)}\n\n`);
 
    } catch (err) {
       console.log('写入日志失败', err);

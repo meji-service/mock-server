@@ -1,9 +1,10 @@
 const createServerApp = require('./app').createServerApp;
 const createMockServer = require('./server').createMockServer;
-
+const createStaticService = require('./static').createStaticService;
 
 exports.main = function main() {
-    require('./options');
-    createMockServer(createServerApp());
+    const app = createServerApp();
+    createStaticService(app);
+    createMockServer(app);
 }
 

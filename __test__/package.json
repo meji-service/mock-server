@@ -1,0 +1,16 @@
+{
+  "name": "__test__",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "mock:dev": "enhances-mock start -e dev",
+    "mock": "enhances-mock start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@enhances/mock-server": "workspace:^"
+  }
+}

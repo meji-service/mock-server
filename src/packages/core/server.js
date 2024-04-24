@@ -1,8 +1,9 @@
-const path = require('node:path');
+const path = require('path');
 const { requireMockFile, logger, printInColor } = require('@mock-server/utils');
-const options = require('@mock-server/core/options');
+const getOptions = require('@mock-server/core/options').getOptions;
 const axios = require('axios');
 const pick = require('lodash/pick');
+const options = getOptions();
 
 function _split(startStr = '', endStr = '') {
     printInColor([
@@ -71,7 +72,7 @@ exports.createMockServer = function createMockServer(app) {
         try {
             const mockOption = requireMockFile(filePath);
             if (!mockOption?.enabled) {
-                printInColor([{ color: 'yellow', text: '本地文件查询失败' }]);
+                printInColor([{ color: 'yellow', text: `本地文件${filePath}查询失败` }]);
                 return await proxySend(req, res);
             }
             printInColor([{ color: 'magenta', text: '读取文件: ' }, { color: 'cyan', text: filePath, }]);

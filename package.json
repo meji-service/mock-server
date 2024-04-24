@@ -1,11 +1,12 @@
 {
   "name": "@enhances/mock-server",
-  "version": "0.0.1",
-  "description": "",
+  "version": "0.0.9",
+  "description": "mock 服务器, 开箱即用，无需重启,自动代理远程服务、提供静态web服务入口",
   "type": "commonjs",
-  "main": "src/packages/index.js",
+  "main": "dist/commonjs/index.js",
   "scripts": {
-    "dev": "nodemon src/packages/index.js"
+    "dev": "nodemon src/packages/index.js",
+    "build": "emp build"
   },
   "bin": {
     "enhances-mock": "./bin/server.js"
@@ -19,23 +20,26 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@efox/emp": "^2.7.1",
+    "@enhances/mock-server": "workspace:^",
+    "@mock-server/core": "workspace:^",
+    "@mock-server/utils": "workspace:^",
     "nodemon": "^3.1.0"
   },
   "publishConfig": {
     "access": "public"
   },
   "files": [
-    "src",
-    "README.md"
+    "dist",
+    "README.md",
+    "bin",
+    "cli"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/meji-service/mock-server.git"
   },
   "dependencies": {
-    "@enhances/mock-server": "workspace:^",
-    "@mock-server/core": "workspace:^",
-    "@mock-server/utils": "workspace:^",
     "axios": "^1.6.8",
     "commander": "^12.0.0",
     "cors": "^2.8.5",

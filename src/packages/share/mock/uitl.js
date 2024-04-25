@@ -27,8 +27,9 @@ module.exports = class MockUtil {
     }
     getCodeString(template, data, force) {
         const { enabled = true, config = {}, mock } = template ?? {};
-        const oldData = mock?.() ?? {};
-        const _tempData = force ? data : lodashMerge({}, oldData, data);
+        const emptyObj = Array.isArray(data) ? [] : {};
+        const oldData = mock?.() ?? emptyObj;
+        const _tempData = force ? data : lodashMerge(emptyObj, oldData, data);
         const code = 'exports.enabled = ' + enabled + ';\n' +
             'exports.config = ' + JSON.stringify(config, null, 4) + '\n\n' +
             'exports.mock = () => (' + JSON.stringify(_tempData, null, 4) + '); \n\n';

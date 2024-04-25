@@ -37,7 +37,7 @@ async function proxySend(req, res) {
         return res.status(response.status).send(response.data);
     } catch (reoase) {
         const _status = reoase?.response?.status ?? 500;
-        printInColor([{ color: 'red', text: 'error' }]);
+        printInColor([{ color: 'red', text: 'error 可观察日志排除错误' }]);
         logger(reoase);
         return res.status(_status).send(pick(reoase?.response ?? {}, ['data'])?.data ?? {});
     }
@@ -47,17 +47,15 @@ async function proxySend(req, res) {
  * 响应 mock 本地ts文件内容
  * @param {*} req 
  * @param {*} res 
+ * @param {object} mockOption 
  */
 function readFileSend(req, res, mockOption) {
     const options = getOptions();
-    if (options.print_req || mockOption.print_req) {
-        console.log('query =>', req?.query);
-        console.log('body =>', req?.body);
-    }
     const response = mockOption.mock(pick(req, ['query', 'body']));
     logger(response);
     function sendResponse() {
         res.status(200).send(response);
+        printInColor([{ color: 'magenta', text: 'finish' }]);
     }
     if (options.timeout) {
         setTimeout(sendResponse, options.timeout);
@@ -76,9 +74,14 @@ exports.createMockServer = function createMockServer(app) {
     app.use(async function (req, res) {
         const pathname = req._parsedUrl.pathname.concat(fileWithEnd);
         const filePath = path.join(cwd, mockSrc, pathname);
+        
         _split('', '>>>');
         try {
             const mockOption = requireMockFile(filePath)?.exports;
+            if (options.print_req || mockOption?.print_req) {
+                logger(pick(req, ['query', 'body', 'headers']));
+                console.log('打印req日志完成');
+            }
             if (!mockOption?.enabled) {
                 printInColor([{ color: 'yellow', text: `本地文件 ${filePath} 查询失败` }]);
                 return await proxySend(req, res);

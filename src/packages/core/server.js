@@ -28,8 +28,9 @@ async function proxySend(req, res) {
         const response = await axios.request({
             method: req.method,
             url: originURL,
-            data: req.params,
-            headers: req.headers,
+            query: req.query,
+            data: req.body,
+            headers: req.headers ?? {},
         });
         printInColor([{ color: 'green', text: 'finish' }]);
         logger(response);

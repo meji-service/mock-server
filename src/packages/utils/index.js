@@ -3,8 +3,8 @@ const path = require('path');
 const util = require('util');
 const os = require('os');
 const vm = require('vm');
+const { readJsFileToObject } = require('@mock-server/utils/os');
 const getOptions = require('@mock-server/core/options').getOptions;
-const options = getOptions();
 
 /**
  * 获取本地ip
@@ -46,27 +46,17 @@ exports.printInColor = function printInColor(prints) {
    return _str;
 }
 
-const context = vm.createContext({
-   exports: {},
-   module: {
-      exports: {}
-   }
-}); // 创建一个空的上下文对象
+
 /**
 * @param {*} path 
 * @returns 
 */
 exports.requireMockFile = function requireMockFile(pathStr) {
-   try {
-      const config = fs.readFileSync(pathStr, { encoding: 'utf8' });
-      vm.runInContext(config, context);
-      return context.exports;
-   } catch {
-   }
+   return readJsFileToObject(pathStr);
 }
 
 exports.logger = function logger(...arg) {
-   const _option = options;
+   const _option = getOptions();
    try {
       const logWritPath = path.resolve(__dirname, _option.cwd, _option.logDir);
       const flang = fs.existsSync(logWritPath);

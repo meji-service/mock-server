@@ -3,7 +3,6 @@ const { requireMockFile, logger, printInColor } = require('@mock-server/utils');
 const getOptions = require('@mock-server/core/options').getOptions;
 const axios = require('axios');
 const pick = require('lodash/pick');
-const options = getOptions();
 
 function _split(startStr = '', endStr = '') {
     printInColor([
@@ -21,6 +20,7 @@ function _split(startStr = '', endStr = '') {
  * @returns 
  */
 async function proxySend(req, res) {
+    const options = getOptions();
     const originURL = options.proxyURL(req.url);
     printInColor([{ color: 'yellow', text: '如果使用本地mock配置文件数据, enabled需要为true' }]);
     printInColor([{ color: 'green', text: '开始代理转发请求：' }, { color: 'cyan', text: originURL }]);
@@ -48,6 +48,7 @@ async function proxySend(req, res) {
  * @param {*} res 
  */
 function readFileSend(req, res, mockOption) {
+    const options = getOptions();
     const response = mockOption.mock(req);
     function sendResponse() {
         res.status(200).send(response);
@@ -64,13 +65,14 @@ function readFileSend(req, res, mockOption) {
  * @param {*} app 
  */
 exports.createMockServer = function createMockServer(app) {
+    const options = getOptions();
     const { fileWithEnd, mockSrc, cwd } = options;
     app.use(async function (req, res) {
         const pathname = req._parsedUrl.pathname.concat(fileWithEnd);
         const filePath = path.join(cwd, mockSrc, pathname);
         _split('', '>>>');
         try {
-            const mockOption = requireMockFile(filePath);
+            const mockOption = requireMockFile(filePath)?.exports;
             if (!mockOption?.enabled) {
                 printInColor([{ color: 'yellow', text: `本地文件${filePath}查询失败` }]);
                 return await proxySend(req, res);

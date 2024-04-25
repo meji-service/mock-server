@@ -2,7 +2,6 @@ const fs = require('fs');
 const path = require('path');
 const util = require('util');
 const os = require('os');
-const vm = require('vm');
 const { readJsFileToObject } = require('@mock-server/utils/os');
 const getOptions = require('@mock-server/core/options').getOptions;
 
@@ -46,13 +45,45 @@ exports.printInColor = function printInColor(prints) {
    return _str;
 }
 
+const flangErrorLog = '可编辑本地mock文件条件未成立 => 读取本地mock => 发送远程服务情况';
+
+/**
+ * 
+ * @param {*} sourceContext 
+ * @param {string} targetMockFilePath 
+ * @returns 
+ */
+function useMockUnit(sourceContext, sourceCode, targetMockFilePath) {
+   try {
+      const { exports: _exports = {} } = sourceContext ?? {};
+      const { targetId: _targetId, cwd = '../' } = _exports?.config ?? {};
+      if (!_targetId || !_exports?.mockUtil || !_exports?.enabled) {
+         return console.log(flangErrorLog);
+      }
+      const editMockFilePath = path.resolve(targetMockFilePath, cwd, _targetId);
+      const { _context: editContext, _code: editCode } = readJsFileToObject(editMockFilePath) ?? {};
+      _exports.mockUtil.setup({
+         editPath: editMockFilePath,
+         sourcePath: targetMockFilePath,
+         sourceCode,
+         sourceContext,
+         editContext,
+         editCode,
+      });
+   } catch (err) {
+      console.log(err);
+   }
+}
+
 
 /**
 * @param {*} path 
 * @returns 
 */
 exports.requireMockFile = function requireMockFile(pathStr) {
-   return readJsFileToObject(pathStr);
+   const { _context, _code } = readJsFileToObject(pathStr) ?? {};
+   useMockUnit(_context, _code, pathStr);
+   return _context;
 }
 
 exports.logger = function logger(...arg) {

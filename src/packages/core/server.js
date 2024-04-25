@@ -49,7 +49,12 @@ async function proxySend(req, res) {
  */
 function readFileSend(req, res, mockOption) {
     const options = getOptions();
-    const response = mockOption.mock(req);
+    if (options.print_req || mockOption.print_req) {
+        console.log('query =>', req?.query);
+        console.log('body =>', req?.body);
+    }
+    const response = mockOption.mock(pick(req, ['query', 'body']));
+    logger(response);
     function sendResponse() {
         res.status(200).send(response);
     }
@@ -74,7 +79,7 @@ exports.createMockServer = function createMockServer(app) {
         try {
             const mockOption = requireMockFile(filePath)?.exports;
             if (!mockOption?.enabled) {
-                printInColor([{ color: 'yellow', text: `本地文件${filePath}查询失败` }]);
+                printInColor([{ color: 'yellow', text: `本地文件 ${filePath} 查询失败` }]);
                 return await proxySend(req, res);
             }
             printInColor([{ color: 'magenta', text: '读取文件: ' }, { color: 'cyan', text: filePath, }]);

@@ -55,6 +55,7 @@ type StaticServic = string[] | { suffix: string; dir: string }[];
 
 module.exports = {
     timeout: 0, // 延迟
+    print_req: true, // 是否在控制台打印参数
     fileWithEnd: '.js', // mock 的文件
     mockSrc: '__mock__', // 读取mock的目录
     logDir: '__mock__', // 打印日志保存的目录
@@ -74,9 +75,60 @@ module.exports = {
 ```js
 // getToken.js
 exports.enabled = true; // true 代表使用本地mock false 使用代理
+exports.print_req = true; // 是否在控制台打印参数
 exports.mock = (req) => {
     return {
         status: 200,
+        message: 'mock'
+    }
+}
+```
+
+### 编辑mock接口文件内容
+
+- 被动修改方
+```js
+// mockjs template
+
+exports.enabled = false;
+exports.config = {}
+
+exports.mock = () => ({
+    "name": "updaet 21233",
+}); 
+
+/** 上一个模板：
+exports.enabled = false;
+exports.config = {}
+
+exports.mock = () => ({
+    "name": "default data",
+}); 
+
+ */
+```
+
+- 通过 `exports.mockUtil.update`修改指定文件
+```ts
+
+declare class mockUtil {
+    update(data: any, force = false): boolean;
+};
+```
+
+- 主动发起修改方
+```js
+// getoken.ts
+exports.enabled = true;
+exports.config = {
+    targetId: 'edit.js', 
+    // targetId: './edit.js', // 相对自身的文件路径
+}
+exports.mock = (req) => {
+    // req.body 如等等 { name: 'updaet 21233' }
+    const isUpdateSuccess = exports.mockUtil.update(req.body); // 通过update 函数修改改文件名称为{targetId 的mock函数中内容}
+    return {
+        success: isUpdateSuccess,
         message: 'mock'
     }
 }

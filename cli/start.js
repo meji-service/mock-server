@@ -4,7 +4,9 @@ const path = require('node:path');
 exports.exec = function exec({ port = 60363, env } = {}) {
     const filePathName = env === 'prod' ? '../dist/commonjs/index.js' : '../src/packages/index.js';
     const execFile = path.resolve(__dirname, filePathName);
-    this.process = child_process.exec(`node ${execFile} -p ${port}`);
+    const commandPackage =  env === 'prod' ? 'node' : 'nodemon';
+    const command = `${commandPackage} ${execFile} -p ${port}`;
+    this.process = child_process.exec(command);
     // 捕获标准输出并打印
     this.process.stdout.on('data', (data) => {
         console.log(data);

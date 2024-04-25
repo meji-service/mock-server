@@ -11,6 +11,9 @@ importers:
       axios:
         specifier: ^1.6.8
         version: 1.6.8
+      body-parser:
+        specifier: ^1.20.2
+        version: 1.20.2
       commander:
         specifier: ^12.0.0
         version: 12.0.0
@@ -33,6 +36,9 @@ importers:
       '@mock-server/core':
         specifier: workspace:^
         version: link:src/packages/core
+      '@mock-server/share':
+        specifier: workspace:^
+        version: link:src/packages/share
       '@mock-server/utils':
         specifier: workspace:^
         version: link:src/packages/utils
@@ -45,8 +51,13 @@ importers:
       '@enhances/mock-server':
         specifier: workspace:^
         version: link:..
+      '@mock-server/share':
+        specifier: workspace:^
+        version: link:../src/packages/share
 
   src/packages/core: {}
+
+  src/packages/share: {}
 
   src/packages/utils: {}
 

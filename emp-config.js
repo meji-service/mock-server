@@ -10,6 +10,7 @@ module.exports = defineConfig(() => {
           axios: 'axios',
           commander: 'commander',
           cors: 'cors',
+          'body-parser': 'body-parser',
           express: 'express',
           lodash: 'lodash',
           fs: 'fs',

@@ -1,25 +1,28 @@
 const fs = require('fs');
 const vm = require('vm');
-
-// 创建一个空的上下文对象
-const customContext = vm.createContext({
-    exports: {},
-    module: {
-        exports: {}
-    }
-});
+const { mockUtil } = require('@mock-server/share')
 
 /**
  * 
  * @param {*} configFilePath 
- * @returns {customContext}
+ * @returns {customContext|undefined}
  */
 exports.readJsFileToObject = function (configFilePath) {
     try {
-        const config = fs.readFileSync(configFilePath, { encoding: 'utf8' });
-        vm.runInContext(config, customContext);
-        return customContext;
-    } catch {
-
-    }
+        const _exports = {
+            mockUtil: new mockUtil(),
+        }
+        const _context = vm.createContext({
+            exports: _exports,
+            module: {
+                exports: _exports,
+            }
+        });
+        const _code = fs.readFileSync(configFilePath, { encoding: 'utf8' });
+        vm.runInContext(_code, _context);
+        return {
+            _context,
+            _code,
+        };
+    } catch {}
 }

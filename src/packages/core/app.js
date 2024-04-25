@@ -1,5 +1,8 @@
 const { printInColor, getLocalIP } = require('@mock-server/utils');
 const { program } = require('commander');
+const express = require('express');
+const cors = require('cors');
+const bodyParser = require('body-parser');
  
 program
   .option('-p, --port <port>', '设置服务器端口', 60363)
@@ -25,8 +28,11 @@ function printRunTarget(ip) {
     ]);
 }
 exports.createServerApp = function createServerApp(port = 60363) {
-    const express = require('express');
+
     const app = express();
+    app.use(cors());
+    app.use(bodyParser.json());
+
     const server = app.listen(program?._optionValues?.port || port, () => {
         const port = server.address().port;
         printRunTarget(` http://localhost:${port}/ `)

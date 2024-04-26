@@ -4,7 +4,7 @@ const path = require('path');
  */
 module.exports = {
     timeout: 0, // 延迟
-    print_req: true, 
+    print_req: true,
     fileWithEnd: '.js', // mock 的文件
     mockSrc: '__mock__', // 读取mock的目录
     logDir: '__mock__', // 打印日志保存的目录
@@ -17,4 +17,15 @@ module.exports = {
     get cwd() {
         return path.resolve(process.cwd());
     },
+    https: false,
+    httpsConfig: {
+        agent: {
+            rejectUnauthorized: false, // 发起请求时忽略 SSL 证书检查
+            keepAlive: false,
+        }
+    },
+    formatHeaders(headers) {
+        delete headers.host;
+        return headers;
+    }
 }

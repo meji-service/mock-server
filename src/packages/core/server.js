@@ -4,6 +4,11 @@ const getOptions = require('@mock-server/core/options').getOptions;
 const axios = require('axios');
 const pick = require('lodash/pick');
 
+const axiosInstance = axios.create({
+
+});
+
+
 function _split(startStr = '', endStr = '') {
     printInColor([
         {
@@ -25,12 +30,12 @@ async function proxySend(req, res) {
     printInColor([{ color: 'yellow', text: '如果使用本地mock配置文件数据, enabled需要为true' }]);
     printInColor([{ color: 'green', text: '开始代理转发请求：' }, { color: 'cyan', text: originURL }]);
     try {
-        const response = await axios.request({
+        const response = await axiosInstance.request({
             method: req.method,
             url: originURL,
-            query: req.query,
+            params: req.query,
             data: req.body,
-            headers: req.headers ?? {},
+            headers: options?.formatHeaders?.(req.headers) ?? {},
         });
         printInColor([{ color: 'green', text: 'finish' }]);
         logger(response);
@@ -74,7 +79,7 @@ exports.createMockServer = function createMockServer(app) {
     app.use(async function (req, res) {
         const pathname = req._parsedUrl.pathname.concat(fileWithEnd);
         const filePath = path.join(cwd, mockSrc, pathname);
-        
+
         _split('', '>>>');
         try {
             const mockOption = requireMockFile(filePath)?.exports;

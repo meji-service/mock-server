@@ -64,6 +64,10 @@ module.exports = {
     proxyURL(url) {
         // 自定义代理的服务
         return 'http://113.108.106.175:81' + url;
+    },
+    formatHeaders(headers) {
+        delete headers.host; // 代理请求 https 需要去掉host
+        return headers;
     }
 }
 ```

@@ -1,80 +1,42 @@
 {
-  query: {},
-  body: { username: 'admin', password: 'Szxcloud2022@' },
+  query: {
+    client_secret: 'a_JErim!',
+    client_id: '31f2d516275d4bc4a1bc81147803e954'
+  },
+  body: {},
   headers: {
-    host: '219.133.29.31',
-    connection: 'keep-alive',
-    'content-length': '47',
-    'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-    'content-security-policy': 'upgrade-insecure-requests;content *;img-src "*"',
-    'strict-transport-security': 'amax-age=63072000; includeSubdomains; preload',
-    'x-content-type-options': 'nosniff',
-    'referrer-policy': 'origin',
-    istoken: 'false',
-    'x-permitted-cross-domain-policies': 'master-only',
-    'sec-ch-ua-mobile': '?0',
-    'x-download-options': 'noopen',
-    'x-frame-options': 'SAMEORIGIN',
-    'content-type': 'application/json;charset=UTF-8',
-    accept: 'application/json, text/plain, */*',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-    'x-xss-protection': '1; mode=block',
-    'sec-ch-ua-platform': '"Windows"',
-    origin: 'http://localhost:8080',
-    'sec-fetch-site': 'same-site',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-dest': 'empty',
-    referer: 'http://localhost:8080/',
-    'accept-encoding': 'gzip, deflate, br, zstd',
-    'accept-language': 'zh-CN,zh;q=0.9'
+    'user-agent': 'PostmanRuntime/7.37.3',
+    accept: '*/*',
+    'postman-token': 'bb839af8-b192-4af2-9f7c-85bf7c83116b',
+    host: '113.108.106.175:81',
+    'accept-encoding': 'gzip, deflate, br',
+    connection: 'keep-alive'
   },
   formatedHeader: {
-    host: '219.133.29.31',
-    connection: 'keep-alive',
-    'content-length': '47',
-    'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-    'content-security-policy': 'upgrade-insecure-requests;content *;img-src "*"',
-    'strict-transport-security': 'amax-age=63072000; includeSubdomains; preload',
-    'x-content-type-options': 'nosniff',
-    'referrer-policy': 'origin',
-    istoken: 'false',
-    'x-permitted-cross-domain-policies': 'master-only',
-    'sec-ch-ua-mobile': '?0',
-    'x-download-options': 'noopen',
-    'x-frame-options': 'SAMEORIGIN',
-    'content-type': 'application/json;charset=UTF-8',
-    accept: 'application/json, text/plain, */*',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-    'x-xss-protection': '1; mode=block',
-    'sec-ch-ua-platform': '"Windows"',
-    origin: 'http://localhost:8080',
-    'sec-fetch-site': 'same-site',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-dest': 'empty',
-    referer: 'http://localhost:8080/',
-    'accept-encoding': 'gzip, deflate, br, zstd',
-    'accept-language': 'zh-CN,zh;q=0.9'
+    'user-agent': 'PostmanRuntime/7.37.3',
+    accept: '*/*',
+    'postman-token': 'bb839af8-b192-4af2-9f7c-85bf7c83116b',
+    host: '113.108.106.175:81',
+    'accept-encoding': 'gzip, deflate, br',
+    connection: 'keep-alive'
   }
 }
 
 {
   status: 200,
-  statusText: '',
+  statusText: 'OK',
   headers: Object [AxiosHeaders] {
-    server: 'nginx/1.24.0',
-    date: 'Fri, 26 Apr 2024 09:20:03 GMT',
-    'content-type': 'application/json;charset=UTF-8',
+    server: 'nginx/1.22.1',
+    date: 'Fri, 26 Apr 2024 11:32:05 GMT',
+    'content-type': 'application/json',
     'transfer-encoding': 'chunked',
     connection: 'keep-alive',
-    vary: 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers',
-    'access-control-allow-origin': 'http://localhost:8080',
-    'access-control-allow-credentials': 'true',
-    tlogtraceid: 'jKqv935947206676987904',
     'x-content-type-options': 'nosniff',
     'x-xss-protection': '1; mode=block',
     'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
     pragma: 'no-cache',
-    expires: '0'
+    expires: '0',
+    'x-frame-options': 'DENY'
   },
   config: {
     transitional: {
@@ -93,36 +55,22 @@
     env: { FormData: [Function], Blob: null },
     validateStatus: [Function: validateStatus],
     headers: Object [AxiosHeaders] {
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json;charset=UTF-8',
-      host: '219.133.29.31',
+      Accept: '*/*',
+      'Content-Type': 'application/json',
+      'user-agent': 'PostmanRuntime/7.37.3',
+      'postman-token': 'bb839af8-b192-4af2-9f7c-85bf7c83116b',
+      host: '113.108.106.175:81',
+      'accept-encoding': 'gzip, deflate, br',
       connection: 'keep-alive',
-      'content-length': '47',
-      'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-      'content-security-policy': 'upgrade-insecure-requests;content *;img-src "*"',
-      'strict-transport-security': 'amax-age=63072000; includeSubdomains; preload',
-      'x-content-type-options': 'nosniff',
-      'referrer-policy': 'origin',
-      istoken: 'false',
-      'x-permitted-cross-domain-policies': 'master-only',
-      'sec-ch-ua-mobile': '?0',
-      'x-download-options': 'noopen',
-      'x-frame-options': 'SAMEORIGIN',
-      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-      'x-xss-protection': '1; mode=block',
-      'sec-ch-ua-platform': '"Windows"',
-      origin: 'http://localhost:8080',
-      'sec-fetch-site': 'same-site',
-      'sec-fetch-mode': 'cors',
-      'sec-fetch-dest': 'empty',
-      referer: 'http://localhost:8080/',
-      'accept-encoding': 'gzip, deflate, br, zstd',
-      'accept-language': 'zh-CN,zh;q=0.9'
+      'Content-Length': '2'
     },
-    method: 'post',
-    url: 'http://219.133.29.31/chache-java/login',
-    params: {},
-    data: '{"username":"admin","password":"Szxcloud2022@"}'
+    method: 'get',
+    url: 'http://113.108.106.175:81/ucbb-third/proxy/oauth/token?client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954',
+    params: {
+      client_secret: 'a_JErim!',
+      client_id: '31f2d516275d4bc4a1bc81147803e954'
+    },
+    data: '{}'
   },
   request: <ref *1> ClientRequest {
     _events: [Object: null prototype] {
@@ -145,7 +93,7 @@
     shouldKeepAlive: true,
     maxRequestsOnConnectionReached: false,
     _defaultKeepAlive: true,
-    useChunkedEncodingByDefault: true,
+    useChunkedEncodingByDefault: false,
     sendDate: false,
     _removedConnection: false,
     _removedContLen: false,
@@ -174,7 +122,7 @@
       _server: null,
       parser: null,
       _httpMessage: [Circular *1],
-      [Symbol(async_id_symbol)]: 179,
+      [Symbol(async_id_symbol)]: 69,
       [Symbol(kHandle)]: null,
       [Symbol(kSetNoDelay)]: false,
       [Symbol(lastWriteQueueSize)]: 0,
@@ -183,36 +131,19 @@
       [Symbol(kBufferCb)]: null,
       [Symbol(kBufferGen)]: null,
       [Symbol(kCapture)]: false,
-      [Symbol(kBytesRead)]: 790,
-      [Symbol(kBytesWritten)]: 1064,
+      [Symbol(kBytesRead)]: 391,
+      [Symbol(kBytesWritten)]: 418,
       [Symbol(RequestTimeout)]: undefined
     },
-    _header: 'POST /chache-java/login HTTP/1.1\r\n' +
-      'Accept: application/json, text/plain, */*\r\n' +
-      'Content-Type: application/json;charset=UTF-8\r\n' +
-      'host: 219.133.29.31\r\n' +
+    _header: 'GET /ucbb-third/proxy/oauth/token?client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954&client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954 HTTP/1.1\r\n' +
+      'Accept: */*\r\n' +
+      'Content-Type: application/json\r\n' +
+      'user-agent: PostmanRuntime/7.37.3\r\n' +
+      'postman-token: bb839af8-b192-4af2-9f7c-85bf7c83116b\r\n' +
+      'host: 113.108.106.175:81\r\n' +
+      'accept-encoding: gzip, deflate, br\r\n' +
       'connection: keep-alive\r\n' +
-      'content-length: 47\r\n' +
-      'sec-ch-ua: "Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"\r\n' +
-      'content-security-policy: upgrade-insecure-requests;content *;img-src "*"\r\n' +
-      'strict-transport-security: amax-age=63072000; includeSubdomains; preload\r\n' +
-      'x-content-type-options: nosniff\r\n' +
-      'referrer-policy: origin\r\n' +
-      'istoken: false\r\n' +
-      'x-permitted-cross-domain-policies: master-only\r\n' +
-      'sec-ch-ua-mobile: ?0\r\n' +
-      'x-download-options: noopen\r\n' +
-      'x-frame-options: SAMEORIGIN\r\n' +
-      'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36\r\n' +
-      'x-xss-protection: 1; mode=block\r\n' +
-      'sec-ch-ua-platform: "Windows"\r\n' +
-      'origin: http://localhost:8080\r\n' +
-      'sec-fetch-site: same-site\r\n' +
-      'sec-fetch-mode: cors\r\n' +
-      'sec-fetch-dest: empty\r\n' +
-      'referer: http://localhost:8080/\r\n' +
-      'accept-encoding: gzip, deflate, br, zstd\r\n' +
-      'accept-language: zh-CN,zh;q=0.9\r\n' +
+      'Content-Length: 2\r\n' +
       '\r\n',
     _keepAliveTimeout: 0,
     _onPendingData: [Function: nop],
@@ -236,10 +167,10 @@
       [Symbol(kCapture)]: false
     },
     socketPath: undefined,
-    method: 'POST',
+    method: 'GET',
     maxHeaderSize: undefined,
     insecureHTTPParser: undefined,
-    path: '/chache-java/login',
+    path: '/ucbb-third/proxy/oauth/token?client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954&client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954',
     _ended: true,
     res: IncomingMessage {
       _readableState: [ReadableState],
@@ -258,16 +189,16 @@
       url: '',
       method: null,
       statusCode: 200,
-      statusMessage: '',
+      statusMessage: 'OK',
       client: [Socket],
       _consuming: false,
       _dumped: false,
       req: [Circular *1],
-      responseUrl: 'http://219.133.29.31/chache-java/login',
+      responseUrl: 'http://113.108.106.175:81/ucbb-third/proxy/oauth/token?client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954&client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954',
       redirects: [],
       [Symbol(kCapture)]: false,
       [Symbol(kHeaders)]: [Object],
-      [Symbol(kHeadersCount)]: 32,
+      [Symbol(kHeadersCount)]: 22,
       [Symbol(kTrailers)]: null,
       [Symbol(kTrailersCount)]: 0,
       [Symbol(RequestTimeout)]: undefined
@@ -278,7 +209,7 @@
     parser: null,
     maxHeadersCount: null,
     reusedSocket: false,
-    host: '219.133.29.31',
+    host: '113.108.106.175',
     protocol: 'http:',
     _redirectable: Writable {
       _writableState: [WritableState],
@@ -290,11 +221,11 @@
       _ending: true,
       _redirectCount: 0,
       _redirects: [],
-      _requestBodyLength: 47,
+      _requestBodyLength: 2,
       _requestBodyBuffers: [],
       _onNativeResponse: [Function (anonymous)],
       _currentRequest: [Circular *1],
-      _currentUrl: 'http://219.133.29.31/chache-java/login',
+      _currentUrl: 'http://113.108.106.175:81/ucbb-third/proxy/oauth/token?client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954&client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954',
       [Symbol(kCapture)]: false
     },
     [Symbol(kCapture)]: false,
@@ -303,113 +234,56 @@
     [Symbol(kOutHeaders)]: [Object: null prototype] {
       accept: [Array],
       'content-type': [Array],
-      host: [Array],
-      connection: [Array],
-      'content-length': [Array],
-      'sec-ch-ua': [Array],
-      'content-security-policy': [Array],
-      'strict-transport-security': [Array],
-      'x-content-type-options': [Array],
-      'referrer-policy': [Array],
-      istoken: [Array],
-      'x-permitted-cross-domain-policies': [Array],
-      'sec-ch-ua-mobile': [Array],
-      'x-download-options': [Array],
-      'x-frame-options': [Array],
       'user-agent': [Array],
-      'x-xss-protection': [Array],
-      'sec-ch-ua-platform': [Array],
-      origin: [Array],
-      'sec-fetch-site': [Array],
-      'sec-fetch-mode': [Array],
-      'sec-fetch-dest': [Array],
-      referer: [Array],
+      'postman-token': [Array],
+      host: [Array],
       'accept-encoding': [Array],
-      'accept-language': [Array]
+      connection: [Array],
+      'content-length': [Array]
     }
   },
-  data: {
-    msg: '操作成功',
-    code: 200,
-    token: 'eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMGJlZmE2LTdjN2MtNGY0My1iOWMwLTg0MDZjZjdkNDA0NiJ9.Ey4yJPhe9gxC4USaATaKDfjx569mZb8CuyheVgYGQQr66Gw3fCXzJ4xV8r4QaWpXxTfrO4EVMxrSRI_eCk8a_A'
-  }
+  data: { error: '无法获取用户信息' }
 }
 
 {
-  query: {},
+  query: {
+    client_secret: 'a_JErim!',
+    client_id: '31f2d516275d4bc4a1bc81147803e954'
+  },
   body: {},
   headers: {
-    host: '219.133.29.31',
-    connection: 'keep-alive',
-    'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-    'content-security-policy': 'upgrade-insecure-requests;content *;img-src "*"',
-    'strict-transport-security': 'amax-age=63072000; includeSubdomains; preload',
-    'x-content-type-options': 'nosniff',
-    'referrer-policy': 'origin',
-    'x-permitted-cross-domain-policies': 'master-only',
-    'sec-ch-ua-mobile': '?0',
-    'x-download-options': 'noopen',
-    'x-frame-options': 'SAMEORIGIN',
-    authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMGJlZmE2LTdjN2MtNGY0My1iOWMwLTg0MDZjZjdkNDA0NiJ9.Ey4yJPhe9gxC4USaATaKDfjx569mZb8CuyheVgYGQQr66Gw3fCXzJ4xV8r4QaWpXxTfrO4EVMxrSRI_eCk8a_A',
-    accept: 'application/json, text/plain, */*',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-    'x-xss-protection': '1; mode=block',
-    'sec-ch-ua-platform': '"Windows"',
-    origin: 'http://localhost:8080',
-    'sec-fetch-site': 'same-site',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-dest': 'empty',
-    referer: 'http://localhost:8080/',
-    'accept-encoding': 'gzip, deflate, br, zstd',
-    'accept-language': 'zh-CN,zh;q=0.9',
-    'if-none-match': 'W/"56c-fozTDMG+5b8eLgAmQtLcB0g9+UI"'
+    'user-agent': 'PostmanRuntime/7.37.3',
+    accept: '*/*',
+    'postman-token': '0a3af4b3-e42f-4afc-be90-a81aead41d23',
+    host: '113.108.106.175:81',
+    'accept-encoding': 'gzip, deflate, br',
+    connection: 'keep-alive'
   },
   formatedHeader: {
-    host: '219.133.29.31',
-    connection: 'keep-alive',
-    'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-    'content-security-policy': 'upgrade-insecure-requests;content *;img-src "*"',
-    'strict-transport-security': 'amax-age=63072000; includeSubdomains; preload',
-    'x-content-type-options': 'nosniff',
-    'referrer-policy': 'origin',
-    'x-permitted-cross-domain-policies': 'master-only',
-    'sec-ch-ua-mobile': '?0',
-    'x-download-options': 'noopen',
-    'x-frame-options': 'SAMEORIGIN',
-    authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMGJlZmE2LTdjN2MtNGY0My1iOWMwLTg0MDZjZjdkNDA0NiJ9.Ey4yJPhe9gxC4USaATaKDfjx569mZb8CuyheVgYGQQr66Gw3fCXzJ4xV8r4QaWpXxTfrO4EVMxrSRI_eCk8a_A',
-    accept: 'application/json, text/plain, */*',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-    'x-xss-protection': '1; mode=block',
-    'sec-ch-ua-platform': '"Windows"',
-    origin: 'http://localhost:8080',
-    'sec-fetch-site': 'same-site',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-dest': 'empty',
-    referer: 'http://localhost:8080/',
-    'accept-encoding': 'gzip, deflate, br, zstd',
-    'accept-language': 'zh-CN,zh;q=0.9',
-    'if-none-match': 'W/"56c-fozTDMG+5b8eLgAmQtLcB0g9+UI"'
+    'user-agent': 'PostmanRuntime/7.37.3',
+    accept: '*/*',
+    'postman-token': '0a3af4b3-e42f-4afc-be90-a81aead41d23',
+    host: '113.108.106.175:81',
+    'accept-encoding': 'gzip, deflate, br',
+    connection: 'keep-alive'
   }
 }
 
 {
   status: 200,
-  statusText: '',
+  statusText: 'OK',
   headers: Object [AxiosHeaders] {
-    server: 'nginx/1.24.0',
-    date: 'Fri, 26 Apr 2024 09:20:03 GMT',
-    'content-type': 'application/json;charset=UTF-8',
+    server: 'nginx/1.22.1',
+    date: 'Fri, 26 Apr 2024 11:35:18 GMT',
+    'content-type': 'application/json',
     'transfer-encoding': 'chunked',
     connection: 'keep-alive',
-    vary: 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers',
-    'access-control-allow-origin': 'http://localhost:8080',
-    'access-control-allow-credentials': 'true',
-    tlogtraceid: 'jKqv935947207159332864',
     'x-content-type-options': 'nosniff',
     'x-xss-protection': '1; mode=block',
     'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
     pragma: 'no-cache',
-    expires: '0'
+    expires: '0',
+    'x-frame-options': 'DENY'
   },
   config: {
     transitional: {
@@ -428,36 +302,21 @@
     env: { FormData: [Function], Blob: null },
     validateStatus: [Function: validateStatus],
     headers: Object [AxiosHeaders] {
-      Accept: 'application/json, text/plain, */*',
+      Accept: '*/*',
       'Content-Type': 'application/json',
-      host: '219.133.29.31',
+      'user-agent': 'PostmanRuntime/7.37.3',
+      'postman-token': '0a3af4b3-e42f-4afc-be90-a81aead41d23',
+      host: '113.108.106.175:81',
+      'accept-encoding': 'gzip, deflate, br',
       connection: 'keep-alive',
-      'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-      'content-security-policy': 'upgrade-insecure-requests;content *;img-src "*"',
-      'strict-transport-security': 'amax-age=63072000; includeSubdomains; preload',
-      'x-content-type-options': 'nosniff',
-      'referrer-policy': 'origin',
-      'x-permitted-cross-domain-policies': 'master-only',
-      'sec-ch-ua-mobile': '?0',
-      'x-download-options': 'noopen',
-      'x-frame-options': 'SAMEORIGIN',
-      authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMGJlZmE2LTdjN2MtNGY0My1iOWMwLTg0MDZjZjdkNDA0NiJ9.Ey4yJPhe9gxC4USaATaKDfjx569mZb8CuyheVgYGQQr66Gw3fCXzJ4xV8r4QaWpXxTfrO4EVMxrSRI_eCk8a_A',
-      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-      'x-xss-protection': '1; mode=block',
-      'sec-ch-ua-platform': '"Windows"',
-      origin: 'http://localhost:8080',
-      'sec-fetch-site': 'same-site',
-      'sec-fetch-mode': 'cors',
-      'sec-fetch-dest': 'empty',
-      referer: 'http://localhost:8080/',
-      'accept-encoding': 'gzip, deflate, br, zstd',
-      'accept-language': 'zh-CN,zh;q=0.9',
-      'if-none-match': 'W/"56c-fozTDMG+5b8eLgAmQtLcB0g9+UI"',
       'Content-Length': '2'
     },
     method: 'get',
-    url: 'http://219.133.29.31/chache-java/getInfo',
-    params: {},
+    url: 'http://113.108.106.175:81/ucbb-third/proxy/oauth/token',
+    params: {
+      client_secret: 'a_JErim!',
+      client_id: '31f2d516275d4bc4a1bc81147803e954'
+    },
     data: '{}'
   },
   request: <ref *1> ClientRequest {
@@ -510,7 +369,7 @@
       _server: null,
       parser: null,
       _httpMessage: [Circular *1],
-      [Symbol(async_id_symbol)]: 214,
+      [Symbol(async_id_symbol)]: 26,
       [Symbol(kHandle)]: null,
       [Symbol(kSetNoDelay)]: false,
       [Symbol(lastWriteQueueSize)]: 0,
@@ -519,36 +378,18 @@
       [Symbol(kBufferCb)]: null,
       [Symbol(kBufferGen)]: null,
       [Symbol(kCapture)]: false,
-      [Symbol(kBytesRead)]: 1951,
-      [Symbol(kBytesWritten)]: 1249,
+      [Symbol(kBytesRead)]: 445,
+      [Symbol(kBytesWritten)]: 352,
       [Symbol(RequestTimeout)]: undefined
     },
-    _header: 'GET /chache-java/getInfo HTTP/1.1\r\n' +
-      'Accept: application/json, text/plain, */*\r\n' +
+    _header: 'GET /ucbb-third/proxy/oauth/token?client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954 HTTP/1.1\r\n' +
+      'Accept: */*\r\n' +
       'Content-Type: application/json\r\n' +
-      'host: 219.133.29.31\r\n' +
+      'user-agent: PostmanRuntime/7.37.3\r\n' +
+      'postman-token: 0a3af4b3-e42f-4afc-be90-a81aead41d23\r\n' +
+      'host: 113.108.106.175:81\r\n' +
+      'accept-encoding: gzip, deflate, br\r\n' +
       'connection: keep-alive\r\n' +
-      'sec-ch-ua: "Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"\r\n' +
-      'content-security-policy: upgrade-insecure-requests;content *;img-src "*"\r\n' +
-      'strict-transport-security: amax-age=63072000; includeSubdomains; preload\r\n' +
-      'x-content-type-options: nosniff\r\n' +
-      'referrer-policy: origin\r\n' +
-      'x-permitted-cross-domain-policies: master-only\r\n' +
-      'sec-ch-ua-mobile: ?0\r\n' +
-      'x-download-options: noopen\r\n' +
-      'x-frame-options: SAMEORIGIN\r\n' +
-      'authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMGJlZmE2LTdjN2MtNGY0My1iOWMwLTg0MDZjZjdkNDA0NiJ9.Ey4yJPhe9gxC4USaATaKDfjx569mZb8CuyheVgYGQQr66Gw3fCXzJ4xV8r4QaWpXxTfrO4EVMxrSRI_eCk8a_A\r\n' +
-      'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36\r\n' +
-      'x-xss-protection: 1; mode=block\r\n' +
-      'sec-ch-ua-platform: "Windows"\r\n' +
-      'origin: http://localhost:8080\r\n' +
-      'sec-fetch-site: same-site\r\n' +
-      'sec-fetch-mode: cors\r\n' +
-      'sec-fetch-dest: empty\r\n' +
-      'referer: http://localhost:8080/\r\n' +
-      'accept-encoding: gzip, deflate, br, zstd\r\n' +
-      'accept-language: zh-CN,zh;q=0.9\r\n' +
-      'if-none-match: W/"56c-fozTDMG+5b8eLgAmQtLcB0g9+UI"\r\n' +
       'Content-Length: 2\r\n' +
       '\r\n',
     _keepAliveTimeout: 0,
@@ -576,7 +417,7 @@
     method: 'GET',
     maxHeaderSize: undefined,
     insecureHTTPParser: undefined,
-    path: '/chache-java/getInfo',
+    path: '/ucbb-third/proxy/oauth/token?client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954',
     _ended: true,
     res: IncomingMessage {
       _readableState: [ReadableState],
@@ -595,16 +436,16 @@
       url: '',
       method: null,
       statusCode: 200,
-      statusMessage: '',
+      statusMessage: 'OK',
       client: [Socket],
       _consuming: false,
       _dumped: false,
       req: [Circular *1],
-      responseUrl: 'http://219.133.29.31/chache-java/getInfo',
+      responseUrl: 'http://113.108.106.175:81/ucbb-third/proxy/oauth/token?client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954',
       redirects: [],
       [Symbol(kCapture)]: false,
       [Symbol(kHeaders)]: [Object],
-      [Symbol(kHeadersCount)]: 32,
+      [Symbol(kHeadersCount)]: 22,
       [Symbol(kTrailers)]: null,
       [Symbol(kTrailersCount)]: 0,
       [Symbol(RequestTimeout)]: undefined
@@ -615,7 +456,7 @@
     parser: null,
     maxHeadersCount: null,
     reusedSocket: false,
-    host: '219.133.29.31',
+    host: '113.108.106.175',
     protocol: 'http:',
     _redirectable: Writable {
       _writableState: [WritableState],
@@ -631,7 +472,7 @@
       _requestBodyBuffers: [],
       _onNativeResponse: [Function (anonymous)],
       _currentRequest: [Circular *1],
-      _currentUrl: 'http://219.133.29.31/chache-java/getInfo',
+      _currentUrl: 'http://113.108.106.175:81/ucbb-third/proxy/oauth/token?client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954',
       [Symbol(kCapture)]: false
     },
     [Symbol(kCapture)]: false,
@@ -640,147 +481,32 @@
     [Symbol(kOutHeaders)]: [Object: null prototype] {
       accept: [Array],
       'content-type': [Array],
-      host: [Array],
-      connection: [Array],
-      'sec-ch-ua': [Array],
-      'content-security-policy': [Array],
-      'strict-transport-security': [Array],
-      'x-content-type-options': [Array],
-      'referrer-policy': [Array],
-      'x-permitted-cross-domain-policies': [Array],
-      'sec-ch-ua-mobile': [Array],
-      'x-download-options': [Array],
-      'x-frame-options': [Array],
-      authorization: [Array],
       'user-agent': [Array],
-      'x-xss-protection': [Array],
-      'sec-ch-ua-platform': [Array],
-      origin: [Array],
-      'sec-fetch-site': [Array],
-      'sec-fetch-mode': [Array],
-      'sec-fetch-dest': [Array],
-      referer: [Array],
+      'postman-token': [Array],
+      host: [Array],
       'accept-encoding': [Array],
-      'accept-language': [Array],
-      'if-none-match': [Array],
+      connection: [Array],
       'content-length': [Array]
     }
   },
   data: {
-    msg: '操作成功',
-    code: 200,
-    permissions: [ '*:*:*' ],
-    roles: [ 'admin' ],
-    user: {
-      searchValue: null,
-      createBy: 'admin',
-      createTime: '2022-07-24 16:46:56',
-      updateBy: null,
-      updateTime: null,
-      remark: '管理员',
-      params: {},
-      userId: 1,
-      deptId: 103,
-      userName: 'admin',
-      nickName: '超级管理员',
-      email: 'wu@szxplus.com.cn',
-      phonenumber: '18520840551',
-      sex: '0',
-      avatar: '/profile/avatar/2022/12/16/1671168059046_20221216132102A001.png',
-      password: '$2a$10$uHoby9kn2/Oz2o6d1SbV8.iK3uGny6/wZGvQ8Ck0TedS8vtkGy.qi',
-      salt: null,
-      status: '0',
-      delFlag: '0',
-      loginIp: '172.17.0.1',
-      loginDate: '2024-04-26T17:19:29.000+08:00',
-      dept: [Object],
-      roles: [Array],
-      roleIds: null,
-      postIds: null,
-      roleId: null,
-      userTypeList: null,
-      userType: null,
-      admin: true
-    }
+    access_token: 'a570ef51860f42198c2c3149755b7295',
+    token_type: 'bearer',
+    expires_in: 300
   }
 }
 
-{
-  query: {},
-  body: {},
-  headers: {
-    host: '219.133.29.31',
-    connection: 'keep-alive',
-    'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-    'content-security-policy': 'upgrade-insecure-requests;content *;img-src "*"',
-    'strict-transport-security': 'amax-age=63072000; includeSubdomains; preload',
-    'x-content-type-options': 'nosniff',
-    'referrer-policy': 'origin',
-    'x-permitted-cross-domain-policies': 'master-only',
-    'sec-ch-ua-mobile': '?0',
-    'x-download-options': 'noopen',
-    'x-frame-options': 'SAMEORIGIN',
-    authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMGJlZmE2LTdjN2MtNGY0My1iOWMwLTg0MDZjZjdkNDA0NiJ9.Ey4yJPhe9gxC4USaATaKDfjx569mZb8CuyheVgYGQQr66Gw3fCXzJ4xV8r4QaWpXxTfrO4EVMxrSRI_eCk8a_A',
-    accept: 'application/json, text/plain, */*',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-    'x-xss-protection': '1; mode=block',
-    'sec-ch-ua-platform': '"Windows"',
-    origin: 'http://localhost:8080',
-    'sec-fetch-site': 'same-site',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-dest': 'empty',
-    referer: 'http://localhost:8080/',
-    'accept-encoding': 'gzip, deflate, br, zstd',
-    'accept-language': 'zh-CN,zh;q=0.9',
-    'if-none-match': 'W/"1f52-TdJk6loWzbZbD4x/6hhC1W3NNP4"'
-  },
-  formatedHeader: {
-    host: '219.133.29.31',
-    connection: 'keep-alive',
-    'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-    'content-security-policy': 'upgrade-insecure-requests;content *;img-src "*"',
-    'strict-transport-security': 'amax-age=63072000; includeSubdomains; preload',
-    'x-content-type-options': 'nosniff',
-    'referrer-policy': 'origin',
-    'x-permitted-cross-domain-policies': 'master-only',
-    'sec-ch-ua-mobile': '?0',
-    'x-download-options': 'noopen',
-    'x-frame-options': 'SAMEORIGIN',
-    authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMGJlZmE2LTdjN2MtNGY0My1iOWMwLTg0MDZjZjdkNDA0NiJ9.Ey4yJPhe9gxC4USaATaKDfjx569mZb8CuyheVgYGQQr66Gw3fCXzJ4xV8r4QaWpXxTfrO4EVMxrSRI_eCk8a_A',
-    accept: 'application/json, text/plain, */*',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-    'x-xss-protection': '1; mode=block',
-    'sec-ch-ua-platform': '"Windows"',
-    origin: 'http://localhost:8080',
-    'sec-fetch-site': 'same-site',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-dest': 'empty',
-    referer: 'http://localhost:8080/',
-    'accept-encoding': 'gzip, deflate, br, zstd',
-    'accept-language': 'zh-CN,zh;q=0.9',
-    'if-none-match': 'W/"1f52-TdJk6loWzbZbD4x/6hhC1W3NNP4"'
-  }
-}
-
-{
-  status: 200,
-  statusText: '',
-  headers: Object [AxiosHeaders] {
-    server: 'nginx/1.24.0',
-    date: 'Fri, 26 Apr 2024 09:20:03 GMT',
-    'content-type': 'application/json;charset=UTF-8',
-    'transfer-encoding': 'chunked',
-    connection: 'keep-alive',
-    vary: 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers',
-    'access-control-allow-origin': 'http://localhost:8080',
-    'access-control-allow-credentials': 'true',
-    tlogtraceid: 'jKqv935947207259996160',
-    'x-content-type-options': 'nosniff',
-    'x-xss-protection': '1; mode=block',
-    'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
-    pragma: 'no-cache',
-    expires: '0'
-  },
+AxiosError: Request failed with status code 404
+    at settle (F:\work\packages\mock-server\node_modules\.pnpm\axios@1.6.8\node_modules\axios\dist\node\axios.cjs:1966:12)
+    at Unzip.handleStreamEnd (F:\work\packages\mock-server\node_modules\.pnpm\axios@1.6.8\node_modules\axios\dist\node\axios.cjs:3065:11)
+    at Unzip.emit (node:events:538:35)
+    at endReadableNT (node:internal/streams/readable:1345:12)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21)
+    at Axios.request (F:\work\packages\mock-server\node_modules\.pnpm\axios@1.6.8\node_modules\axios\dist\node\axios.cjs:3876:41)
+    at processTicksAndRejections (node:internal/process/task_queues:96:5)
+    at async proxySend (F:\work\packages\mock-server\src\packages\core\server.js:34:26)
+    at async F:\work\packages\mock-server\src\packages\core\server.js:121:24 {
+  code: 'ERR_BAD_REQUEST',
   config: {
     transitional: {
       silentJSONParsing: true,
@@ -798,36 +524,21 @@
     env: { FormData: [Function], Blob: null },
     validateStatus: [Function: validateStatus],
     headers: Object [AxiosHeaders] {
-      Accept: 'application/json, text/plain, */*',
+      Accept: '*/*',
       'Content-Type': 'application/json',
-      host: '219.133.29.31',
+      'user-agent': 'PostmanRuntime/7.37.3',
+      'postman-token': '31214e78-db51-48e8-a864-37dedf0b49de',
+      host: '113.108.106.175:81',
+      'accept-encoding': 'gzip, deflate, br',
       connection: 'keep-alive',
-      'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-      'content-security-policy': 'upgrade-insecure-requests;content *;img-src "*"',
-      'strict-transport-security': 'amax-age=63072000; includeSubdomains; preload',
-      'x-content-type-options': 'nosniff',
-      'referrer-policy': 'origin',
-      'x-permitted-cross-domain-policies': 'master-only',
-      'sec-ch-ua-mobile': '?0',
-      'x-download-options': 'noopen',
-      'x-frame-options': 'SAMEORIGIN',
-      authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMGJlZmE2LTdjN2MtNGY0My1iOWMwLTg0MDZjZjdkNDA0NiJ9.Ey4yJPhe9gxC4USaATaKDfjx569mZb8CuyheVgYGQQr66Gw3fCXzJ4xV8r4QaWpXxTfrO4EVMxrSRI_eCk8a_A',
-      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-      'x-xss-protection': '1; mode=block',
-      'sec-ch-ua-platform': '"Windows"',
-      origin: 'http://localhost:8080',
-      'sec-fetch-site': 'same-site',
-      'sec-fetch-mode': 'cors',
-      'sec-fetch-dest': 'empty',
-      referer: 'http://localhost:8080/',
-      'accept-encoding': 'gzip, deflate, br, zstd',
-      'accept-language': 'zh-CN,zh;q=0.9',
-      'if-none-match': 'W/"1f52-TdJk6loWzbZbD4x/6hhC1W3NNP4"',
       'Content-Length': '2'
     },
     method: 'get',
-    url: 'http://219.133.29.31/chache-java/getRouters',
-    params: {},
+    url: 'http://113.108.106.175:81//ucbb-third/proxy/oauth/token',
+    params: {
+      client_secret: 'a_JErim!',
+      client_id: '31f2d516275d4bc4a1bc81147803e954'
+    },
     data: '{}'
   },
   request: <ref *1> ClientRequest {
@@ -880,7 +591,7 @@
       _server: null,
       parser: null,
       _httpMessage: [Circular *1],
-      [Symbol(async_id_symbol)]: 254,
+      [Symbol(async_id_symbol)]: 26,
       [Symbol(kHandle)]: null,
       [Symbol(kSetNoDelay)]: false,
       [Symbol(lastWriteQueueSize)]: 0,
@@ -889,36 +600,18 @@
       [Symbol(kBufferCb)]: null,
       [Symbol(kBufferGen)]: null,
       [Symbol(kCapture)]: false,
-      [Symbol(kBytesRead)]: 8589,
-      [Symbol(kBytesWritten)]: 1253,
+      [Symbol(kBytesRead)]: 534,
+      [Symbol(kBytesWritten)]: 353,
       [Symbol(RequestTimeout)]: undefined
     },
-    _header: 'GET /chache-java/getRouters HTTP/1.1\r\n' +
-      'Accept: application/json, text/plain, */*\r\n' +
+    _header: 'GET //ucbb-third/proxy/oauth/token?client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954 HTTP/1.1\r\n' +
+      'Accept: */*\r\n' +
       'Content-Type: application/json\r\n' +
-      'host: 219.133.29.31\r\n' +
+      'user-agent: PostmanRuntime/7.37.3\r\n' +
+      'postman-token: 31214e78-db51-48e8-a864-37dedf0b49de\r\n' +
+      'host: 113.108.106.175:81\r\n' +
+      'accept-encoding: gzip, deflate, br\r\n' +
       'connection: keep-alive\r\n' +
-      'sec-ch-ua: "Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"\r\n' +
-      'content-security-policy: upgrade-insecure-requests;content *;img-src "*"\r\n' +
-      'strict-transport-security: amax-age=63072000; includeSubdomains; preload\r\n' +
-      'x-content-type-options: nosniff\r\n' +
-      'referrer-policy: origin\r\n' +
-      'x-permitted-cross-domain-policies: master-only\r\n' +
-      'sec-ch-ua-mobile: ?0\r\n' +
-      'x-download-options: noopen\r\n' +
-      'x-frame-options: SAMEORIGIN\r\n' +
-      'authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMGJlZmE2LTdjN2MtNGY0My1iOWMwLTg0MDZjZjdkNDA0NiJ9.Ey4yJPhe9gxC4USaATaKDfjx569mZb8CuyheVgYGQQr66Gw3fCXzJ4xV8r4QaWpXxTfrO4EVMxrSRI_eCk8a_A\r\n' +
-      'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36\r\n' +
-      'x-xss-protection: 1; mode=block\r\n' +
-      'sec-ch-ua-platform: "Windows"\r\n' +
-      'origin: http://localhost:8080\r\n' +
-      'sec-fetch-site: same-site\r\n' +
-      'sec-fetch-mode: cors\r\n' +
-      'sec-fetch-dest: empty\r\n' +
-      'referer: http://localhost:8080/\r\n' +
-      'accept-encoding: gzip, deflate, br, zstd\r\n' +
-      'accept-language: zh-CN,zh;q=0.9\r\n' +
-      'if-none-match: W/"1f52-TdJk6loWzbZbD4x/6hhC1W3NNP4"\r\n' +
       'Content-Length: 2\r\n' +
       '\r\n',
     _keepAliveTimeout: 0,
@@ -931,7 +624,7 @@
       protocol: 'http:',
       options: [Object: null prototype],
       requests: [Object: null prototype] {},
-      sockets: [Object: null prototype],
+      sockets: [Object: null prototype] {},
       freeSockets: [Object: null prototype] {},
       keepAliveMsecs: 1000,
       keepAlive: false,
@@ -939,14 +632,14 @@
       maxFreeSockets: 256,
       scheduling: 'lifo',
       maxTotalSockets: Infinity,
-      totalSocketCount: 1,
+      totalSocketCount: 0,
       [Symbol(kCapture)]: false
     },
     socketPath: undefined,
     method: 'GET',
     maxHeaderSize: undefined,
     insecureHTTPParser: undefined,
-    path: '/chache-java/getRouters',
+    path: '//ucbb-third/proxy/oauth/token?client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954',
     _ended: true,
     res: IncomingMessage {
       _readableState: [ReadableState],
@@ -964,417 +657,17 @@
       upgrade: false,
       url: '',
       method: null,
-      statusCode: 200,
-      statusMessage: '',
-      client: [Socket],
-      _consuming: true,
-      _dumped: false,
-      req: [Circular *1],
-      responseUrl: 'http://219.133.29.31/chache-java/getRouters',
-      redirects: [],
-      [Symbol(kCapture)]: false,
-      [Symbol(kHeaders)]: [Object],
-      [Symbol(kHeadersCount)]: 32,
-      [Symbol(kTrailers)]: null,
-      [Symbol(kTrailersCount)]: 0,
-      [Symbol(RequestTimeout)]: undefined
-    },
-    aborted: false,
-    timeoutCb: null,
-    upgradeOrConnect: false,
-    parser: null,
-    maxHeadersCount: null,
-    reusedSocket: false,
-    host: '219.133.29.31',
-    protocol: 'http:',
-    _redirectable: Writable {
-      _writableState: [WritableState],
-      _events: [Object: null prototype],
-      _eventsCount: 3,
-      _maxListeners: undefined,
-      _options: [Object],
-      _ended: true,
-      _ending: true,
-      _redirectCount: 0,
-      _redirects: [],
-      _requestBodyLength: 2,
-      _requestBodyBuffers: [],
-      _onNativeResponse: [Function (anonymous)],
-      _currentRequest: [Circular *1],
-      _currentUrl: 'http://219.133.29.31/chache-java/getRouters',
-      [Symbol(kCapture)]: false
-    },
-    [Symbol(kCapture)]: false,
-    [Symbol(kNeedDrain)]: false,
-    [Symbol(corked)]: 0,
-    [Symbol(kOutHeaders)]: [Object: null prototype] {
-      accept: [Array],
-      'content-type': [Array],
-      host: [Array],
-      connection: [Array],
-      'sec-ch-ua': [Array],
-      'content-security-policy': [Array],
-      'strict-transport-security': [Array],
-      'x-content-type-options': [Array],
-      'referrer-policy': [Array],
-      'x-permitted-cross-domain-policies': [Array],
-      'sec-ch-ua-mobile': [Array],
-      'x-download-options': [Array],
-      'x-frame-options': [Array],
-      authorization: [Array],
-      'user-agent': [Array],
-      'x-xss-protection': [Array],
-      'sec-ch-ua-platform': [Array],
-      origin: [Array],
-      'sec-fetch-site': [Array],
-      'sec-fetch-mode': [Array],
-      'sec-fetch-dest': [Array],
-      referer: [Array],
-      'accept-encoding': [Array],
-      'accept-language': [Array],
-      'if-none-match': [Array],
-      'content-length': [Array]
-    }
-  },
-  data: {
-    msg: '操作成功',
-    code: 200,
-    data: [
-      [Object], [Object],
-      [Object], [Object],
-      [Object], [Object],
-      [Object], [Object]
-    ]
-  }
-}
-
-{
-  query: { toUser: '103' },
-  body: {},
-  headers: {
-    host: '219.133.29.31',
-    connection: 'keep-alive',
-    'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-    'content-security-policy': 'upgrade-insecure-requests;content *;img-src "*"',
-    'strict-transport-security': 'amax-age=63072000; includeSubdomains; preload',
-    'x-content-type-options': 'nosniff',
-    'referrer-policy': 'origin',
-    'x-permitted-cross-domain-policies': 'master-only',
-    'sec-ch-ua-mobile': '?0',
-    'x-download-options': 'noopen',
-    'x-frame-options': 'SAMEORIGIN',
-    authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMGJlZmE2LTdjN2MtNGY0My1iOWMwLTg0MDZjZjdkNDA0NiJ9.Ey4yJPhe9gxC4USaATaKDfjx569mZb8CuyheVgYGQQr66Gw3fCXzJ4xV8r4QaWpXxTfrO4EVMxrSRI_eCk8a_A',
-    accept: 'application/json, text/plain, */*',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-    'x-xss-protection': '1; mode=block',
-    'sec-ch-ua-platform': '"Windows"',
-    origin: 'http://localhost:8080',
-    'sec-fetch-site': 'same-site',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-dest': 'empty',
-    referer: 'http://localhost:8080/',
-    'accept-encoding': 'gzip, deflate, br, zstd',
-    'accept-language': 'zh-CN,zh;q=0.9',
-    'if-none-match': 'W/"35-0XDvf5jl8n6yR/h+TAlpbL8yuvM"'
-  },
-  formatedHeader: {
-    host: '219.133.29.31',
-    connection: 'keep-alive',
-    'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-    'content-security-policy': 'upgrade-insecure-requests;content *;img-src "*"',
-    'strict-transport-security': 'amax-age=63072000; includeSubdomains; preload',
-    'x-content-type-options': 'nosniff',
-    'referrer-policy': 'origin',
-    'x-permitted-cross-domain-policies': 'master-only',
-    'sec-ch-ua-mobile': '?0',
-    'x-download-options': 'noopen',
-    'x-frame-options': 'SAMEORIGIN',
-    authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMGJlZmE2LTdjN2MtNGY0My1iOWMwLTg0MDZjZjdkNDA0NiJ9.Ey4yJPhe9gxC4USaATaKDfjx569mZb8CuyheVgYGQQr66Gw3fCXzJ4xV8r4QaWpXxTfrO4EVMxrSRI_eCk8a_A',
-    accept: 'application/json, text/plain, */*',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-    'x-xss-protection': '1; mode=block',
-    'sec-ch-ua-platform': '"Windows"',
-    origin: 'http://localhost:8080',
-    'sec-fetch-site': 'same-site',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-dest': 'empty',
-    referer: 'http://localhost:8080/',
-    'accept-encoding': 'gzip, deflate, br, zstd',
-    'accept-language': 'zh-CN,zh;q=0.9',
-    'if-none-match': 'W/"35-0XDvf5jl8n6yR/h+TAlpbL8yuvM"'
-  }
-}
-
-{
-  query: {},
-  body: {},
-  headers: {
-    host: '219.133.29.31',
-    connection: 'keep-alive',
-    'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-    'content-security-policy': 'upgrade-insecure-requests;content *;img-src "*"',
-    'strict-transport-security': 'amax-age=63072000; includeSubdomains; preload',
-    'x-content-type-options': 'nosniff',
-    'referrer-policy': 'origin',
-    'x-permitted-cross-domain-policies': 'master-only',
-    'sec-ch-ua-mobile': '?0',
-    'x-download-options': 'noopen',
-    'x-frame-options': 'SAMEORIGIN',
-    authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMGJlZmE2LTdjN2MtNGY0My1iOWMwLTg0MDZjZjdkNDA0NiJ9.Ey4yJPhe9gxC4USaATaKDfjx569mZb8CuyheVgYGQQr66Gw3fCXzJ4xV8r4QaWpXxTfrO4EVMxrSRI_eCk8a_A',
-    accept: 'application/json, text/plain, */*',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-    'x-xss-protection': '1; mode=block',
-    'sec-ch-ua-platform': '"Windows"',
-    origin: 'http://localhost:8080',
-    'sec-fetch-site': 'same-site',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-dest': 'empty',
-    referer: 'http://localhost:8080/',
-    'accept-encoding': 'gzip, deflate, br, zstd',
-    'accept-language': 'zh-CN,zh;q=0.9',
-    'if-none-match': 'W/"65-zGU8VZJZBjki3GUlj+2S62jglJo"'
-  },
-  formatedHeader: {
-    host: '219.133.29.31',
-    connection: 'keep-alive',
-    'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-    'content-security-policy': 'upgrade-insecure-requests;content *;img-src "*"',
-    'strict-transport-security': 'amax-age=63072000; includeSubdomains; preload',
-    'x-content-type-options': 'nosniff',
-    'referrer-policy': 'origin',
-    'x-permitted-cross-domain-policies': 'master-only',
-    'sec-ch-ua-mobile': '?0',
-    'x-download-options': 'noopen',
-    'x-frame-options': 'SAMEORIGIN',
-    authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMGJlZmE2LTdjN2MtNGY0My1iOWMwLTg0MDZjZjdkNDA0NiJ9.Ey4yJPhe9gxC4USaATaKDfjx569mZb8CuyheVgYGQQr66Gw3fCXzJ4xV8r4QaWpXxTfrO4EVMxrSRI_eCk8a_A',
-    accept: 'application/json, text/plain, */*',
-    'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-    'x-xss-protection': '1; mode=block',
-    'sec-ch-ua-platform': '"Windows"',
-    origin: 'http://localhost:8080',
-    'sec-fetch-site': 'same-site',
-    'sec-fetch-mode': 'cors',
-    'sec-fetch-dest': 'empty',
-    referer: 'http://localhost:8080/',
-    'accept-encoding': 'gzip, deflate, br, zstd',
-    'accept-language': 'zh-CN,zh;q=0.9',
-    'if-none-match': 'W/"65-zGU8VZJZBjki3GUlj+2S62jglJo"'
-  }
-}
-
-{
-  status: 200,
-  statusText: '',
-  headers: Object [AxiosHeaders] {
-    server: 'nginx/1.24.0',
-    date: 'Fri, 26 Apr 2024 09:20:03 GMT',
-    'content-type': 'application/json;charset=UTF-8',
-    'transfer-encoding': 'chunked',
-    connection: 'keep-alive',
-    vary: 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers',
-    'access-control-allow-origin': 'http://localhost:8080',
-    'access-control-allow-credentials': 'true',
-    tlogtraceid: 'jKqv935947209063546880',
-    'x-content-type-options': 'nosniff',
-    'x-xss-protection': '1; mode=block',
-    'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
-    pragma: 'no-cache',
-    expires: '0'
-  },
-  config: {
-    transitional: {
-      silentJSONParsing: true,
-      forcedJSONParsing: true,
-      clarifyTimeoutError: false
-    },
-    adapter: [ 'xhr', 'http' ],
-    transformRequest: [ [Function: transformRequest] ],
-    transformResponse: [ [Function: transformResponse] ],
-    timeout: 0,
-    xsrfCookieName: 'XSRF-TOKEN',
-    xsrfHeaderName: 'X-XSRF-TOKEN',
-    maxContentLength: -1,
-    maxBodyLength: -1,
-    env: { FormData: [Function], Blob: null },
-    validateStatus: [Function: validateStatus],
-    headers: Object [AxiosHeaders] {
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
-      host: '219.133.29.31',
-      connection: 'keep-alive',
-      'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-      'content-security-policy': 'upgrade-insecure-requests;content *;img-src "*"',
-      'strict-transport-security': 'amax-age=63072000; includeSubdomains; preload',
-      'x-content-type-options': 'nosniff',
-      'referrer-policy': 'origin',
-      'x-permitted-cross-domain-policies': 'master-only',
-      'sec-ch-ua-mobile': '?0',
-      'x-download-options': 'noopen',
-      'x-frame-options': 'SAMEORIGIN',
-      authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMGJlZmE2LTdjN2MtNGY0My1iOWMwLTg0MDZjZjdkNDA0NiJ9.Ey4yJPhe9gxC4USaATaKDfjx569mZb8CuyheVgYGQQr66Gw3fCXzJ4xV8r4QaWpXxTfrO4EVMxrSRI_eCk8a_A',
-      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-      'x-xss-protection': '1; mode=block',
-      'sec-ch-ua-platform': '"Windows"',
-      origin: 'http://localhost:8080',
-      'sec-fetch-site': 'same-site',
-      'sec-fetch-mode': 'cors',
-      'sec-fetch-dest': 'empty',
-      referer: 'http://localhost:8080/',
-      'accept-encoding': 'gzip, deflate, br, zstd',
-      'accept-language': 'zh-CN,zh;q=0.9',
-      'if-none-match': 'W/"35-0XDvf5jl8n6yR/h+TAlpbL8yuvM"',
-      'Content-Length': '2'
-    },
-    method: 'get',
-    url: 'http://219.133.29.31/chache-java/system/notice/list?toUser=103',
-    params: { toUser: '103' },
-    data: '{}'
-  },
-  request: <ref *1> ClientRequest {
-    _events: [Object: null prototype] {
-      abort: [Function (anonymous)],
-      aborted: [Function (anonymous)],
-      connect: [Function (anonymous)],
-      error: [Function (anonymous)],
-      socket: [Function (anonymous)],
-      timeout: [Function (anonymous)],
-      prefinish: [Function: requestOnPrefinish]
-    },
-    _eventsCount: 7,
-    _maxListeners: undefined,
-    outputData: [],
-    outputSize: 0,
-    writable: true,
-    destroyed: true,
-    _last: true,
-    chunkedEncoding: false,
-    shouldKeepAlive: true,
-    maxRequestsOnConnectionReached: false,
-    _defaultKeepAlive: true,
-    useChunkedEncodingByDefault: false,
-    sendDate: false,
-    _removedConnection: false,
-    _removedContLen: false,
-    _removedTE: false,
-    _contentLength: null,
-    _hasBody: true,
-    _trailer: '',
-    finished: true,
-    _headerSent: true,
-    _closed: true,
-    socket: Socket {
-      connecting: false,
-      _hadError: false,
-      _parent: null,
-      _host: null,
-      _readableState: [ReadableState],
-      _events: [Object: null prototype],
-      _eventsCount: 5,
-      _maxListeners: undefined,
-      _writableState: [WritableState],
-      allowHalfOpen: false,
-      _sockname: null,
-      _pendingData: null,
-      _pendingEncoding: '',
-      server: null,
-      _server: null,
-      parser: null,
-      _httpMessage: [Circular *1],
-      [Symbol(async_id_symbol)]: 307,
-      [Symbol(kHandle)]: null,
-      [Symbol(kSetNoDelay)]: false,
-      [Symbol(lastWriteQueueSize)]: 0,
-      [Symbol(timeout)]: null,
-      [Symbol(kBuffer)]: null,
-      [Symbol(kBufferCb)]: null,
-      [Symbol(kBufferGen)]: null,
-      [Symbol(kCapture)]: false,
-      [Symbol(kBytesRead)]: 615,
-      [Symbol(kBytesWritten)]: 1281,
-      [Symbol(RequestTimeout)]: undefined
-    },
-    _header: 'GET /chache-java/system/notice/list?toUser=103&toUser=103 HTTP/1.1\r\n' +
-      'Accept: application/json, text/plain, */*\r\n' +
-      'Content-Type: application/json\r\n' +
-      'host: 219.133.29.31\r\n' +
-      'connection: keep-alive\r\n' +
-      'sec-ch-ua: "Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"\r\n' +
-      'content-security-policy: upgrade-insecure-requests;content *;img-src "*"\r\n' +
-      'strict-transport-security: amax-age=63072000; includeSubdomains; preload\r\n' +
-      'x-content-type-options: nosniff\r\n' +
-      'referrer-policy: origin\r\n' +
-      'x-permitted-cross-domain-policies: master-only\r\n' +
-      'sec-ch-ua-mobile: ?0\r\n' +
-      'x-download-options: noopen\r\n' +
-      'x-frame-options: SAMEORIGIN\r\n' +
-      'authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMGJlZmE2LTdjN2MtNGY0My1iOWMwLTg0MDZjZjdkNDA0NiJ9.Ey4yJPhe9gxC4USaATaKDfjx569mZb8CuyheVgYGQQr66Gw3fCXzJ4xV8r4QaWpXxTfrO4EVMxrSRI_eCk8a_A\r\n' +
-      'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36\r\n' +
-      'x-xss-protection: 1; mode=block\r\n' +
-      'sec-ch-ua-platform: "Windows"\r\n' +
-      'origin: http://localhost:8080\r\n' +
-      'sec-fetch-site: same-site\r\n' +
-      'sec-fetch-mode: cors\r\n' +
-      'sec-fetch-dest: empty\r\n' +
-      'referer: http://localhost:8080/\r\n' +
-      'accept-encoding: gzip, deflate, br, zstd\r\n' +
-      'accept-language: zh-CN,zh;q=0.9\r\n' +
-      'if-none-match: W/"35-0XDvf5jl8n6yR/h+TAlpbL8yuvM"\r\n' +
-      'Content-Length: 2\r\n' +
-      '\r\n',
-    _keepAliveTimeout: 0,
-    _onPendingData: [Function: nop],
-    agent: Agent {
-      _events: [Object: null prototype],
-      _eventsCount: 2,
-      _maxListeners: undefined,
-      defaultPort: 80,
-      protocol: 'http:',
-      options: [Object: null prototype],
-      requests: [Object: null prototype] {},
-      sockets: [Object: null prototype],
-      freeSockets: [Object: null prototype] {},
-      keepAliveMsecs: 1000,
-      keepAlive: false,
-      maxSockets: Infinity,
-      maxFreeSockets: 256,
-      scheduling: 'lifo',
-      maxTotalSockets: Infinity,
-      totalSocketCount: 2,
-      [Symbol(kCapture)]: false
-    },
-    socketPath: undefined,
-    method: 'GET',
-    maxHeaderSize: undefined,
-    insecureHTTPParser: undefined,
-    path: '/chache-java/system/notice/list?toUser=103&toUser=103',
-    _ended: true,
-    res: IncomingMessage {
-      _readableState: [ReadableState],
-      _events: [Object: null prototype],
-      _eventsCount: 4,
-      _maxListeners: undefined,
-      socket: null,
-      httpVersionMajor: 1,
-      httpVersionMinor: 1,
-      httpVersion: '1.1',
-      complete: true,
-      rawHeaders: [Array],
-      rawTrailers: [],
-      aborted: false,
-      upgrade: false,
-      url: '',
-      method: null,
-      statusCode: 200,
-      statusMessage: '',
+      statusCode: 404,
+      statusMessage: 'Not Found',
       client: [Socket],
       _consuming: false,
       _dumped: false,
       req: [Circular *1],
-      responseUrl: 'http://219.133.29.31/chache-java/system/notice/list?toUser=103&toUser=103',
+      responseUrl: 'http://113.108.106.175:81//ucbb-third/proxy/oauth/token?client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954',
       redirects: [],
       [Symbol(kCapture)]: false,
       [Symbol(kHeaders)]: [Object],
-      [Symbol(kHeadersCount)]: 32,
+      [Symbol(kHeadersCount)]: 16,
       [Symbol(kTrailers)]: null,
       [Symbol(kTrailersCount)]: 0,
       [Symbol(RequestTimeout)]: undefined
@@ -1385,7 +678,7 @@
     parser: null,
     maxHeadersCount: null,
     reusedSocket: false,
-    host: '219.133.29.31',
+    host: '113.108.106.175',
     protocol: 'http:',
     _redirectable: Writable {
       _writableState: [WritableState],
@@ -1401,7 +694,7 @@
       _requestBodyBuffers: [],
       _onNativeResponse: [Function (anonymous)],
       _currentRequest: [Circular *1],
-      _currentUrl: 'http://219.133.29.31/chache-java/system/notice/list?toUser=103&toUser=103',
+      _currentUrl: 'http://113.108.106.175:81//ucbb-third/proxy/oauth/token?client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954',
       [Symbol(kCapture)]: false
     },
     [Symbol(kCapture)]: false,
@@ -1410,326 +703,118 @@
     [Symbol(kOutHeaders)]: [Object: null prototype] {
       accept: [Array],
       'content-type': [Array],
-      host: [Array],
-      connection: [Array],
-      'sec-ch-ua': [Array],
-      'content-security-policy': [Array],
-      'strict-transport-security': [Array],
-      'x-content-type-options': [Array],
-      'referrer-policy': [Array],
-      'x-permitted-cross-domain-policies': [Array],
-      'sec-ch-ua-mobile': [Array],
-      'x-download-options': [Array],
-      'x-frame-options': [Array],
-      authorization: [Array],
       'user-agent': [Array],
-      'x-xss-protection': [Array],
-      'sec-ch-ua-platform': [Array],
-      origin: [Array],
-      'sec-fetch-site': [Array],
-      'sec-fetch-mode': [Array],
-      'sec-fetch-dest': [Array],
-      referer: [Array],
+      'postman-token': [Array],
+      host: [Array],
       'accept-encoding': [Array],
-      'accept-language': [Array],
-      'if-none-match': [Array],
+      connection: [Array],
       'content-length': [Array]
     }
   },
-  data: { total: 0, rows: [], code: 200, msg: '查询成功' }
-}
-
-{
-  status: 200,
-  statusText: '',
-  headers: Object [AxiosHeaders] {
-    server: 'nginx/1.24.0',
-    date: 'Fri, 26 Apr 2024 09:20:04 GMT',
-    'content-type': 'application/json;charset=UTF-8',
-    'transfer-encoding': 'chunked',
-    connection: 'keep-alive',
-    vary: 'Origin, Access-Control-Request-Method, Access-Control-Request-Headers',
-    'access-control-allow-origin': 'http://localhost:8080',
-    'access-control-allow-credentials': 'true',
-    tlogtraceid: 'jKqv935947209071935488',
-    'x-content-type-options': 'nosniff',
-    'x-xss-protection': '1; mode=block',
-    'cache-control': 'no-cache, no-store, max-age=0, must-revalidate',
-    pragma: 'no-cache',
-    expires: '0'
-  },
-  config: {
-    transitional: {
-      silentJSONParsing: true,
-      forcedJSONParsing: true,
-      clarifyTimeoutError: false
-    },
-    adapter: [ 'xhr', 'http' ],
-    transformRequest: [ [Function: transformRequest] ],
-    transformResponse: [ [Function: transformResponse] ],
-    timeout: 0,
-    xsrfCookieName: 'XSRF-TOKEN',
-    xsrfHeaderName: 'X-XSRF-TOKEN',
-    maxContentLength: -1,
-    maxBodyLength: -1,
-    env: { FormData: [Function], Blob: null },
-    validateStatus: [Function: validateStatus],
+  response: {
+    status: 404,
+    statusText: 'Not Found',
     headers: Object [AxiosHeaders] {
-      Accept: 'application/json, text/plain, */*',
-      'Content-Type': 'application/json',
-      host: '219.133.29.31',
+      server: 'nginx/1.22.1',
+      date: 'Fri, 26 Apr 2024 11:36:13 GMT',
+      'content-type': 'text/html;charset=iso-8859-1',
+      'transfer-encoding': 'chunked',
       connection: 'keep-alive',
-      'sec-ch-ua': '"Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"',
-      'content-security-policy': 'upgrade-insecure-requests;content *;img-src "*"',
-      'strict-transport-security': 'amax-age=63072000; includeSubdomains; preload',
-      'x-content-type-options': 'nosniff',
-      'referrer-policy': 'origin',
-      'x-permitted-cross-domain-policies': 'master-only',
-      'sec-ch-ua-mobile': '?0',
-      'x-download-options': 'noopen',
-      'x-frame-options': 'SAMEORIGIN',
-      authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMGJlZmE2LTdjN2MtNGY0My1iOWMwLTg0MDZjZjdkNDA0NiJ9.Ey4yJPhe9gxC4USaATaKDfjx569mZb8CuyheVgYGQQr66Gw3fCXzJ4xV8r4QaWpXxTfrO4EVMxrSRI_eCk8a_A',
-      'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
-      'x-xss-protection': '1; mode=block',
-      'sec-ch-ua-platform': '"Windows"',
-      origin: 'http://localhost:8080',
-      'sec-fetch-site': 'same-site',
-      'sec-fetch-mode': 'cors',
-      'sec-fetch-dest': 'empty',
-      referer: 'http://localhost:8080/',
-      'accept-encoding': 'gzip, deflate, br, zstd',
-      'accept-language': 'zh-CN,zh;q=0.9',
-      'if-none-match': 'W/"65-zGU8VZJZBjki3GUlj+2S62jglJo"',
-      'Content-Length': '2'
+      vary: 'Accept-Encoding',
+      'cache-control': 'must-revalidate,no-cache,no-store'
     },
-    method: 'get',
-    url: 'http://219.133.29.31/chache-java/getIndexPageStatistics',
-    params: {},
-    data: '{}'
-  },
-  request: <ref *1> ClientRequest {
-    _events: [Object: null prototype] {
-      abort: [Function (anonymous)],
-      aborted: [Function (anonymous)],
-      connect: [Function (anonymous)],
-      error: [Function (anonymous)],
-      socket: [Function (anonymous)],
-      timeout: [Function (anonymous)],
-      prefinish: [Function: requestOnPrefinish]
+    config: {
+      transitional: [Object],
+      adapter: [Array],
+      transformRequest: [Array],
+      transformResponse: [Array],
+      timeout: 0,
+      xsrfCookieName: 'XSRF-TOKEN',
+      xsrfHeaderName: 'X-XSRF-TOKEN',
+      maxContentLength: -1,
+      maxBodyLength: -1,
+      env: [Object],
+      validateStatus: [Function: validateStatus],
+      headers: [Object [AxiosHeaders]],
+      method: 'get',
+      url: 'http://113.108.106.175:81//ucbb-third/proxy/oauth/token',
+      params: [Object],
+      data: '{}'
     },
-    _eventsCount: 7,
-    _maxListeners: undefined,
-    outputData: [],
-    outputSize: 0,
-    writable: true,
-    destroyed: true,
-    _last: true,
-    chunkedEncoding: false,
-    shouldKeepAlive: true,
-    maxRequestsOnConnectionReached: false,
-    _defaultKeepAlive: true,
-    useChunkedEncodingByDefault: false,
-    sendDate: false,
-    _removedConnection: false,
-    _removedContLen: false,
-    _removedTE: false,
-    _contentLength: null,
-    _hasBody: true,
-    _trailer: '',
-    finished: true,
-    _headerSent: true,
-    _closed: true,
-    socket: Socket {
-      connecting: false,
-      _hadError: false,
-      _parent: null,
-      _host: null,
-      _readableState: [ReadableState],
+    request: <ref *1> ClientRequest {
       _events: [Object: null prototype],
-      _eventsCount: 5,
+      _eventsCount: 7,
       _maxListeners: undefined,
-      _writableState: [WritableState],
-      allowHalfOpen: false,
-      _sockname: null,
-      _pendingData: null,
-      _pendingEncoding: '',
-      server: null,
-      _server: null,
-      parser: null,
-      _httpMessage: [Circular *1],
-      [Symbol(async_id_symbol)]: 317,
-      [Symbol(kHandle)]: null,
-      [Symbol(kSetNoDelay)]: false,
-      [Symbol(lastWriteQueueSize)]: 0,
-      [Symbol(timeout)]: null,
-      [Symbol(kBuffer)]: null,
-      [Symbol(kBufferCb)]: null,
-      [Symbol(kBufferGen)]: null,
-      [Symbol(kCapture)]: false,
-      [Symbol(kBytesRead)]: 302241,
-      [Symbol(kBytesWritten)]: 1263,
-      [Symbol(RequestTimeout)]: undefined
-    },
-    _header: 'GET /chache-java/getIndexPageStatistics HTTP/1.1\r\n' +
-      'Accept: application/json, text/plain, */*\r\n' +
-      'Content-Type: application/json\r\n' +
-      'host: 219.133.29.31\r\n' +
-      'connection: keep-alive\r\n' +
-      'sec-ch-ua: "Chromium";v="124", "Google Chrome";v="124", "Not-A.Brand";v="99"\r\n' +
-      'content-security-policy: upgrade-insecure-requests;content *;img-src "*"\r\n' +
-      'strict-transport-security: amax-age=63072000; includeSubdomains; preload\r\n' +
-      'x-content-type-options: nosniff\r\n' +
-      'referrer-policy: origin\r\n' +
-      'x-permitted-cross-domain-policies: master-only\r\n' +
-      'sec-ch-ua-mobile: ?0\r\n' +
-      'x-download-options: noopen\r\n' +
-      'x-frame-options: SAMEORIGIN\r\n' +
-      'authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJsb2dpbl91c2VyX2tleSI6ImYwMGJlZmE2LTdjN2MtNGY0My1iOWMwLTg0MDZjZjdkNDA0NiJ9.Ey4yJPhe9gxC4USaATaKDfjx569mZb8CuyheVgYGQQr66Gw3fCXzJ4xV8r4QaWpXxTfrO4EVMxrSRI_eCk8a_A\r\n' +
-      'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36\r\n' +
-      'x-xss-protection: 1; mode=block\r\n' +
-      'sec-ch-ua-platform: "Windows"\r\n' +
-      'origin: http://localhost:8080\r\n' +
-      'sec-fetch-site: same-site\r\n' +
-      'sec-fetch-mode: cors\r\n' +
-      'sec-fetch-dest: empty\r\n' +
-      'referer: http://localhost:8080/\r\n' +
-      'accept-encoding: gzip, deflate, br, zstd\r\n' +
-      'accept-language: zh-CN,zh;q=0.9\r\n' +
-      'if-none-match: W/"65-zGU8VZJZBjki3GUlj+2S62jglJo"\r\n' +
-      'Content-Length: 2\r\n' +
-      '\r\n',
-    _keepAliveTimeout: 0,
-    _onPendingData: [Function: nop],
-    agent: Agent {
-      _events: [Object: null prototype],
-      _eventsCount: 2,
-      _maxListeners: undefined,
-      defaultPort: 80,
-      protocol: 'http:',
-      options: [Object: null prototype],
-      requests: [Object: null prototype] {},
-      sockets: [Object: null prototype],
-      freeSockets: [Object: null prototype] {},
-      keepAliveMsecs: 1000,
-      keepAlive: false,
-      maxSockets: Infinity,
-      maxFreeSockets: 256,
-      scheduling: 'lifo',
-      maxTotalSockets: Infinity,
-      totalSocketCount: 1,
-      [Symbol(kCapture)]: false
-    },
-    socketPath: undefined,
-    method: 'GET',
-    maxHeaderSize: undefined,
-    insecureHTTPParser: undefined,
-    path: '/chache-java/getIndexPageStatistics',
-    _ended: true,
-    res: IncomingMessage {
-      _readableState: [ReadableState],
-      _events: [Object: null prototype],
-      _eventsCount: 4,
-      _maxListeners: undefined,
-      socket: null,
-      httpVersionMajor: 1,
-      httpVersionMinor: 1,
-      httpVersion: '1.1',
-      complete: true,
-      rawHeaders: [Array],
-      rawTrailers: [],
-      aborted: false,
-      upgrade: false,
-      url: '',
-      method: null,
-      statusCode: 200,
-      statusMessage: '',
-      client: [Socket],
-      _consuming: true,
-      _dumped: false,
-      req: [Circular *1],
-      responseUrl: 'http://219.133.29.31/chache-java/getIndexPageStatistics',
-      redirects: [],
-      [Symbol(kCapture)]: false,
-      [Symbol(kHeaders)]: [Object],
-      [Symbol(kHeadersCount)]: 32,
-      [Symbol(kTrailers)]: null,
-      [Symbol(kTrailersCount)]: 0,
-      [Symbol(RequestTimeout)]: undefined
-    },
-    aborted: false,
-    timeoutCb: null,
-    upgradeOrConnect: false,
-    parser: null,
-    maxHeadersCount: null,
-    reusedSocket: false,
-    host: '219.133.29.31',
-    protocol: 'http:',
-    _redirectable: Writable {
-      _writableState: [WritableState],
-      _events: [Object: null prototype],
-      _eventsCount: 3,
-      _maxListeners: undefined,
-      _options: [Object],
+      outputData: [],
+      outputSize: 0,
+      writable: true,
+      destroyed: true,
+      _last: true,
+      chunkedEncoding: false,
+      shouldKeepAlive: true,
+      maxRequestsOnConnectionReached: false,
+      _defaultKeepAlive: true,
+      useChunkedEncodingByDefault: false,
+      sendDate: false,
+      _removedConnection: false,
+      _removedContLen: false,
+      _removedTE: false,
+      _contentLength: null,
+      _hasBody: true,
+      _trailer: '',
+      finished: true,
+      _headerSent: true,
+      _closed: true,
+      socket: [Socket],
+      _header: 'GET //ucbb-third/proxy/oauth/token?client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954 HTTP/1.1\r\n' +
+        'Accept: */*\r\n' +
+        'Content-Type: application/json\r\n' +
+        'user-agent: PostmanRuntime/7.37.3\r\n' +
+        'postman-token: 31214e78-db51-48e8-a864-37dedf0b49de\r\n' +
+        'host: 113.108.106.175:81\r\n' +
+        'accept-encoding: gzip, deflate, br\r\n' +
+        'connection: keep-alive\r\n' +
+        'Content-Length: 2\r\n' +
+        '\r\n',
+      _keepAliveTimeout: 0,
+      _onPendingData: [Function: nop],
+      agent: [Agent],
+      socketPath: undefined,
+      method: 'GET',
+      maxHeaderSize: undefined,
+      insecureHTTPParser: undefined,
+      path: '//ucbb-third/proxy/oauth/token?client_secret=a_JErim!&client_id=31f2d516275d4bc4a1bc81147803e954',
       _ended: true,
-      _ending: true,
-      _redirectCount: 0,
-      _redirects: [],
-      _requestBodyLength: 2,
-      _requestBodyBuffers: [],
-      _onNativeResponse: [Function (anonymous)],
-      _currentRequest: [Circular *1],
-      _currentUrl: 'http://219.133.29.31/chache-java/getIndexPageStatistics',
-      [Symbol(kCapture)]: false
+      res: [IncomingMessage],
+      aborted: false,
+      timeoutCb: null,
+      upgradeOrConnect: false,
+      parser: null,
+      maxHeadersCount: null,
+      reusedSocket: false,
+      host: '113.108.106.175',
+      protocol: 'http:',
+      _redirectable: [Writable],
+      [Symbol(kCapture)]: false,
+      [Symbol(kNeedDrain)]: false,
+      [Symbol(corked)]: 0,
+      [Symbol(kOutHeaders)]: [Object: null prototype]
     },
-    [Symbol(kCapture)]: false,
-    [Symbol(kNeedDrain)]: false,
-    [Symbol(corked)]: 0,
-    [Symbol(kOutHeaders)]: [Object: null prototype] {
-      accept: [Array],
-      'content-type': [Array],
-      host: [Array],
-      connection: [Array],
-      'sec-ch-ua': [Array],
-      'content-security-policy': [Array],
-      'strict-transport-security': [Array],
-      'x-content-type-options': [Array],
-      'referrer-policy': [Array],
-      'x-permitted-cross-domain-policies': [Array],
-      'sec-ch-ua-mobile': [Array],
-      'x-download-options': [Array],
-      'x-frame-options': [Array],
-      authorization: [Array],
-      'user-agent': [Array],
-      'x-xss-protection': [Array],
-      'sec-ch-ua-platform': [Array],
-      origin: [Array],
-      'sec-fetch-site': [Array],
-      'sec-fetch-mode': [Array],
-      'sec-fetch-dest': [Array],
-      referer: [Array],
-      'accept-encoding': [Array],
-      'accept-language': [Array],
-      'if-none-match': [Array],
-      'content-length': [Array]
-    }
-  },
-  data: {
-    msg: '操作成功',
-    code: 200,
-    data: {
-      binded_dev_count_by_district: [Object],
-      online_offline_by_district: [Array],
-      count_warning: [Object],
-      warningGrps: [Object],
-      online_doc_count_by_district: [Object],
-      count_warnings_assoc_doc: 57872,
-      total_device: 1735,
-      offline_device: 1521,
-      warningList: [Array],
-      online_device: 239,
-      onlineoffline_doc_count_by_district: [Object],
-      count_company_assoc_dev: 393
-    }
+    data: '<html>\n' +
+      '<head>\n' +
+      '<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>\n' +
+      '<title>Error 404 Not Found</title>\n' +
+      '</head>\n' +
+      '<body><h2>HTTP ERROR 404 Not Found</h2>\n' +
+      '<table>\n' +
+      '<tr><th>URI:</th><td>//ucbb-third/proxy/oauth/token</td></tr>\n' +
+      '<tr><th>STATUS:</th><td>404</td></tr>\n' +
+      '<tr><th>MESSAGE:</th><td>Not Found</td></tr>\n' +
+      '<tr><th>SERVLET:</th><td>-</td></tr>\n' +
+      '</table>\n' +
+      '\n' +
+      '</body>\n' +
+      '</html>\n'
   }
 }
 

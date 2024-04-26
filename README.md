@@ -69,14 +69,14 @@ module.exports = {
     // 写法二 0.2.14 后默认写法，0.2.14推荐使用这个写法
     proxyURL: {
         origin: 'https://xxxxxxx',
-          async format(api, path) {
+          async format(api) {
             // URL 
-            return this._url.href + api;
+              return this.origin + api;
         }
     },
     formatHeaders(headers) {
         // 0.2.14版本后 后自动处理host
-        delete headers.host; // 代理请求 https 需要去掉host
+        delete headers.host; // 代理请求 https 可以自行去掉host
         return headers;
     }
 }

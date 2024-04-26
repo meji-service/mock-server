@@ -8,10 +8,10 @@ module.exports = {
     // },
     proxyURL: {
         // origin: 'https://rpapi.cppinfo.cn',
-        origin: 'http://219.133.29.31/chache-java',
+        origin: 'http://113.108.106.175:81',
         async format(api) {
             // URL 
-            return this._url.href + api;
+            return this.origin + api;
         }
     },
     formatHeaders(headers) {

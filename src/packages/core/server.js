@@ -29,6 +29,7 @@ async function proxySend(req, res) {
     const { originURL } = await useProxyFormats(options, req);
     printInColor([{ color: 'yellow', text: '如果使用本地mock配置文件数据, enabled需要为true' }]);
     printInColor([{ color: 'green', text: '开始代理转发请求：' }, { color: 'cyan', text: originURL }]);
+
     try {
         const response = await axiosInstance.request({
             method: req.method,
@@ -78,8 +79,10 @@ async function useProxyFormats(_options = {}, _req) {
         const _proxy = _options.proxyURL ?? {};
         originURL = await _proxy.format?.(_req.url, path);
     }
+    const _url = new URL(originURL)
+    const newURL = `${_url.origin}${_url.pathname}`
     return {
-        originURL,
+        originURL: newURL,
     }
 }
 

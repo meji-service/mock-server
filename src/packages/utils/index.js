@@ -86,8 +86,8 @@ exports.requireMockFile = function requireMockFile(pathStr) {
    return _context;
 }
 
-exports.logger = function logger(...arg) {
-   const _option = getOptions();
+exports.logger = async function (...arg) {
+   const _option = await getOptions();
    try {
       const logWritPath = path.resolve(__dirname, _option.cwd, _option.logDir);
       const flang = fs.existsSync(logWritPath);

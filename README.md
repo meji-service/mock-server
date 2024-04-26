@@ -61,11 +61,21 @@ module.exports = {
     logDir: '__mock__', // 打印日志保存的目录
     logFileName: 'log', // 日志文件名称
     staticServic: ['public'], // 在cwd下开放为静态服务目录
+    // 写法一
     proxyURL(url) {
         // 自定义代理的服务
-        return 'http://113.108.106.175:81' + url;
+        return 'http://xxxxx' + url;
+    },
+    // 写法二 0.2.14 后默认写法，0.2.14推荐使用这个写法
+    proxyURL: {
+        origin: 'https://xxxxxxx',
+          async format(api, path) {
+            // URL 
+            return this._url.href + api;
+        }
     },
     formatHeaders(headers) {
+        // 0.2.14版本后 后自动处理host
         delete headers.host; // 代理请求 https 需要去掉host
         return headers;
     }

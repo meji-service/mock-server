@@ -25,8 +25,8 @@ function _split(startStr = '', endStr = '') {
  * @returns 
  */
 async function proxySend(req, res) {
-    const options = getOptions();
-    const originURL = options.proxyURL(req.url);
+    const options = await getOptions();
+    const { originURL } = await useProxyFormats(options, req);
     printInColor([{ color: 'yellow', text: '如果使用本地mock配置文件数据, enabled需要为true' }]);
     printInColor([{ color: 'green', text: '开始代理转发请求：' }, { color: 'cyan', text: originURL }]);
     try {
@@ -35,7 +35,7 @@ async function proxySend(req, res) {
             url: originURL,
             params: req.query,
             data: req.body,
-            headers: options?.formatHeaders?.(req.headers) ?? {},
+            headers: req.formatedHeader,
         });
         printInColor([{ color: 'green', text: 'finish' }]);
         logger(response);
@@ -54,8 +54,8 @@ async function proxySend(req, res) {
  * @param {*} res 
  * @param {object} mockOption 
  */
-function readFileSend(req, res, mockOption) {
-    const options = getOptions();
+async function readFileSend(req, res, mockOption) {
+    const options = await getOptions();
     const response = mockOption.mock(pick(req, ['query', 'body']));
     logger(response);
     function sendResponse() {
@@ -69,12 +69,35 @@ function readFileSend(req, res, mockOption) {
     }
 }
 
+async function useProxyFormats(_options = {}, _req) {
+    let originURL = '';
+    if (typeof _options.proxyURL === 'function') {
+        printInColor([{ color: 'yellow', text: "0.2.14开始proxyURL Function 已经弃用 建议使用 proxyURL Object 配置形式" }]);
+        originURL = await _options.proxyURL(_req.url);
+    } else {
+        const _proxy = _options.proxyURL ?? {};
+        originURL = await _proxy.format?.(_req.url, path);
+    }
+    return {
+        originURL,
+    }
+}
+
+function useHeaders(_options = {}, _req) {
+    if (typeof _options.proxyURL === 'function') {
+        return _req.headers;
+    }
+    const { host } = _options.proxyURL ?? {};
+    _req.headers['host'] = host;
+    return _req.headers;
+}
+
 /**
  * mock 服务
  * @param {*} app 
  */
-exports.createMockServer = function createMockServer(app) {
-    const options = getOptions();
+exports.createMockServer = async function (app) {
+    const options = await getOptions();
     const { fileWithEnd, mockSrc, cwd } = options;
     app.use(async function (req, res) {
         const pathname = req._parsedUrl.pathname.concat(fileWithEnd);
@@ -83,8 +106,11 @@ exports.createMockServer = function createMockServer(app) {
         _split('', '>>>');
         try {
             const mockOption = requireMockFile(filePath)?.exports;
+            const headers = useHeaders(options, req);
+            const formatedHeader = options?.formatHeaders?.(headers) ?? headers;
+            req.formatedHeader = formatedHeader;
             if (options.print_req || mockOption?.print_req) {
-                logger(pick(req, ['query', 'body', 'headers']));
+                logger(pick(req, ['query', 'body', 'headers', 'formatedHeader']));
                 console.log('打印req日志完成');
             }
             if (!mockOption?.enabled) {

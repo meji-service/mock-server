@@ -8,8 +8,8 @@ exports.exec = function exec({ port = 60363, env } = {}) {
     const command = `${commandPackage} ${execFile} -p ${port}`;
     this.process = child_process.exec(command);
     // 捕获标准输出并打印
-    this.process.stdout.on('data', (data) => {
-        console.log(data);
+    this.process.stdout.on('data', (chunk) => {
+        console.log(chunk);
     });
 
     // 捕获标准错误并打印

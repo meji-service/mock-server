@@ -10,22 +10,21 @@ module.exports = {
     logDir: '__mock__', // 打印日志保存的目录
     logFileName: 'log', // 日志文件名称
     staticServic: ['public'], // 在cwd下开放为静态服务目录
-    proxyURL(url) {
-        // 自定义代理的服务
-        return 'http://113.108.106.175:81' + url;
+    // proxyURL(url) {
+    //     // 自定义代理的服务
+    //     return 'http://113.108.106.175:81' + url;
+    // },
+    proxyURL: {
+        origin: 'https://rpapi.cppinfo.cn',
+        async format(api) {
+            return this._url.origin + api;
+        }
     },
     get cwd() {
         return path.resolve(process.cwd());
     },
-    https: false,
-    httpsConfig: {
-        agent: {
-            rejectUnauthorized: false, // 发起请求时忽略 SSL 证书检查
-            keepAlive: false,
-        }
-    },
     formatHeaders(headers) {
-        delete headers.host;
+        delete headers.host
         return headers;
     }
 }

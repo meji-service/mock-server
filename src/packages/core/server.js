@@ -40,7 +40,8 @@ async function proxySend(req, res) {
         });
         printInColor([{ color: 'green', text: 'finish' }]);
         logger(response);
-        return res.status(response.status).send(response.data);
+        const newResp = await options?.interceptors?.response?.(response.data);
+        return res.status(response.status).send(newResp);
     } catch (reoase) {
         const _status = reoase?.response?.status ?? 500;
         printInColor([{ color: 'red', text: 'error 可观察日志排除错误' }]);

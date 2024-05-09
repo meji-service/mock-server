@@ -1,3 +1,3 @@
-const mockUtil = require('./mock/uitl');
+const MockUtil = require('./mock/uitl');
 
-exports.mockUtil = mockUtil;
+exports.MockUtil = MockUtil;

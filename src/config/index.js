@@ -26,5 +26,10 @@ module.exports = {
     formatHeaders(headers) {
         delete headers.host
         return headers;
+    },
+    interceptors: {
+        response(data) {
+            return data;
+        }
     }
 }

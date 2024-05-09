@@ -1,6 +1,6 @@
 const fs = require('fs');
 const vm = require('vm');
-const { mockUtil } = require('@mock-server/share')
+const { MockUtil } = require('@mock-server/share')
 
 /**
  * 
@@ -10,7 +10,7 @@ const { mockUtil } = require('@mock-server/share')
 exports.readJsFileToObject = function (configFilePath) {
     try {
         const _exports = {
-            mockUtil: new mockUtil(),
+            mockUtil: new MockUtil(),
         }
         const _context = vm.createContext({
             exports: _exports,

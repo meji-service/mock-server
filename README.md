@@ -78,6 +78,12 @@ module.exports = {
         // 0.2.14版本后 后自动处理host
         delete headers.host; // 代理请求 https 可以自行去掉host
         return headers;
+    },
+    // 响应拦截
+    interceptors: {
+        response(data) {
+            return data;
+        }
     }
 }
 ```
@@ -125,7 +131,7 @@ exports.mock = () => ({
 - 通过 `exports.mockUtil.update`修改指定文件
 ```ts
 
-declare class mockUtil {
+declare class MockUtil {
     update(data: any, force = false): boolean;
 };
 ```

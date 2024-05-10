@@ -79,9 +79,14 @@ module.exports = {
         delete headers.host; // 代理请求 https 可以自行去掉host
         return headers;
     },
-    // 响应拦截
+  
     interceptors: {
-        response(data) {
+        // 请求拦截
+        async request(data) {
+            return data;
+        },
+        // 响应拦截
+        async response(data) {
             return data;
         }
     }

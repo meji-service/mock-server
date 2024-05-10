@@ -1,12 +1,13 @@
 {
   "name": "@enhances/mock-server",
-  "version": "0.2.19",
+  "version": "0.3.0-beta.0.0.3",
   "description": "mock 服务器, 开箱即用，无需重启,自动代理远程服务、提供静态web服务入口、零接入成本",
   "type": "commonjs",
   "main": "dist/commonjs/index.js",
   "scripts": {
     "dev": "nodemon src/packages/index.js",
-    "build": "emp build"
+    "build": "emp build",
+    "publish:prod": "pnpm build && npm publish"
   },
   "bin": {
     "enhances-mock": "./bin/server.js"

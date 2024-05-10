@@ -29,18 +29,19 @@ async function proxySend(req, res) {
     const { originURL } = await useProxyFormats(options, req);
     printInColor([{ color: 'yellow', text: '如果使用本地mock配置文件数据, enabled需要为true' }]);
     printInColor([{ color: 'green', text: '开始代理转发请求：' }, { color: 'cyan', text: originURL }]);
-
+    const interceptors = options?.interceptors;
     try {
+        const newReq = await interceptors?.request?.(req);
         const response = await axiosInstance.request({
-            method: req.method,
+            method: newReq.method,
             url: originURL,
-            params: req.query,
-            data: req.body,
-            headers: req.formatedHeader,
+            params: newReq.query,
+            data: newReq.body,
+            headers: newReq.formatedHeader,
         });
         printInColor([{ color: 'green', text: 'finish' }]);
         logger(response);
-        const newResp = await options?.interceptors?.response?.(response.data);
+        const newResp = await interceptors?.response?.(response.data);
         return res.status(response.status).send(newResp);
     } catch (reoase) {
         const _status = reoase?.response?.status ?? 500;

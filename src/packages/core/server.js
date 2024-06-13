@@ -1,13 +1,18 @@
 const path = require('path');
+const NFormData = require('form-data');
 const { requireMockFile, logger, printInColor } = require('@mock-server/utils');
 const getOptions = require('@mock-server/core/options').getOptions;
 const axios = require('axios');
 const pick = require('lodash/pick');
+const omit = require('lodash/omit');
 
 const axiosInstance = axios.create({
 
 });
 
+const responseTypes = {
+    stream: 'stream',
+}
 
 function _split(startStr = '', endStr = '') {
     printInColor([
@@ -30,28 +35,46 @@ async function proxySend(req, res) {
     printInColor([{ color: 'yellow', text: '如果使用本地mock配置文件数据, enabled需要为true' }]);
     printInColor([{ color: 'green', text: '开始代理转发请求：' }, { color: 'cyan', text: originURL }]);
     const interceptors = options?.interceptors;
-    logger('req=====');
-    logger(req);
+
     try {
         const newReq = await interceptors?.request?.(req);
-        const response = await axiosInstance.request({
+        const reqOptions = {
             method: newReq.method,
             url: originURL,
             params: newReq.query,
             data: newReq.body,
             headers: newReq.formatedHeader,
-        });
-        printInColor([{ color: 'green', text: 'finish' }]);
-
-        logger(response.headers);
-        const newResp = await interceptors?.response?.(response.data);
-        logger("response.data ======")
-        logger(newResp);
-        res.headers = response.headers;
-        return res.status(response.status).send(newResp);
+            responseType: responseTypes.stream,
+        }
+        const file = req.file;
+        if (file) {
+            const formData = new NFormData();
+            formData.append(file.fieldname, file.buffer, file.originalname); // 添加文件到formData
+            reqOptions.data = formData;
+            reqOptions.headers = Object.assign({}, omit(reqOptions.headers,
+                [
+                    'content-length',
+                ]
+            ), formData.getHeaders());
+        }
+        logger(reqOptions);
+        const response = await axiosInstance.request(reqOptions);
+        // 设置响应头
+        for (let key in response.headers) {
+            try {
+                logger('设置响应头');
+                logger(`${key} => ${response.headers[key]}`)
+                res.setHeader(key, response.headers[key]);
+            } catch (err) {
+                console.log(err);
+            }
+        }
+        response.data.pipe(res); // 将接收到的文件流转发给客户端
+        printInColor([{ color: 'green', text: 'success send' }]);
     } catch (reoase) {
         const _status = reoase?.response?.status ?? 500;
         printInColor([{ color: 'red', text: 'error 可观察日志排除错误' }]);
+        logger("ERROR===");
         logger(reoase);
         return res.status(_status).send(pick(reoase?.response ?? {}, ['data'])?.data ?? {});
     }
@@ -112,6 +135,7 @@ function useHeaders(_options = {}, _req) {
 exports.createMockServer = async function (app) {
     const options = await getOptions();
     const { fileWithEnd, mockSrc, cwd } = options;
+
     app.use(async function (req, res) {
         const pathname = req._parsedUrl.pathname.concat(fileWithEnd);
         const filePath = path.join(cwd, mockSrc, pathname);
@@ -120,6 +144,7 @@ exports.createMockServer = async function (app) {
         try {
             const mockOption = requireMockFile(filePath)?.exports;
             const headers = useHeaders(options, req);
+
             const formatedHeader = options?.formatHeaders?.(headers) ?? headers;
             req.formatedHeader = formatedHeader;
             if (options.print_req || mockOption?.print_req) {

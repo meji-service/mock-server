@@ -18,6 +18,9 @@ module.exports = defineConfig(() => {
           path: 'path',
           util: 'util',
           vm: 'vm',
+          crypto: 'crypto',
+          multer: 'multer',
+          'form-data': 'form-data',
         }
       }
     },

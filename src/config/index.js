@@ -28,8 +28,8 @@ module.exports = {
         return headers;
     },
     interceptors: {
-        request(data) {
-            return data;
+        request(req) {
+            return req;
         },
         response(data) {
             return data;

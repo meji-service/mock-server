@@ -32,6 +32,7 @@ exports.createServerApp = function createServerApp(port = 60363) {
     const app = express();
     app.use(cors());
     app.use(bodyParser.json());
+    app.use(bodyParser.urlencoded());
 
     const server = app.listen(program?._optionValues?.port || port, () => {
         const port = server.address().port;

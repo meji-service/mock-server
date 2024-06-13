@@ -30,6 +30,8 @@ async function proxySend(req, res) {
     printInColor([{ color: 'yellow', text: '如果使用本地mock配置文件数据, enabled需要为true' }]);
     printInColor([{ color: 'green', text: '开始代理转发请求：' }, { color: 'cyan', text: originURL }]);
     const interceptors = options?.interceptors;
+    logger('req=====');
+    logger(req);
     try {
         const newReq = await interceptors?.request?.(req);
         const response = await axiosInstance.request({
@@ -40,8 +42,12 @@ async function proxySend(req, res) {
             headers: newReq.formatedHeader,
         });
         printInColor([{ color: 'green', text: 'finish' }]);
-        logger(response);
+
+        logger(response.headers);
         const newResp = await interceptors?.response?.(response.data);
+        logger("response.data ======")
+        logger(newResp);
+        res.headers = response.headers;
         return res.status(response.status).send(newResp);
     } catch (reoase) {
         const _status = reoase?.response?.status ?? 500;
@@ -92,8 +98,10 @@ function useHeaders(_options = {}, _req) {
     if (typeof _options.proxyURL === 'function') {
         return _req.headers;
     }
-    const { host } = _options.proxyURL ?? {};
+    const { host, _url } = _options.proxyURL ?? {};
     _req.headers['host'] = host;
+    _req.headers['origin'] = _url.origin;
+    _req.headers['referer'] = _url.origin;
     return _req.headers;
 }
 

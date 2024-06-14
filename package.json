@@ -1,6 +1,6 @@
 {
   "name": "@enhances/mock-server",
-  "version": "0.4.0-beta.0.0.0",
+  "version": "0.4.0-beta.0.1.0",
   "description": "mock 服务器, 开箱即用，无需重启,自动代理远程服务、提供静态web服务入口、零接入成本",
   "type": "commonjs",
   "main": "dist/commonjs/index.js",

@@ -38,8 +38,8 @@ module.exports = {
 ```
 
 
-### File
-- 下载文件请求头需要设置  'Content-Type': 'application/octet-stream'
+### File tip
+- 下载文件 暂时不支持
 
 ### 默认配置
 ```ts
@@ -89,7 +89,10 @@ module.exports = {
         async request(data) {
             return data;
         },
-        // 响应拦截目前不支持
+         // 响应拦截
+        async response(data) {
+            return data;
+        }
     }
 }
 ```

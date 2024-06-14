@@ -34,7 +34,7 @@ exports.createServerApp = function createServerApp(port = 60363) {
     app.use(cors());
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded());
-    // 配置 multer 使用内存存储
+    // // 配置 multer 使用内存存储
     const storage = multer.memoryStorage();
     const upload = multer({ storage: storage }).single('file'); // 将文件暂存到 'uploads/' 目录
 

@@ -1,4 +1,5 @@
 const path = require('path');
+const fs = require('fs');
 const NFormData = require('form-data');
 const { requireMockFile, logger, printInColor } = require('@mock-server/utils');
 const getOptions = require('@mock-server/core/options').getOptions;
@@ -9,10 +10,6 @@ const omit = require('lodash/omit');
 const axiosInstance = axios.create({
 
 });
-
-const responseTypes = {
-    stream: 'stream',
-}
 
 function _split(startStr = '', endStr = '') {
     printInColor([
@@ -44,7 +41,6 @@ async function proxySend(req, res) {
             params: newReq.query,
             data: newReq.body,
             headers: newReq.formatedHeader,
-            responseType: responseTypes.stream,
         }
         const file = req.file;
         if (file) {
@@ -60,17 +56,42 @@ async function proxySend(req, res) {
         logger(reqOptions);
         const response = await axiosInstance.request(reqOptions);
         // 设置响应头
-        for (let key in response.headers) {
+        const tempResHeader = pick(response.headers, ['content-type', 'content-disposition']);
+        for (let key in tempResHeader) {
             try {
                 logger('设置响应头');
-                logger(`${key} => ${response.headers[key]}`)
-                res.setHeader(key, response.headers[key]);
+                logger(`${key} => ${tempResHeader[key]}`)
+                res.setHeader(key, tempResHeader[key]);
             } catch (err) {
                 console.log(err);
             }
         }
-        response.data.pipe(res); // 将接收到的文件流转发给客户端
+        const newRespData = await interceptors?.response?.(response?.data);
         printInColor([{ color: 'green', text: 'success send' }]);
+        if (typeof newRespData === 'string') {
+            // 临时代码， 下载文件功能暂时无法正常使用
+            // 将字符串转换为Buffer
+            const buffer = Buffer.from(newRespData);
+            const filePath = path.join(__dirname, '../../cached/file.txt'); // 替换为你的文件路径
+            // 创建一个可写流
+            const writeStream = fs.createWriteStream(filePath, { encoding: 'utf8' });
+            // 处理流事件
+            writeStream.on('open', () => {
+                // 将Buffer写入文件
+                writeStream.write(buffer);
+                writeStream.end();
+            }).on('finish', () => {
+                console.log('写入完成');
+                const readStream = fs.createReadStream(filePath, { encoding: 'utf8' });
+                // 流式传输文件
+                readStream.pipe(res);
+            }).on('error', (err) => {
+                console.error('写入出错:', err);
+                return res.status(500).send(err);
+            });
+            return;
+        }
+        return res.status(response.status).send(newRespData);
     } catch (reoase) {
         const _status = reoase?.response?.status ?? 500;
         printInColor([{ color: 'red', text: 'error 可观察日志排除错误' }]);
@@ -121,10 +142,6 @@ function useHeaders(_options = {}, _req) {
     if (typeof _options.proxyURL === 'function') {
         return _req.headers;
     }
-    const { host, _url } = _options.proxyURL ?? {};
-    _req.headers['host'] = host;
-    _req.headers['origin'] = _url.origin;
-    _req.headers['referer'] = _url.origin;
     return _req.headers;
 }
 
@@ -143,7 +160,12 @@ exports.createMockServer = async function (app) {
         _split('', '>>>');
         try {
             const mockOption = requireMockFile(filePath)?.exports;
-            const headers = useHeaders(options, req);
+            const headers = omit(useHeaders(options, req), [
+                'host',
+                'origin',
+                'referer',
+                'user-agent',
+            ]);
 
             const formatedHeader = options?.formatHeaders?.(headers) ?? headers;
             req.formatedHeader = formatedHeader;

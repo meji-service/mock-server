@@ -38,9 +38,6 @@ module.exports = {
 ```
 
 
-### File tip
-- 下载文件 暂时不支持
-
 ### 默认配置
 ```ts
  // express.static;
@@ -96,6 +93,11 @@ module.exports = {
     }
 }
 ```
+
+
+### 动态接口
+- 需要动态的文件固定写法： ${id}.js
+- 例如创建 __mock__ 目录 `__mock__/xxx/xxxx/${id}.js`
 
 ### 例子
 - 接口： `/education/getToken`

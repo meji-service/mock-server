@@ -1,12 +1,12 @@
 const path = require('path');
-const fs = require('fs');
 const NFormData = require('form-data');
 const { requireMockFile, logger, printInColor } = require('@mock-server/utils');
 const getOptions = require('@mock-server/core/options').getOptions;
 const axios = require('axios');
 const pick = require('lodash/pick');
 const omit = require('lodash/omit');
-
+const { replaceLastSlashAndValue } = require('./tools');
+const dynamicFileName = '${id}.js';
 const axiosInstance = axios.create({
 
 });
@@ -67,30 +67,17 @@ async function proxySend(req, res) {
             }
         }
         const newRespData = await interceptors?.response?.(response?.data);
-        printInColor([{ color: 'green', text: 'success send' }]);
+     
         if (typeof newRespData === 'string') {
-            // 临时代码， 下载文件功能暂时无法正常使用
-            // 将字符串转换为Buffer
-            const buffer = Buffer.from(newRespData);
-            const filePath = path.join(__dirname, '../../cached/file.txt'); // 替换为你的文件路径
-            // 创建一个可写流
-            const writeStream = fs.createWriteStream(filePath, { encoding: 'utf8' });
-            // 处理流事件
-            writeStream.on('open', () => {
-                // 将Buffer写入文件
-                writeStream.write(buffer);
-                writeStream.end();
-            }).on('finish', () => {
-                console.log('写入完成');
-                const readStream = fs.createReadStream(filePath, { encoding: 'utf8' });
-                // 流式传输文件
-                readStream.pipe(res);
-            }).on('error', (err) => {
-                console.error('写入出错:', err);
-                return res.status(500).send(err);
-            });
-            return;
+            return axiosInstance.request({
+                ...response.config,
+                responseType: 'stream',
+            }).then(streamResp => {
+                streamResp.data.pipe(res);
+                printInColor([{ color: 'green', text: 'match:stream send' }]);
+            })
         }
+        printInColor([{ color: 'green', text: 'success send' }]);
         return res.status(response.status).send(newRespData);
     } catch (reoase) {
         const _status = reoase?.response?.status ?? 500;
@@ -159,7 +146,13 @@ exports.createMockServer = async function (app) {
 
         _split('', '>>>');
         try {
-            const mockOption = requireMockFile(filePath)?.exports;
+            let mockOption = requireMockFile(filePath)?.exports;
+          
+            if(mockOption?.mock === void 0) {
+                const dynamicFileId = replaceLastSlashAndValue(filePath, dynamicFileName);
+                mockOption = requireMockFile(dynamicFileId)?.exports;
+            }
+            console.log(mockOption, 'mockOption')
             const headers = omit(useHeaders(options, req), [
                 'host',
                 'origin',

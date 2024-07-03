@@ -5,10 +5,7 @@ mock 服务器, 开箱即用，无需重启,自动代理远程服务、提供静
 去除对后端服务依赖性
 前端、测试可自定义伪接口，http请求或配合postman 等工具可以直接调试伪接口
 
-### 启动
-```shell
-npm run @service/mock-server
-```
+
 ### 开发环境
 -  node
 
@@ -17,6 +14,7 @@ npm run @service/mock-server
 {
     "scripts": {
         "mock": "enhances-mock start",
+        "mock:5300": "enhances-mock start -p 5300", // 自定义端口
     }
 }
 ```

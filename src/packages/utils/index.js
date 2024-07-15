@@ -94,8 +94,15 @@ exports.logger = async function (...arg) {
       if (!flang) {
          fs.mkdirSync(logWritPath);
       }
-      fs.appendFileSync(path.join(logWritPath, _option.logFileName), `${util.inspect(...arg)}\n\n`);
-
+      const filePath = path.join(logWritPath, _option.logFileName);
+      const context =  `${util.inspect(...arg)}\n\n`;
+      const stat = fs.statSync(filePath);
+      if(stat.size > _option.logReplaceMaxSize) {
+         fs.writeFileSync(filePath, context);
+         console.log(`当前日志大小已经达到${stat.size}Byte已被覆盖`);
+      } else {
+         fs.appendFileSync(filePath, context);
+      }
    } catch (err) {
       console.log('写入日志失败', err);
    }

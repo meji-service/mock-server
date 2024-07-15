@@ -10,6 +10,11 @@ const dynamicFileName = '${id}.js';
 const axiosInstance = axios.create({
 
 });
+const mockServerModels = {
+    auto: 'auto',
+    remote: 'remote',
+    local: 'local',
+}
 
 function _split(startStr = '', endStr = '') {
     printInColor([
@@ -67,7 +72,7 @@ async function proxySend(req, res) {
             }
         }
         const newRespData = await interceptors?.response?.(response?.data);
-     
+
         if (typeof newRespData === 'string') {
             return axiosInstance.request({
                 ...response.config,
@@ -147,12 +152,11 @@ exports.createMockServer = async function (app) {
         _split('', '>>>');
         try {
             let mockOption = requireMockFile(filePath)?.exports;
-          
-            if(mockOption?.mock === void 0) {
+
+            if (mockOption?.mock === void 0) {
                 const dynamicFileId = replaceLastSlashAndValue(filePath, dynamicFileName);
                 mockOption = requireMockFile(dynamicFileId)?.exports;
             }
-            console.log(mockOption, 'mockOption')
             const headers = omit(useHeaders(options, req), [
                 'host',
                 'origin',
@@ -166,8 +170,9 @@ exports.createMockServer = async function (app) {
                 logger(pick(req, ['query', 'body', 'headers', 'formatedHeader']));
                 console.log('打印req日志完成');
             }
-            if (!mockOption?.enabled) {
-                printInColor([{ color: 'yellow', text: `本地文件 ${filePath} 查询失败` }]);
+            if ((!mockOption?.enabled && options.model !== mockServerModels.localServer) ||
+                options.model === mockServerModels.remote) {
+                printInColor([{ color: 'yellow', text: `不进行读取本地文件 ${filePath}` }]);
                 return await proxySend(req, res);
             }
             printInColor([{ color: 'magenta', text: '读取文件: ' }, { color: 'cyan', text: filePath, }]);

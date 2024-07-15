@@ -52,13 +52,19 @@ type StaticServic = string[] | { suffix: string; dir: string }[];
     访问链接为：http://localhost:60363/public/index.js
  */
 
+/**
+ *  remote: 'remote',
+    local: 'local',
+ */
 module.exports = {
     timeout: 0, // 延迟
+    model: 'auto', // remote | local 强制使用本地（local）或者远程代理模式（remote）默认 auto
     print_req: true, // 是否在控制台打印参数
     fileWithEnd: '.js', // mock 的文件
     mockSrc: '__mock__', // 读取mock的目录
     logDir: '__mock__', // 打印日志保存的目录
     logFileName: 'log', // 日志文件名称
+    logReplaceMaxSize: 1024 * 1024, // 日志最大的覆盖内容大小， 大于这个大小(Bytes)内容将会被覆盖
     staticServic: ['public'], // 在cwd下开放为静态服务目录
     // 写法一
     proxyURL(url) {

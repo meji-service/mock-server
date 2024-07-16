@@ -90,11 +90,15 @@ exports.logger = async function (...arg) {
    const _option = await getOptions();
    try {
       const logWritPath = path.resolve(__dirname, _option.cwd, _option.logDir);
-      const flang = fs.existsSync(logWritPath);
-      if (!flang) {
+      const filePath = path.join(logWritPath, _option.logFileName);
+
+      if (!fs.existsSync(logWritPath)) {
          fs.mkdirSync(logWritPath);
       }
-      const filePath = path.join(logWritPath, _option.logFileName);
+      if (!fs.existsSync(filePath)) {
+         fs.writeFileSync(filePath, '');
+      }
+
       const context =  `${util.inspect(...arg)}\n\n`;
       const stat = fs.statSync(filePath);
       if(stat.size > _option.logReplaceMaxSize) {

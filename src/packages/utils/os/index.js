@@ -1,6 +1,4 @@
-const fs = require('fs');
-const vm = require('vm');
-const { MockUtil } = require('@mock-server/share')
+const path = require('path');
 
 /**
  * 
@@ -9,20 +7,12 @@ const { MockUtil } = require('@mock-server/share')
  */
 exports.readJsFileToObject = function (configFilePath) {
     try {
-        const _exports = {
-            mockUtil: new MockUtil(),
-        }
-        const _context = vm.createContext({
-            exports: _exports,
-            module: {
-                exports: _exports,
-            }
-        });
-        const _code = fs.readFileSync(configFilePath, { encoding: 'utf8' });
-        vm.runInContext(_code, _context);
-        return {
-            _context,
-            _code,
-        };
-    } catch {}
+        const requireFunc = typeof __webpack_require__ === "function" ? __non_webpack_require__ : require;
+        requireFunc.cache[configFilePath] && delete requireFunc.cache[configFilePath];
+        const mockConfig = requireFunc(path.resolve(configFilePath));
+        return mockConfig;
+    } catch(err) {
+        console.log(err.message);
+    }
+
 }

@@ -1,2 +1,2 @@
 
-require('@mock-server/core').main();
+module.exports = require('@mock-server/core');

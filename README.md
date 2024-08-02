@@ -5,16 +5,22 @@ mock 服务器, 开箱即用，无需重启,自动代理远程服务、提供静
 去除对后端服务依赖性
 前端、测试可自定义伪接口，http请求或配合postman 等工具可以直接调试伪接口
 
+## 功能总览
+1. mock 服务器, 开箱即用，读取本地mock文件、自动代理远程服务
+2. 提供对mock文件 增 、删、改、查功能
 
-### 开发环境
+### 下载
 -  node
+```shell
+$ npm i @enhances/mock-server 或者 pnpm i @enhances/mock-server
+```
 
 ### 启动
 ```json
 {
     "scripts": {
         "mock": "enhances-mock start",
-        "mock:5300": "enhances-mock start -p 5300", // 自定义端口
+        "mock:5300": "enhances-mock start -p 5300",
     }
 }
 ```
@@ -100,7 +106,7 @@ module.exports = {
 
 
 ### 动态接口
-- 需要动态的文件固定写法： ${id}.js
+- 需要动态的文件固定写法： `${id}.js`
 - 例如创建 __mock__ 目录 `__mock__/xxx/xxxx/${id}.js`
 
 ### 例子
@@ -120,51 +126,116 @@ exports.mock = (req) => {
 ```
 
 ### 编辑mock接口文件内容
+#### 目录结构
+```md
+- __mock__
+    - list.js
+    - add.js
+    - update.js
+    - delete
+        - ${id}.js
 
-- 被动修改方
-```js
-// mockjs template
-
-exports.enabled = false;
-exports.config = {}
-
-exports.mock = () => ({
-    "name": "updaet 21233",
-}); 
-
-/** 上一个模板：
-exports.enabled = false;
-exports.config = {}
-
-exports.mock = () => ({
-    "name": "default data",
-}); 
-
- */
 ```
 
-- 通过 `exports.mockUtil.update`修改指定文件
-```ts
-
-declare class MockUtil {
-    update(data: any, force = false): boolean;
-};
-```
-
-- 主动发起修改方
+- list.js 
 ```js
-// getoken.ts
 exports.enabled = true;
-exports.config = {
-    targetId: 'edit.js', 
-    // targetId: './edit.js', // 相对自身的文件路径
-}
-exports.mock = (req) => {
-    // req.body 如等等 { name: 'updaet 21233' }
-    const isUpdateSuccess = exports.mockUtil.update(req.body); // 通过update 函数修改改文件名称为{targetId 的mock函数中内容}
+exports.mock = () => ({
+    "errcode": 0,
+    "errmsg": "ok",
+    "data": {
+        "records": [
+            {
+                id: '123',
+                name: 'name123',
+            }
+        ],
+    },
+});
+
+```
+### 修改 list.js 为例
+#### 假如你要删除一个数据
+
+- 文件 delete/${id}.js
+```js
+const { MockServerJs } = require('@enhances/mock-server');
+
+exports.enabled = true;
+exports.mock = async (req) => {
+    const result = await MockServerJs.share.update(
+        __dirname,
+        '../list.js', // 现对路径
+        (source) => {
+            // source 这个是 list.js 页面 mock 函数返回的数据
+            source.data.records = source.data.records.filter(record => record.id != req.query.id);
+            // 返回数据会写入 list.js 的mock 函数里面
+            return Promise.resolve(source)
+        });
     return {
-        success: isUpdateSuccess,
-        message: 'mock'
+        errcode: 0,
+        errmsg: 'ok',
+        data: result,
+    }
+}
+```
+
+
+####  假如你要新增一条数据
+- 文件 add.js
+```js
+const { MockServerJs } = require('@enhances/mock-server');
+
+exports.enabled = true;
+exports.mock = async (req) => {
+    const result = await MockServerJs.share.update(
+        __dirname,
+        './list.js',  // 现对路径
+        (source) => {
+            // source 这个是 list.js 页面 mock 函数返回的数据
+            source.data.records.push({
+                id: Math.random() * 1000, // 随机生成一个id
+                ...req.body, // 接口新增的参数
+            });
+            // 返回数据会写入 list.js 的mock 函数里面
+            return Promise.resolve(source)
+        });
+    return {
+        errcode: 0,
+        errmsg: 'ok',
+        data: result,
+    }
+}
+```
+
+#### 假如你要编辑一条数据
+- 文件 update.js
+```js
+const { MockServerJs } = require('@enhances/mock-server');
+
+exports.enabled = true;
+exports.mock = async (req) => {
+    const result = await MockServerJs.share.update(
+        __dirname,
+        './list.js',  // 现对路径
+        (source) => {
+            // source 这个是 list.js 页面 mock 函数返回的数据
+            source.data.records = source.data.records.map((record) => {
+                if(req.body.id === record.id) {
+                    return {
+                        ...record,
+                        ...req.body,
+                    }
+                }
+                return record;
+            })
+            // 返回数据会写入 list.js 的mock 函数里面
+            return Promise.resolve(source)
+        });
+    return {
+        errcode: 0,
+        errmsg: 'ok',
+        data: result,
     }
 }
 ```

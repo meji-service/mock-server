@@ -101,7 +101,7 @@ async function proxySend(req, res) {
  */
 async function readFileSend(req, res, mockOption) {
     const options = await getOptions();
-    const response = mockOption.mock(pick(req, ['query', 'body']));
+    const response = await mockOption.mock(pick(req, ['query', 'body', '_parsedUrl']), res);
     logger(response);
     function sendResponse() {
         res.status(200).send(response);
@@ -151,11 +151,11 @@ exports.createMockServer = async function (app) {
 
         _split('', '>>>');
         try {
-            let mockOption = requireMockFile(filePath)?.exports;
+            let mockOption = requireMockFile(filePath);
 
             if (mockOption?.mock === void 0) {
                 const dynamicFileId = replaceLastSlashAndValue(filePath, dynamicFileName);
-                mockOption = requireMockFile(dynamicFileId)?.exports;
+                mockOption = requireMockFile(dynamicFileId);
             }
             const headers = omit(useHeaders(options, req), [
                 'host',
@@ -168,7 +168,6 @@ exports.createMockServer = async function (app) {
             req.formatedHeader = formatedHeader;
             if (options.print_req || mockOption?.print_req) {
                 logger(pick(req, ['query', 'body', 'headers', 'formatedHeader']));
-                console.log('打印req日志完成');
             }
             if ((!mockOption?.enabled && options.model !== mockServerModels.localServer) ||
                 options.model === mockServerModels.remote) {

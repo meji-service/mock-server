@@ -3,6 +3,7 @@ module.exports = defineConfig(() => {
   return {
     build: {
       lib: {
+        name: 'MockServerJs',
         entry: 'index.ts',
         formats: ['commonjs'],
         fileName: 'index.js',

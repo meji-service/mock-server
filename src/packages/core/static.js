@@ -6,8 +6,8 @@ exports.createStaticService = async function (app) {
     const { cwd, staticServic } = await getOptions();
     staticServic.forEach(item => {
         if (typeof item === 'string') {
-            const static = path.resolve(cwd, item);
-            app.use(express.static(static));
+            const staticPath = path.resolve(cwd, item);
+            app.use(express.static(staticPath));
         } else if (typeof item === 'object' && item?.suffix && item?.dir) {
             app.use(item.suffix, express.static(path.resolve(cwd, item.dir)));
         }

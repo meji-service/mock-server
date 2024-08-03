@@ -1,5 +1,2 @@
 
-module.exports = {
-    share: require('./packages/share'),
-    ...require('./packages'),
-}
+module.exports = require('./packages');

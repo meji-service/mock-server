@@ -12,7 +12,7 @@ mock 服务器, 开箱即用，无需重启,自动代理远程服务、提供静
 ### 下载
 -  node
 ```shell
-$ npm i @enhances/mock-server 或者 pnpm i @enhances/mock-server
+$ npm i @enhances/mock-server -D 或者 pnpm i @enhances/mock-server -D
 ```
 
 ### 启动
@@ -43,27 +43,9 @@ module.exports = {
 
 
 ### 默认配置
-```ts
- // express.static;
-type StaticServic = string[] | { suffix: string; dir: string }[];
-```
 ```js
-
-/**
- * 如果配置
- * staticServic: [{
-        suffix: '/public',
-        dir: 'public',
-    }]
-    访问链接为：http://localhost:60363/public/index.js
- */
-
-/**
- *  remote: 'remote',
-    local: 'local',
- */
 module.exports = {
-    timeout: 0, // 延迟
+    timeout: 300, // 延迟
     model: 'auto', // remote | local 强制使用本地（local）或者远程代理模式（remote）默认 auto
     print_req: true, // 是否在控制台打印参数
     fileWithEnd: '.js', // mock 的文件
@@ -72,12 +54,6 @@ module.exports = {
     logFileName: 'log', // 日志文件名称
     logReplaceMaxSize: 1024 * 1024, // 日志最大的覆盖内容大小， 大于这个大小(Bytes)内容将会被覆盖
     staticServic: ['public'], // 在cwd下开放为静态服务目录
-    // 写法一
-    proxyURL(url) {
-        // 自定义代理的服务
-        return 'http://xxxxx' + url;
-    },
-    // 写法二 0.2.14 后默认写法，0.2.14推荐使用这个写法
     proxyURL: {
         origin: 'https://xxxxxxx',
           async format(api) {
@@ -104,6 +80,25 @@ module.exports = {
 }
 ```
 
+### staticServic
+- 配置访问链接为例：`http://localhost:60363/custom-public/index.js`
+- 目录结构
+```md
+    - mock-config.js
+    - public
+        -index.js
+```
+- 配置文件
+```js
+// `mock-config.js`
+module.exports = {
+     staticServic: [{
+        suffix: '/custom-public',
+        dir: 'public',
+    }]
+}
+```
+
 
 ### 动态接口
 - 需要动态的文件固定写法： `${id}.js`
@@ -117,12 +112,24 @@ module.exports = {
 // getToken.js
 exports.enabled = true; // true 代表使用本地mock false 使用代理
 exports.print_req = true; // 是否在控制台打印参数
-exports.mock = (req) => {
+/**
+ * @params {{ 'query': object, 'body': object, 'headers': object, '_parsedUrl': object }} req
+ * @params {object} res
+ */
+exports.mock = (req, res) => {
     return {
         status: 200,
         message: 'mock'
     }
 }
+```
+- mock 提供的参数如下
+```ts
+/**
+ * @params {{ 'query': object, 'body': object, 'headers': object, '_parsedUrl': object }} req exporess request
+ * @params {object} res exporess response
+ */
+exports.mock(req, res): boolean;
 ```
 
 ### 编辑mock接口文件内容
@@ -137,7 +144,7 @@ exports.mock = (req) => {
 
 ```
 
-- list.js 
+- `list.js`
 ```js
 exports.enabled = true;
 exports.mock = () => ({
@@ -157,7 +164,7 @@ exports.mock = () => ({
 ### 修改 list.js 为例
 #### 假如你要删除一个数据
 
-- 文件 delete/${id}.js
+- 文件 `delete/${id}.js`
 ```js
 const { MockServerJs } = require('@enhances/mock-server');
 
@@ -182,7 +189,7 @@ exports.mock = async (req) => {
 
 
 ####  假如你要新增一条数据
-- 文件 add.js
+- 文件 `add.js`
 ```js
 const { MockServerJs } = require('@enhances/mock-server');
 
@@ -209,7 +216,7 @@ exports.mock = async (req) => {
 ```
 
 #### 假如你要编辑一条数据
-- 文件 update.js
+- 文件 `update.js`
 ```js
 const { MockServerJs } = require('@enhances/mock-server');
 
@@ -239,3 +246,23 @@ exports.mock = async (req) => {
     }
 }
 ```
+
+
+### 暴露的函数
+
+1. 获取本机ip `getLocalIP`
+```js
+const { MockServerJs } = require('@enhances/mock-server');
+
+MockServerJs.utils.getLocalIP(); // get local IP
+
+```
+2. 打印彩色文本的函数 `printInColor`
+```js
+const { MockServerJs } = require('@enhances/mock-server');
+// color 可选：reset red green yellow blue magenta cyan white
+MockServerJs.utils.printInColor([{ color: 'green', text: 'text' } ]);
+```
+
+3. 编辑mock文件 `MockServerJs.share.update`
+- 看上面编辑mock文件的例子

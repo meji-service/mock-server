@@ -3,7 +3,7 @@ const path = require('path');
  * @param {[string]|[{ suffix: string; dir: string }]} staticServic
  */
 module.exports = {
-    timeout: 0, // 延迟
+    timeout: 300, // 延迟
     model: 'local', // 强制使用本地（local）或者远程代理模式（remote）默认 auto
     print_req: true,
     fileWithEnd: '.js', // mock 的文件

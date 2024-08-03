@@ -101,7 +101,7 @@ async function proxySend(req, res) {
  */
 async function readFileSend(req, res, mockOption) {
     const options = await getOptions();
-    const response = await mockOption.mock(pick(req, ['query', 'body', '_parsedUrl']), res);
+    const response = await mockOption.mock(pick(req, ['query', 'body', 'headers', '_parsedUrl']), res);
     logger(response);
     function sendResponse() {
         res.status(200).send(response);

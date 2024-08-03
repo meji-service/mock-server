@@ -32,8 +32,8 @@ exports.createServerApp = function createServerApp(port = 60363) {
 
     const app = express();
     app.use(cors());
-    app.use(bodyParser.json());
-    app.use(bodyParser.urlencoded());
+    app.use(bodyParser.json({ extended: true }));
+    app.use(bodyParser.urlencoded({ extended: true }));
     // // 配置 multer 使用内存存储
     const storage = multer.memoryStorage();
     const upload = multer({ storage: storage }).single('file'); // 将文件暂存到 'uploads/' 目录
@@ -41,8 +41,18 @@ exports.createServerApp = function createServerApp(port = 60363) {
     app.use(upload);
     const server = app.listen(program?._optionValues?.port || port, () => {
         const port = server.address().port;
+        printInColor([
+            {
+                color: 'green',
+                text: `Mock Server started successfully!`,
+            },
+        ]);
         printRunTarget(` http://localhost:${port}/ `)
         printRunTarget(` http://${getLocalIP()}:${port}/ `)
     });
-    return app;
+    
+    return {
+        app,
+        server,
+    };
 }

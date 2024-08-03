@@ -3,7 +3,7 @@
 const { program } = require('commander');
 const pkg = require('../package.json');
 program.version(pkg.version, '-v, --version').usage('<command> [options]');
-const { exec } = require('../cli/start');
+const { exec } = require('../cli');
 
 program.command('start')
     .description('启动')

@@ -1,9 +1,9 @@
 const path = require('path');
-const memoize = require('lodash/memoize');
 const defaultOption = require('../../config');
 const configFileName = require('../../config/const').configFileName;
 const lodashMerge = require('lodash/merge');
 const { readJsFileToObject } = require('@mock-server/utils/os');
+const cloneDeep = require('lodash/cloneDeep');
 
 function useProxyOptions(mcokConfigExports) {
     const { proxyURL, } = mcokConfigExports;
@@ -14,9 +14,20 @@ function useProxyOptions(mcokConfigExports) {
     mcokConfigExports.proxyURL._url = _url;
     return mcokConfigExports;
 }
+let options = cloneDeep(defaultOption);
 
-exports.getOptions = memoize(function () {
+/**
+ * 获取 mock-server 配置
+ */
+exports.getOptions = function () {
+    return options;
+};
+
+/**
+ * 设置 mock-server 配置
+ */
+exports.setupOptions = function () {
     const configFilePath = path.resolve(defaultOption.cwd, configFileName);
     const config = readJsFileToObject(configFilePath) ?? {};
-    return useProxyOptions(lodashMerge({}, defaultOption, config ?? {}));
-});
+    options = cloneDeep(useProxyOptions(lodashMerge({}, defaultOption, config ?? {})));
+}

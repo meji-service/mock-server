@@ -5,9 +5,7 @@ const cors = require('cors');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 
-program
-    .option('-p, --port <port>', '设置服务器端口', 60363)
-    .parse(process.argv)
+const startCommands = program.commands[0];
 
 function printRunTarget(ip) {
     printInColor([{
@@ -39,7 +37,7 @@ exports.createServerApp = function createServerApp(port = 60363) {
     const upload = multer({ storage: storage }).single('file'); // 将文件暂存到 'uploads/' 目录
 
     app.use(upload);
-    const server = app.listen(program?._optionValues?.port || port, () => {
+    const server = app.listen(startCommands?._optionValues?.port || port, () => {
         const port = server.address().port;
         printInColor([
             {

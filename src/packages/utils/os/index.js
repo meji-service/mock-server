@@ -17,7 +17,7 @@ exports.readJsFileToObject = function (configFilePath) {
             console.log(`No ${configFileName} found in ${path.resolve(configFilePath)}.`);
             return undefined;
         }
-        console.log(err.message);
+        console.log(err.message?.split?.("\n")?.[0] || err.message);
     }
 
 }

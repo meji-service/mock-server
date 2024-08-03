@@ -8,6 +8,7 @@ mock 服务器, 开箱即用，无需重启,自动代理远程服务、提供静
 ## 功能总览
 1. mock 服务器, 开箱即用，读取本地mock文件、自动代理远程服务
 2. 提供对mock文件 增 、删、改、查功能
+3. 提供js、json mock 文件互相转换功能 (可以通过**命令**、已可以使用文档中的**函数**形式自定义转换)
 
 ### 下载
 -  node
@@ -15,32 +16,29 @@ mock 服务器, 开箱即用，无需重启,自动代理远程服务、提供静
 $ npm i @enhances/mock-server -D 或者 pnpm i @enhances/mock-server -D
 ```
 
-### 启动
+### 命令
+1. `mock`   启动服务
+2. `mock:5300` 启动服务自定义服务端口
+3. `jsToJson`  js文件转json文件
+3. `jsonToJs`  json文件转js文件
 ```json
 {
     "scripts": {
         "mock": "enhances-mock start",
         "mock:5300": "enhances-mock start -p 5300",
+        "jsToJson": " enhances-mock jsToJson -c 来源文件夹路径 -o 输出的文件夹路径",
+        "jsonToJs": " enhances-mock jsonToJs -c 来源文件夹路径 -o 输出的文件夹路径",
     }
 }
 ```
-```shell
-npm run mock;
-# or
-npm run mock -p 5300 # 可以之定义端口
-```
 
 ### 配置
-
+- mock-config.js
 ```js
-// mock-config.js
-
 module.exports = {
 // 覆盖默认配置
 }
-
 ```
-
 
 ### 默认配置
 ```js
@@ -247,6 +245,29 @@ exports.mock = async (req) => {
 }
 ```
 
+### 通过函数对`js`和`json`相互转换
+- `js` 转 `json`
+```js
+const { MockServerJs } = require('@enhances/mock-server');
+MockServerJs.utils.jsToJson('来源文件夹路径', '输出的文件夹路径');
+```
+- `json` 转 `js`
+```js
+const { MockServerJs } = require('@enhances/mock-server');
+MockServerJs.utils.jsonToJs('来源文件夹路径', '输出的文件夹路径');
+```
+- `jsonToJs` 和 `jsToJson` 第三个参数
+
+```js
+const { MockServerJs } = require('@enhances/mock-server');
+console.log(MockServerJs.utils.transformTemplates); // 默认的过滤模板。 通过对应类型的函数进行换行
+
+MockServerJs.utils.jsonToJs('来源文件夹路径', '输出的文件夹路径', (data) => {
+    // 自定义数据格式
+    return data;
+});
+```
+
 
 ### 暴露的函数
 
@@ -265,4 +286,4 @@ MockServerJs.utils.printInColor([{ color: 'green', text: 'text' } ]);
 ```
 
 3. 编辑mock文件 `MockServerJs.share.update`
-- 看上面编辑mock文件的例子
+    - 看上面编辑mock文件的例子

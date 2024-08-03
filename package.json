@@ -1,6 +1,6 @@
 {
   "name": "@enhances/mock-server",
-  "version": "0.6.0-beta.0.3",
+  "version": "0.7.0-beta.0.1",
   "description": "mock 服务器, 开箱即用，无需重启,自动代理远程服务、提供静态web服务入口、零接入成本",
   "type": "commonjs",
   "main": "dist/commonjs/index.js",
@@ -21,7 +21,9 @@
     "提供对mock文件 增 、删、改、查",
     "提供静态web 服务入口",
     "零接入成本",
-    "代理"
+    "代理",
+    "json转js",
+    "js转json"
   ],
   "author": "",
   "license": "ISC",

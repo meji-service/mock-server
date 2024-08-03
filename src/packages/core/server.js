@@ -142,10 +142,10 @@ function useHeaders(_options = {}, _req) {
  * @param {*} app 
  */
 exports.createMockServer = async function (app) {
-    const options = await getOptions();
-    const { fileWithEnd, mockSrc, cwd } = options;
 
     app.use(async function (req, res) {
+        const options = await getOptions();
+        const { fileWithEnd, mockSrc, cwd } = options;
         const pathname = req._parsedUrl.pathname.concat(fileWithEnd);
         const filePath = path.join(cwd, mockSrc, pathname);
 

@@ -5,11 +5,11 @@ const configFileName = require('../../config/const').configFileName;
 const { getOptions, setupOptions } = require('@mock-server/core/options');
 
 
-function main() {
+async function main() {
     setupOptions();
     const { app } = createServerApp();
-    createStaticService(app);
-    createMockServer(app);
+    await createStaticService(app);
+    await createMockServer(app);
 }
 
 function exit(...arg) {

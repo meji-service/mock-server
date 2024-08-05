@@ -144,7 +144,7 @@ function useHeaders(_options = {}, _req) {
  */
 exports.createMockServer = async function (app) {
 
-    app.use(async function (req, res) {
+    app.use(async function (req, res, next) {
         const options = await getOptions();
         const { fileWithEnd, mockSrc, cwd } = options;
         const pathname = req._parsedUrl.pathname.concat(fileWithEnd);
@@ -182,5 +182,6 @@ exports.createMockServer = async function (app) {
             logger(err, 'Error');
         }
         _split('', '>>>');
+        next();
     });
 }

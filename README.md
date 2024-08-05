@@ -14,7 +14,7 @@ mock 服务器, 开箱即用，无需重启,自动代理远程服务、提供静
 ### 下载
 -  node
 ```shell
-$ npm i @enhances/mock-server -D 或者 pnpm i @enhances/mock-server -D
+$ npm i @enhances/mock-server -D 或者 pnpm add @enhances/mock-server -D
 ```
 
 ### 命令
@@ -311,4 +311,8 @@ MockServerJs.utils.printInColor([{ color: 'green', text: 'text' } ]);
 ```
 
 3. 编辑mock文件 `MockServerJs.share.update`
-    - 看上面编辑mock文件的例子
+- 看上面编辑mock文件的例子
+
+
+### 维护它
+- 联系邮箱@840719708@qq.com

@@ -1,12 +1,12 @@
 {
   "name": "@enhances/mock-server",
-  "version": "0.8.0",
+  "version": "0.8.2",
   "description": "mock 服务器, 开箱即用，无需重启,自动代理远程服务、提供静态web服务入口、零接入成本 扫描接口的数据生成到本地 json转js js转json 代理",
   "type": "commonjs",
   "main": "dist/commonjs/index.js",
   "scripts": {
     "dev": "nodemon src/packages/index.js",
-    "build": "emp build",
+    "build": "rspack build",
     "publish:prod": "pnpm build && npm publish"
   },
   "bin": {
@@ -26,14 +26,14 @@
     "js转json",
     "scan"
   ],
-  "author": "",
+  "author": "mmj<840719708@qq.com>",
   "license": "ISC",
   "devDependencies": {
-    "@efox/emp": "^2.7.1",
     "@enhances/mock-server": "workspace:^",
     "@mock-server/core": "workspace:^",
     "@mock-server/share": "workspace:^",
-    "@mock-server/utils": "workspace:^"
+    "@mock-server/utils": "workspace:^",
+    "@rspack/cli": "^0.7.5"
   },
   "publishConfig": {
     "access": "public"

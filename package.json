@@ -1,7 +1,7 @@
 {
   "name": "@enhances/mock-server",
-  "version": "0.5.4",
-  "description": "mock 服务器, 开箱即用，无需重启,自动代理远程服务、提供静态web服务入口、零接入成本",
+  "version": "0.8.0",
+  "description": "mock 服务器, 开箱即用，无需重启,自动代理远程服务、提供静态web服务入口、零接入成本 扫描接口的数据生成到本地 json转js js转json 代理",
   "type": "commonjs",
   "main": "dist/commonjs/index.js",
   "scripts": {
@@ -16,7 +16,15 @@
     "mock",
     "mock server",
     "proxy",
-    "dev-server"
+    "dev-server",
+    "自动代理远程服务",
+    "提供对mock文件 增 、删、改、查",
+    "提供静态web 服务入口",
+    "零接入成本",
+    "代理",
+    "json转js",
+    "js转json",
+    "scan"
   ],
   "author": "",
   "license": "ISC",
@@ -25,8 +33,7 @@
     "@enhances/mock-server": "workspace:^",
     "@mock-server/core": "workspace:^",
     "@mock-server/share": "workspace:^",
-    "@mock-server/utils": "workspace:^",
-    "nodemon": "^3.1.0"
+    "@mock-server/utils": "workspace:^"
   },
   "publishConfig": {
     "access": "public"
@@ -50,6 +57,7 @@
     "express": "^4.19.2",
     "form-data": "^4.0.0",
     "lodash": "^4.17.21",
-    "multer": "1.4.5-lts.1"
+    "multer": "1.4.5-lts.1",
+    "nodemon": "^3.1.0"
   }
 }

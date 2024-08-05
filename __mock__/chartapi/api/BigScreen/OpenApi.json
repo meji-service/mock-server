@@ -1,5 +1,4 @@
-exports.enabled = true;
-exports.mock = () => ({
+{
     "statusCode": 200,
     "data": [
         {
@@ -113,5 +112,4 @@ exports.mock = () => ({
             "my": "1683824.3"
         }
     ]
-}); 
-
+}

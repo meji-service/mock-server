@@ -6,6 +6,7 @@ const axios = require('axios');
 const pick = require('lodash/pick');
 const omit = require('lodash/omit');
 const { replaceLastSlashAndValue } = require('./tools');
+const { analysisWriteRemoteDataFile } = require('./assists');
 const dynamicFileName = '${id}.js';
 const axiosInstance = axios.create({
 
@@ -37,16 +38,15 @@ async function proxySend(req, res) {
     printInColor([{ color: 'yellow', text: '如果使用本地mock配置文件数据, enabled需要为true' }]);
     printInColor([{ color: 'green', text: '开始代理转发请求：' }, { color: 'cyan', text: originURL }]);
     const interceptors = options?.interceptors;
-
+    const newReq = await interceptors?.request?.(req) ?? {};
+    const reqOptions = {
+        method: newReq.method,
+        url: originURL,
+        params: newReq.query,
+        data: newReq.body,
+        headers: newReq.formatedHeader,
+    }
     try {
-        const newReq = await interceptors?.request?.(req);
-        const reqOptions = {
-            method: newReq.method,
-            url: originURL,
-            params: newReq.query,
-            data: newReq.body,
-            headers: newReq.formatedHeader,
-        }
         const file = req.file;
         if (file) {
             const formData = new NFormData();
@@ -72,7 +72,7 @@ async function proxySend(req, res) {
             }
         }
         const newRespData = await interceptors?.response?.(response?.data);
-
+        analysisWriteRemoteDataFile(reqOptions.url, newRespData);
         if (typeof newRespData === 'string') {
             return axiosInstance.request({
                 ...response.config,
@@ -89,6 +89,7 @@ async function proxySend(req, res) {
         printInColor([{ color: 'red', text: 'error 可观察日志排除错误' }]);
         logger("ERROR===");
         logger(reoase);
+        analysisWriteRemoteDataFile(reqOptions.url, reoase?.response?.data);
         return res.status(_status).send(pick(reoase?.response ?? {}, ['data'])?.data ?? {});
     }
 }
@@ -101,7 +102,7 @@ async function proxySend(req, res) {
  */
 async function readFileSend(req, res, mockOption) {
     const options = await getOptions();
-    const response = mockOption.mock(pick(req, ['query', 'body']));
+    const response = await mockOption.mock(pick(req, ['query', 'body', 'headers', '_parsedUrl']), res);
     logger(response);
     function sendResponse() {
         res.status(200).send(response);
@@ -142,20 +143,20 @@ function useHeaders(_options = {}, _req) {
  * @param {*} app 
  */
 exports.createMockServer = async function (app) {
-    const options = await getOptions();
-    const { fileWithEnd, mockSrc, cwd } = options;
 
     app.use(async function (req, res) {
+        const options = await getOptions();
+        const { fileWithEnd, mockSrc, cwd } = options;
         const pathname = req._parsedUrl.pathname.concat(fileWithEnd);
         const filePath = path.join(cwd, mockSrc, pathname);
 
         _split('', '>>>');
         try {
-            let mockOption = requireMockFile(filePath)?.exports;
+            let mockOption = requireMockFile(filePath);
 
             if (mockOption?.mock === void 0) {
                 const dynamicFileId = replaceLastSlashAndValue(filePath, dynamicFileName);
-                mockOption = requireMockFile(dynamicFileId)?.exports;
+                mockOption = requireMockFile(dynamicFileId);
             }
             const headers = omit(useHeaders(options, req), [
                 'host',
@@ -168,7 +169,6 @@ exports.createMockServer = async function (app) {
             req.formatedHeader = formatedHeader;
             if (options.print_req || mockOption?.print_req) {
                 logger(pick(req, ['query', 'body', 'headers', 'formatedHeader']));
-                console.log('打印req日志完成');
             }
             if ((!mockOption?.enabled && options.model !== mockServerModels.localServer) ||
                 options.model === mockServerModels.remote) {

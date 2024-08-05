@@ -1,2 +1,2 @@
- require('./packages');
- require('./packages/share');
+
+module.exports = require('./packages');

@@ -1,4 +1,3 @@
-const path = require('path');
 
 function usePathRewrite(pathRewrite, url) {
     for (let key in pathRewrite) {

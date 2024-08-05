@@ -82,11 +82,11 @@ module.exports = {
     proxyURL: {
         origin: 'https://xxxx/xxx.com', // 通过配置 proxyURL 代理请求线上
           async format(api) {
-            return MockServerJs.utils.defineProxy({
+            const url = MockServerJs.utils.defineProxy({
                 '^/api': {
                     target: this.origin,
                     pathRewrite: {
-                        "/api": "/"
+                        "/api": "/newApi"
                     }
                 },
                 '^/service/api': {
@@ -94,14 +94,13 @@ module.exports = {
                     pathRewrite: {}
                 }
             }, api);
+            if(!/^http:|^https:/.test(url)) {
+                // 这里判断处理没有匹配到接口
+                return 'http://localhost' + url;
+            }
+            return url;
         }
     },
-    formatHeaders(headers) {
-        // 0.2.14版本后 后自动处理host
-        delete headers.host; // 代理请求 https 可以自行去掉host
-        return headers;
-    },
-  
     interceptors: {
         // 请求拦截
         async request(data) {

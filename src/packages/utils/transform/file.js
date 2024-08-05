@@ -38,7 +38,7 @@ function createFileFormatTransform(type, template) {
     let transform = template[type];
     const cwd = process.cwd();
     return async function (comeDirPath = '', outputDirPath = '', format) {
-        if(typeof format === 'function') {
+        if (typeof format === 'function') {
             transform = format;
         }
         try {
@@ -47,7 +47,10 @@ function createFileFormatTransform(type, template) {
             }
             const _comeDirPath = path.join(cwd, comeDirPath);
             const _outputDirPath = path.join(cwd, outputDirPath);
-            const comeDirIds = getTransformFilePath(_comeDirPath).filter(path => path.endsWith(type));
+            const comeDirIds = readdirRecursive(_comeDirPath).filter(path => path.endsWith(type)).map(url => path.relative(_comeDirPath, url));
+            if (!comeDirIds.length) {
+                printInColor([{ color: 'cyan', text: `dir length 0` }]);
+            }
             const toWithEnd = transformFileWithEnds[type];
             const fromWithEnd = diffecenerFormats[toWithEnd];
             comeDirIds.forEach(id => {
@@ -71,11 +74,23 @@ function createFileFormatTransform(type, template) {
     }
 }
 
-
-function getTransformFilePath(dir) {
+function readdirRecursive(directory) {
+    let fullPathFiles = [];
     try {
-        return fs.readdirSync(dir, { 'recursive': true });
-    } catch {
-        return [];
+        let filesAndDirectories = fs.readdirSync(directory);
+        filesAndDirectories.forEach((item) => {
+            let fullPath = path.join(directory, item);
+            let stats = fs.lstatSync(fullPath);
+
+            if (stats.isDirectory()) {
+                fullPathFiles = fullPathFiles.concat(readdirRecursive(fullPath));
+            } else {
+                fullPathFiles.push(fullPath);
+            }
+        });
+
+    } catch (err) {
+        console.error(err.message);
     }
+    return fullPathFiles;
 }

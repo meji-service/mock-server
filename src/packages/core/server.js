@@ -172,7 +172,7 @@ exports.createMockServer = async function (app) {
             }
             if ((!mockOption?.enabled && options.model !== mockServerModels.localServer) ||
                 options.model === mockServerModels.remote) {
-                printInColor([{ color: 'yellow', text: `不进行读取本地文件 ${filePath}` }]);
+                printInColor([{ color: 'yellow', text: `读取本地文件${filePath}未成立` }]);
                 return await proxySend(req, res);
             }
             printInColor([{ color: 'magenta', text: '读取文件: ' }, { color: 'cyan', text: filePath, }]);

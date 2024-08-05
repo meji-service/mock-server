@@ -1,4 +1,4 @@
-const { getCodeString } = require('@mock-server/share');
+const { getTemplate } = require('@mock-server/share');
 const { printInColor } = require('../base');
 const fs = require('fs');
 const path = require('path');
@@ -20,7 +20,7 @@ const transformTemplates = {
         return JSON.stringify(config?.mock?.(mockRequest, mockResponse) ?? '', null, 4);
     },
     [diffecenerFormats.js]: (_data) => {
-        return getCodeString({}, _data);
+        return getTemplate({}, _data);
     },
 }
 module.exports = {

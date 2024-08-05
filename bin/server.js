@@ -14,6 +14,7 @@ program
     .description('启动')
     .option('-p, --port <port>', '设置服务器端口', 60363)
     .option('-e, --env <env>', '设置环境', 'prod')
+    .option('-s, --scan <scan>', '扫描线上接口到本地', false)
     .action(exec);
 
 const comeExpress = ['-c, --come <come>', '来源目录'];
@@ -32,4 +33,4 @@ program
     .action(jsToJson);
 
 // 执行命令
-program.parse(process.argv)
+program.parse(process.argv);

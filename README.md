@@ -9,6 +9,7 @@ mock 服务器, 开箱即用，无需重启,自动代理远程服务、提供静
 1. mock 服务器, 开箱即用，读取本地mock文件、自动代理远程服务
 2. 提供对mock文件 增 、删、改、查功能
 3. 提供js、json mock 文件互相转换功能 (可以通过**命令**、已可以使用文档中的**函数**形式自定义转换)
+4. 启动命令时候添加配置 --scan 经过本mock服务器的接口都可以扫描接口的数据生成到本地
 
 ### 下载
 -  node
@@ -21,6 +22,7 @@ $ npm i @enhances/mock-server -D 或者 pnpm i @enhances/mock-server -D
 2. `mock:5300` 启动服务自定义服务端口
 3. `jsToJson`  js文件转json文件
 3. `jsonToJs`  json文件转js文件
+4. `mock:scan` 扫描接口的数据生成到本地 具体配置看 `mock-config.js scan字段`
 ```json
 {
     "scripts": {
@@ -28,6 +30,7 @@ $ npm i @enhances/mock-server -D 或者 pnpm i @enhances/mock-server -D
         "mock:5300": "enhances-mock start -p 5300",
         "jsToJson": " enhances-mock jsToJson -c 来源文件夹路径 -o 输出的文件夹路径",
         "jsonToJs": " enhances-mock jsonToJs -c 来源文件夹路径 -o 输出的文件夹路径",
+        "mock:scan": "enhances-mock start --scan true"
     }
 }
 ```
@@ -46,8 +49,29 @@ module.exports = {
     timeout: 300, // 延迟
     model: 'auto', // remote | local 强制使用本地（local）或者远程代理模式（remote）默认 auto
     print_req: true, // 是否在控制台打印参数
-    fileWithEnd: '.js', // mock 的文件
+    fileWithEnd: '.js', // mock 的文件 目前只兼容 js 文件， json 文件可以通过 jsonToJs 命令转换为 js
     mockSrc: '__mock__', // 读取mock的目录
+     /**
+     * @desc 启动命令时候添加配置 --scan 可以启动扫描线上接口生成到本地
+     * @example 
+     * enhances-mock start --scan true 
+     */
+    scan: {
+        /**
+         * @desc 最终输出的路径
+         * @param {string} path 扫描的路径
+         * @returns {string} 最终的输出路径
+         * @default __mock__/.remotes/{扫描的路径}
+         */
+        outputChunk: function (url) {
+            return path.join('__mock__', '.remotes', url)
+        },
+        /**
+         * @desc 输出的文件格式 '.json' | '.js'
+         * @default js
+         */
+        format: '.js',
+    },
     logDir: '__mock__', // 打印日志保存的目录
     logFileName: 'log', // 日志文件名称
     logReplaceMaxSize: 1024 * 1024, // 日志最大的覆盖内容大小， 大于这个大小(Bytes)内容将会被覆盖
@@ -68,6 +92,7 @@ module.exports = {
     interceptors: {
         // 请求拦截
         async request(data) {
+            // 0.2.14版本后会有自动处理host delete data.headers.host; 操作
             return data;
         },
          // 响应拦截

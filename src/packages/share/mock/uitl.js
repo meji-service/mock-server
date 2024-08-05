@@ -11,7 +11,10 @@ module.exports = {
         }
         return value;
     },
-    getCodeString(_editConfig, data = '') {
+    stringifyCode(data) {
+        return JSON.stringify(data ?? '', null, 4);
+    },
+    getTemplate(_editConfig, data = '') {
         const { enabled = true } = _editConfig ?? {};
         const code = 'exports.enabled = ' + enabled + ';\n' +
             'exports.mock = () => (' + JSON.stringify(data ?? '', null, 4) + '); \n\n';
@@ -23,8 +26,8 @@ module.exports = {
             const _editConfig = readJsFileToObject(editTargetPath) ?? {};
             const dataSource = await _editConfig.mock();
             const newData = await callback(dataSource)
-            const code = '// mockjs' + '\n\n' + this.getCodeString(_editConfig, newData) +
-                `/** 上一个模板：\n${this.getCodeString(_editConfig, dataSource ?? null)} */`;
+            const code = '// mockjs' + '\n\n' + this.getTemplate(_editConfig, newData) +
+                `/** 上一个模板：\n${this.getTemplate(_editConfig, dataSource ?? null)} */`;
             fs.writeFileSync(editTargetPath, code);
             return true;
         } catch (err) {

@@ -6,6 +6,7 @@ const axios = require('axios');
 const pick = require('lodash/pick');
 const omit = require('lodash/omit');
 const { replaceLastSlashAndValue } = require('./tools');
+const { analysisWriteRemoteDataFile } = require('./assists');
 const dynamicFileName = '${id}.js';
 const axiosInstance = axios.create({
 
@@ -37,16 +38,15 @@ async function proxySend(req, res) {
     printInColor([{ color: 'yellow', text: '如果使用本地mock配置文件数据, enabled需要为true' }]);
     printInColor([{ color: 'green', text: '开始代理转发请求：' }, { color: 'cyan', text: originURL }]);
     const interceptors = options?.interceptors;
-
+    const newReq = await interceptors?.request?.(req) ?? {};
+    const reqOptions = {
+        method: newReq.method,
+        url: originURL,
+        params: newReq.query,
+        data: newReq.body,
+        headers: newReq.formatedHeader,
+    }
     try {
-        const newReq = await interceptors?.request?.(req);
-        const reqOptions = {
-            method: newReq.method,
-            url: originURL,
-            params: newReq.query,
-            data: newReq.body,
-            headers: newReq.formatedHeader,
-        }
         const file = req.file;
         if (file) {
             const formData = new NFormData();
@@ -72,7 +72,7 @@ async function proxySend(req, res) {
             }
         }
         const newRespData = await interceptors?.response?.(response?.data);
-
+        analysisWriteRemoteDataFile(reqOptions.url, newRespData);
         if (typeof newRespData === 'string') {
             return axiosInstance.request({
                 ...response.config,
@@ -89,6 +89,7 @@ async function proxySend(req, res) {
         printInColor([{ color: 'red', text: 'error 可观察日志排除错误' }]);
         logger("ERROR===");
         logger(reoase);
+        analysisWriteRemoteDataFile(reqOptions.url, reoase?.response?.data);
         return res.status(_status).send(pick(reoase?.response ?? {}, ['data'])?.data ?? {});
     }
 }

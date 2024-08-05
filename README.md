@@ -29,10 +29,10 @@ $ npm i @enhances/mock-server -D 或者 pnpm add @enhances/mock-server -D
 {
     "scripts": {
         "mock": "enhances-mock start",
+        "mock:scan": "enhances-mock start --scan true",
         "mock:5300": "enhances-mock start -p 5300",
         "jsToJson": " enhances-mock jsToJson -c 来源文件夹路径 -o 输出的文件夹路径",
-        "jsonToJs": " enhances-mock jsonToJs -c 来源文件夹路径 -o 输出的文件夹路径",
-        "mock:scan": "enhances-mock start --scan true"
+        "jsonToJs": " enhances-mock jsonToJs -c 来源文件夹路径 -o 输出的文件夹路径"
     }
 }
 ```
@@ -47,6 +47,7 @@ module.exports = {
 
 ### 默认配置
 ```js
+const { MockServerJs } = require('@enhances/mock-server');
 module.exports = {
     timeout: 300, // 延迟
     model: 'auto', // remote | local 强制使用本地（local）或者远程代理模式（remote）默认 auto
@@ -79,10 +80,20 @@ module.exports = {
     logReplaceMaxSize: 1024 * 1024, // 日志最大的覆盖内容大小， 大于这个大小(Bytes)内容将会被覆盖
     staticServic: ['public'], // 在cwd下开放为静态服务目录
     proxyURL: {
-        origin: 'https://xxxxxxx', // 通过配置 proxyURL 代理请求线上
+        origin: 'https://xxxx/xxx.com', // 通过配置 proxyURL 代理请求线上
           async format(api) {
-            // URL 
-              return this.origin + api;
+            return MockServerJs.utils.defineProxy({
+                '^/api': {
+                    target: this.origin,
+                    pathRewrite: {
+                        "/api": "/"
+                    }
+                },
+                '^/service/api': {
+                    target: 'http://localhost:21412',
+                    pathRewrite: {}
+                }
+            }, api);
         }
     },
     formatHeaders(headers) {

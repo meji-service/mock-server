@@ -6,10 +6,12 @@ mock 服务器, 开箱即用，无需重启,自动代理远程服务、提供静
 前端、测试可自定义伪接口，http请求或配合postman 等工具可以直接调试伪接口
 
 ## 功能总览
-1. mock 服务器, 开箱即用，读取本地mock文件、自动代理远程服务
+1. mock 服务器, 开箱即用，读取本地mock文件、自动代理远程服务，本地直接返回mock服务的ip即可， 查询不到mock文件会自动代理请求proxyURL配置的线上(ip/域名)
 2. 提供对mock文件 增 、删、改、查功能
 3. 提供js、json mock 文件互相转换功能 (可以通过**命令**、已可以使用文档中的**函数**形式自定义转换)
 4. 启动命令时候添加配置 --scan 经过本mock服务器的接口都可以扫描接口的数据生成到本地
+
+- tip 已经兼容已测试过 node v14.21.3可以正常运行， 库开发使用 node v18.19.0 推荐 node >= 18.19.0
 
 ### 下载
 -  node
@@ -77,7 +79,7 @@ module.exports = {
     logReplaceMaxSize: 1024 * 1024, // 日志最大的覆盖内容大小， 大于这个大小(Bytes)内容将会被覆盖
     staticServic: ['public'], // 在cwd下开放为静态服务目录
     proxyURL: {
-        origin: 'https://xxxxxxx',
+        origin: 'https://xxxxxxx', // 通过配置 proxyURL 代理请求线上
           async format(api) {
             // URL 
               return this.origin + api;

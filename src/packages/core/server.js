@@ -88,9 +88,10 @@ async function proxySend(req, res) {
         const _status = reoase?.response?.status ?? 500;
         printInColor([{ color: 'red', text: 'error 可观察日志排除错误' }]);
         logger("ERROR===");
-        logger(reoase);
-        analysisWriteRemoteDataFile(reqOptions.url, reoase?.response?.data);
-        return res.status(_status).send(pick(reoase?.response ?? {}, ['data'])?.data ?? {});
+        logger(reoase?.response ?? reoase);
+        const _data = reoase?.response?.data ?? '';
+        analysisWriteRemoteDataFile(reqOptions.url, _data);
+        return res.status(_status).send(_data);
     }
 }
 

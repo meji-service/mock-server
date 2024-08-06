@@ -13,7 +13,7 @@ exports.analysisWriteRemoteDataFile = async function (apiUrl, data) {
     printInColor([{ color: 'magenta', text: 'Pulling remote API...' }]);
     try {
         const { scan, cwd } = getOptions();
-        const writeFilePath = path.join(cwd, scan.outputChunk(apiUrl.replace(/^http:\/\/|^https:\/\//ig, ''))).concat(scan.format);
+        const writeFilePath = path.join(cwd, scan.outputChunk(apiUrl.replace(/^http:\/\/|^https:\/\//ig, '')).replace(/\:/ig, '-')).concat(scan.format);
         const code = scan.format === '.js' ? mockShare.getTemplate({}, data) : mockShare.stringifyCode(data ?? '');
         const dirName = path.dirname(writeFilePath);
         if(!fs.existsSync(dirName)) {

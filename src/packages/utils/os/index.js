@@ -1,5 +1,4 @@
 const path = require('path');
-const configFileName = require('../../../config/const').configFileName;
 
 /**
  * 
@@ -13,10 +12,6 @@ exports.readJsFileToObject = function (configFilePath) {
         const mockConfig = requireFunc(path.resolve(configFilePath));
         return mockConfig;
     } catch(err) {
-        if(configFilePath.endsWith(configFileName)) {
-            console.log(`No ${configFileName} found in ${path.resolve(configFilePath)}`);
-            return undefined;
-        }
         console.log(err.message?.split?.("\n")?.[0] || err.message);
     }
 

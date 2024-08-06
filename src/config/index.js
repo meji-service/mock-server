@@ -7,11 +7,11 @@ module.exports = {
     print_req: true,
     fileWithEnd: '.js', // mock 的文件 目前只兼容 js
     mockSrc: mockFileRootDir, // 读取mock的目录
-     /**
-     * @desc 启动命令时候添加配置 --scan 可以启动扫描线上接口生成到本地
-     * @example 
-     * enhances-mock start --scan true 
-     */
+    /**
+    * @desc 启动命令时候添加配置 --scan 可以启动扫描线上接口生成到本地
+    * @example 
+    * enhances-mock start --scan true 
+    */
     scan: {
         /**
          * @desc 最终输出的路径
@@ -37,7 +37,7 @@ module.exports = {
      */
     staticServic: ['public'], // 在cwd下开放为静态服务目录
     proxyURL: {
-        origin: 'https://rpapi.cppinfo.cn',
+        origin: 'http://192.168.0.151:8888/api/v1',
         async format(api) {
             return this._url.origin + api;
         }
@@ -47,7 +47,10 @@ module.exports = {
     },
     formatHeaders(headers) {
         delete headers.host
-        return headers;
+        return {
+            ...headers,
+            'content-length': 0,
+        };
     },
     interceptors: {
         request(req) {

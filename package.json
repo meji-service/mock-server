@@ -6,8 +6,8 @@
   "main": "dist/commonjs/index.js",
   "scripts": {
     "dev": "nodemon src/packages/index.js",
-    "build": "rspack build",
-    "publish:prod": "pnpm build && npm publish"
+    "build": "rspack build --config rspack-cli/rspack.prod.config.js",
+    "build:watch": "rspack build --config rspack-cli/rspack.dev.config.js"
   },
   "bin": {
     "enhances-mock": "./bin/server.js"

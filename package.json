@@ -1,6 +1,6 @@
 {
   "name": "@enhances/mock-server",
-  "version": "0.9.3",
+  "version": "0.9.4",
   "description": "mock 服务器, 开箱即用，无需重启,自动代理远程服务、提供静态web服务入口、零接入成本 扫描接口的数据生成到本地 json转js js转json 代理",
   "type": "commonjs",
   "main": "dist/commonjs/index.js",

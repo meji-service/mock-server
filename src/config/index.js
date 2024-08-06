@@ -46,8 +46,6 @@ module.exports = {
         return path.resolve(process.cwd());
     },
     formatHeaders(headers) {
-        delete headers.host
-        delete headers['content-length']
         return headers;
     },
     interceptors: {

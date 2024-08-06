@@ -132,13 +132,6 @@ async function useProxyFormats(_options = {}, _req) {
     }
 }
 
-function useHeaders(_options = {}, _req) {
-    if (typeof _options.proxyURL === 'function') {
-        return _req.headers;
-    }
-    return _req.headers;
-}
-
 /**
  * mock 服务
  * @param {*} app 
@@ -159,7 +152,7 @@ exports.createMockServer = async function (app) {
                 const dynamicFileId = replaceLastSlashAndValue(filePath, dynamicFileName);
                 mockOption = requireMockFile(dynamicFileId);
             }
-            const headers = omit(useHeaders(options, req), [
+            const headers = omit(req.headers, [
                 'host',
                 'origin',
                 'referer',

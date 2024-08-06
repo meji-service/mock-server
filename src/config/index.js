@@ -47,10 +47,8 @@ module.exports = {
     },
     formatHeaders(headers) {
         delete headers.host
-        return {
-            ...headers,
-            'content-length': 0,
-        };
+        delete headers['content-length']
+        return headers;
     },
     interceptors: {
         request(req) {

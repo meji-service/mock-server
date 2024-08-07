@@ -5,7 +5,7 @@
   "type": "commonjs",
   "main": "dist/commonjs/index.js",
   "scripts": {
-    "dev": "nodemon src/packages/index.js",
+    "dev": "nodemon src/dev.cjs",
     "build": "rspack build --config rspack-cli/rspack.prod.config.js",
     "build:watch": "rspack build --config rspack-cli/rspack.dev.config.js"
   },

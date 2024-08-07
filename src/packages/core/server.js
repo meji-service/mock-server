@@ -7,6 +7,7 @@ const pick = require('lodash/pick');
 const omit = require('lodash/omit');
 const { replaceLastSlashAndValue } = require('./tools');
 const { analysisWriteRemoteDataFile } = require('./assists');
+const { stringifyCode } = require('@mock-server/share');
 const dynamicFileName = '${id}.js';
 const axiosInstance = axios.create({
 
@@ -35,7 +36,6 @@ function _split(startStr = '', endStr = '') {
 async function proxySend(req, res) {
     const options = await getOptions();
     const { originURL } = await useProxyFormats(options, req);
-    printInColor([{ color: 'yellow', text: '如果使用本地mock配置文件数据, enabled需要为true' }]);
     printInColor([{ color: 'green', text: '开始代理转发请求：' }, { color: 'cyan', text: originURL }]);
     const interceptors = options?.interceptors;
     const newReq = await interceptors?.request?.(req) ?? {};
@@ -150,6 +150,7 @@ exports.createMockServer = async function (app) {
 
             if (mockOption?.mock === void 0) {
                 const dynamicFileId = replaceLastSlashAndValue(filePath, dynamicFileName);
+                printInColor([{ color: 'magenta', text: 'Mock file Read Retrying' }]);
                 mockOption = requireMockFile(dynamicFileId);
             }
             const headers = omit(req.headers, [
@@ -166,7 +167,17 @@ exports.createMockServer = async function (app) {
             }
             if ((!mockOption?.enabled && options.model !== mockServerModels.localServer) ||
                 options.model === mockServerModels.remote) {
-                printInColor([{ color: 'yellow', text: `读取本地文件${filePath}未成立` }]);
+                printInColor([
+                    {
+                        color: 'blue', text: "【CONFIG】" + stringifyCode({
+                            model: options.model,
+                            enabled: mockOption?.enabled ?? false,
+                        }, null, 0) + '【CONFIG END】'
+                    }
+                ]);
+                printInColor([
+                    { color: 'yellow', text: `【读取本地文件未成立】from ${filePath}` },
+                ]);
                 return await proxySend(req, res);
             }
             printInColor([{ color: 'magenta', text: '读取文件: ' }, { color: 'cyan', text: filePath, }]);

@@ -11,8 +11,8 @@ module.exports = {
         }
         return value;
     },
-    stringifyCode(data) {
-        return JSON.stringify(data ?? '', null, 4);
+    stringifyCode(data, replacer = null, tab = 4) {
+        return JSON.stringify(data ?? '', replacer, tab);
     },
     getTemplate(_editConfig, data = '') {
         const { enabled = true } = _editConfig ?? {};

@@ -3,14 +3,15 @@ const path = require('path');
 const fs = require('fs');
 const mockShare = require('@mock-server/share');
 const { getOptions } = require('@mock-server/core/options');
-const { logger, printInColor } = require('@mock-server/utils');
+const { logger } = require('@mock-server/utils');
+const nodeLogger = require('node-logger-plus').logger;
 const startCommands = program.commands[0];
 
 exports.analysisWriteRemoteDataFile = async function (apiUrl, data) {
     if (!startCommands._optionValues.scan) {
         return;
     }
-    printInColor([{ color: 'magenta', text: 'Pulling remote API...' }]);
+    nodeLogger.info('Pulling remote API...')
     try {
         const { scan, cwd } = getOptions();
         const writeFilePath = path.join(cwd, scan.outputChunk(apiUrl.replace(/^http:\/\/|^https:\/\//ig, '')).replace(/\:/ig, '-')).concat(scan.format);
@@ -20,9 +21,9 @@ exports.analysisWriteRemoteDataFile = async function (apiUrl, data) {
             fs.mkdirSync(dirName, { recursive: true });
         }
         fs.writeFileSync(writeFilePath, code, { encoding: 'utf8' });
-        printInColor([{ color: 'green', text: `Echo ${writeFilePath} Successfly` }]);
+        nodeLogger.success(`Echo ${writeFilePath} Successfly`)
     } catch (err) {
-        console.error(err.message);
+        nodeLogger.error(err.message);
         logger(err);
     }
 }

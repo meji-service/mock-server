@@ -1,7 +1,7 @@
 const { getTemplate } = require('@mock-server/share');
-const { printInColor } = require('../base');
 const fs = require('fs');
 const path = require('path');
+const { logger } = require('node-logger-plus');
 
 const diffecenerFormats = {
     'json': 'js',
@@ -49,7 +49,7 @@ function createFileFormatTransform(type, template) {
             const _outputDirPath = path.join(cwd, outputDirPath);
             const comeDirIds = readdirRecursive(_comeDirPath).filter(path => path.endsWith(type)).map(url => path.relative(_comeDirPath, url));
             if (!comeDirIds.length) {
-                printInColor([{ color: 'cyan', text: `dir length 0` }]);
+                logger.warn(`File Dir length 0`);
             }
             const toWithEnd = transformFileWithEnds[type];
             const fromWithEnd = diffecenerFormats[toWithEnd];
@@ -62,14 +62,14 @@ function createFileFormatTransform(type, template) {
                         fs.mkdirSync(path.dirname(writeFilePath), { recursive: true });
                     }
                     fs.writeFileSync(writeFilePath, result, { encoding: 'utf8' });
-                    printInColor([{ color: 'green', text: `Transform ${id} from ${fromWithEnd} to ${toWithEnd} success` }]);
+                    logger.success(`Transform ${id} from ${fromWithEnd} to ${toWithEnd} success`);
                 } catch (err) {
-                    printInColor([{ color: 'yellow', text: `Transform ${id} from ${fromWithEnd} to ${toWithEnd} fail` }]);
-                    printInColor([{ color: 'red', text: err.message }]);
+                    logger.warn(`Transform ${id} from ${fromWithEnd} to ${toWithEnd} fail`);
+                    logger.error(err.message);
                 }
             });
         } catch (err) {
-            console.error(err.message);
+            logger.error(err.message);
         }
     }
 }
@@ -90,7 +90,7 @@ function readdirRecursive(directory) {
         });
 
     } catch (err) {
-        console.error(err.message);
+        logger.error(err.message);
     }
     return fullPathFiles;
 }

@@ -1,30 +1,15 @@
-const { printInColor, getLocalIP } = require('@mock-server/utils');
+const { getLocalIP } = require('@mock-server/utils');
 const { program } = require('commander');
 const express = require('express');
 const cors = require('cors');
 const bodyParser = require('body-parser');
 const multer = require('multer');
+const { logger, Color } = require('node-logger-plus');
 
 const startCommands = program.commands[0];
 
 function printRunTarget(ip) {
-    printInColor([{
-        color: 'magenta',
-        text: 'Loopback: '
-    },
-    {
-        color: 'green',
-        text: `应用实例正在主机的`,
-    },
-    {
-        color: 'cyan',
-        text: ip,
-    },
-    {
-        color: 'green',
-        text: `上运行。`,
-    },
-    ]);
+    logger.log(Color.green(`应用实例正在主机的`), Color.cyan(ip), Color.green('上运行。'));
 }
 exports.createServerApp = function createServerApp(port = 60363) {
 
@@ -39,12 +24,7 @@ exports.createServerApp = function createServerApp(port = 60363) {
     app.use(upload);
     const server = app.listen(startCommands?._optionValues?.port || port, () => {
         const port = server.address().port;
-        printInColor([
-            {
-                color: 'green',
-                text: `Mock Server started successfully!`,
-            },
-        ]);
+        logger.success(`Mock Server started successfully`);
         printRunTarget(` http://localhost:${port}/ `)
         printRunTarget(` http://${getLocalIP()}:${port}/ `)
     });

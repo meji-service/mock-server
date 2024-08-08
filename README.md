@@ -53,7 +53,15 @@ const { MockServerJs } = require('@enhances/mock-server');
 module.exports = {
     timeout: 300, // 延迟
     model: 'auto', // remote | local 强制使用本地（local）或者远程代理模式（remote）默认 auto
-    print_req: true, // 是否在控制台打印参数
+    // node-logger-plus 控制打印的配置
+    loggerConfig: {
+        log: true,
+        debug: true,
+        info: true,
+        warn: true,
+        error: true,
+        table: true,
+    },
     fileWithEnd: '.js', // mock 的文件 目前只兼容 js 文件， json 文件可以通过 jsonToJs 命令转换为 js
     mockSrc: '__mock__', // 读取mock的目录
      /**
@@ -148,7 +156,6 @@ module.exports = {
 ```js
 // getToken.js
 exports.enabled = true; // true 代表使用本地mock false 使用代理
-exports.print_req = true; // 是否在控制台打印参数
 /**
  * @params {{ 'query': object, 'body': object, 'headers': object, '_parsedUrl': object }} req
  * @params {object} res
@@ -318,10 +325,15 @@ MockServerJs.utils.getLocalIP(); // get local IP
 
 ```
 2. 打印彩色文本的函数 `printInColor`
+- 推荐使用最新库 
+- https://www.npmjs.com/package/node-logger-plus
+
 ```js
 const { MockServerJs } = require('@enhances/mock-server');
 // color 可选：reset red green yellow blue magenta cyan white
 MockServerJs.utils.printInColor([{ color: 'green', text: 'text' } ]);
+// 或者使用
+MockServerJs.utils.logger2.success('Mock server config file changed update options end');
 ```
 
 3. 编辑mock文件 `MockServerJs.share.update`

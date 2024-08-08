@@ -1,12 +1,15 @@
 const path = require('path');
 const NFormData = require('form-data');
-const { requireMockFile, logger, printInColor } = require('@mock-server/utils');
+const { requireMockFile, logger } = require('@mock-server/utils');
 const getOptions = require('@mock-server/core/options').getOptions;
 const axios = require('axios');
 const pick = require('lodash/pick');
 const omit = require('lodash/omit');
 const { replaceLastSlashAndValue } = require('./tools');
 const { analysisWriteRemoteDataFile } = require('./assists');
+const { stringifyCode } = require('@mock-server/share');
+const nodeLogger = require('node-logger-plus').logger;
+const { Logger, Color } = require('node-logger-plus');
 const dynamicFileName = '${id}.js';
 const axiosInstance = axios.create({
 
@@ -18,12 +21,7 @@ const mockServerModels = {
 }
 
 function _split(startStr = '', endStr = '') {
-    printInColor([
-        {
-            color: 'cyan',
-            text: `\n${startStr}-----------------------------------------------------------------------------------------------------------${endStr}\n`
-        }
-    ])
+    console.log(Color.cyan(`\n${startStr}-----------------------------------------------------------------------------------------------------------${endStr}\n`))
 }
 
 /**
@@ -35,8 +33,7 @@ function _split(startStr = '', endStr = '') {
 async function proxySend(req, res) {
     const options = await getOptions();
     const { originURL } = await useProxyFormats(options, req);
-    printInColor([{ color: 'yellow', text: '如果使用本地mock配置文件数据, enabled需要为true' }]);
-    printInColor([{ color: 'green', text: '开始代理转发请求：' }, { color: 'cyan', text: originURL }]);
+    console.log(Logger.decoratorTime(Logger.getLocaleDateTime()), Color.green('开始代理转发请求：'), Color.cyan(originURL))
     const interceptors = options?.interceptors;
     const newReq = await interceptors?.request?.(req) ?? {};
     const reqOptions = {
@@ -79,16 +76,18 @@ async function proxySend(req, res) {
                 responseType: 'stream',
             }).then(streamResp => {
                 streamResp.data.pipe(res);
-                printInColor([{ color: 'green', text: 'match:stream send' }]);
+                nodeLogger.success('match:stream send');
             })
         }
-        printInColor([{ color: 'green', text: 'success send' }]);
+        nodeLogger.success('success send');
+        logger('response');
+        logger(newRespData);
         return res.status(response.status).send(newRespData);
     } catch (reoase) {
         const _status = reoase?.response?.status ?? 500;
-        printInColor([{ color: 'red', text: 'error 可观察日志排除错误' }]);
-        logger("ERROR===");
-        logger(reoase?.response ?? reoase);
+        nodeLogger.error(reoase?.response?.data ?? reoase?.response)
+        logger(reoase?.response);
+        nodeLogger.warn('可观察日志排除错误')
         const _data = reoase?.response?.data ?? '';
         analysisWriteRemoteDataFile(reqOptions.url, _data);
         return res.status(_status).send(_data);
@@ -107,7 +106,7 @@ async function readFileSend(req, res, mockOption) {
     logger(response);
     function sendResponse() {
         res.status(200).send(response);
-        printInColor([{ color: 'magenta', text: 'finish' }]);
+        nodeLogger.success('Read Data Finished');
     }
     if (options.timeout) {
         setTimeout(sendResponse, options.timeout);
@@ -119,7 +118,7 @@ async function readFileSend(req, res, mockOption) {
 async function useProxyFormats(_options = {}, _req) {
     let originURL = '';
     if (typeof _options.proxyURL === 'function') {
-        printInColor([{ color: 'yellow', text: "0.2.14开始proxyURL Function 已经弃用 建议使用 proxyURL Object 配置形式" }]);
+        nodeLogger.warn("0.2.14开始proxyURL Function 已经弃用 建议使用 proxyURL Object 配置形式");
         originURL = await _options.proxyURL(_req.url);
     } else {
         const _proxy = _options.proxyURL ?? {};
@@ -150,6 +149,7 @@ exports.createMockServer = async function (app) {
 
             if (mockOption?.mock === void 0) {
                 const dynamicFileId = replaceLastSlashAndValue(filePath, dynamicFileName);
+                nodeLogger.log(Color.magenta('Mock file Read Retrying'));
                 mockOption = requireMockFile(dynamicFileId);
             }
             const headers = omit(req.headers, [
@@ -158,18 +158,18 @@ exports.createMockServer = async function (app) {
                 'referer',
                 'user-agent',
             ]);
-
             const formatedHeader = options?.formatHeaders?.(headers) ?? headers;
             req.formatedHeader = formatedHeader;
-            if (options.print_req || mockOption?.print_req) {
-                logger(pick(req, ['query', 'body', 'headers', 'formatedHeader']));
-            }
             if ((!mockOption?.enabled && options.model !== mockServerModels.localServer) ||
                 options.model === mockServerModels.remote) {
-                printInColor([{ color: 'yellow', text: `读取本地文件${filePath}未成立` }]);
+                nodeLogger.info("【CONFIG】" + stringifyCode({
+                    model: options.model,
+                    enabled: mockOption?.enabled ?? false,
+                }, null, 0) + '【CONFIG END】');
+                nodeLogger.warn(`【读取本地文件未成立】from ${filePath}`);
                 return await proxySend(req, res);
             }
-            printInColor([{ color: 'magenta', text: '读取文件: ' }, { color: 'cyan', text: filePath, }]);
+            nodeLogger.log(Color.magenta('读取文件: '), Color.cyan(filePath));
             return readFileSend(req, res, mockOption);
         } catch (err) {
             console.log(err);

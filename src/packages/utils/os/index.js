@@ -1,4 +1,5 @@
 const path = require('path');
+const { logger } = require('node-logger-plus');
 
 /**
  * 
@@ -12,7 +13,7 @@ exports.readJsFileToObject = function (configFilePath) {
         const mockConfig = requireFunc(path.resolve(configFilePath));
         return mockConfig;
     } catch(err) {
-        console.log(err.message?.split?.("\n")?.[0] || err.message);
+        logger.warn(err.message?.split?.("\n")?.[0] || err.message);
     }
 
 }

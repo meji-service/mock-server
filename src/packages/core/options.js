@@ -30,4 +30,5 @@ exports.setupOptions = function () {
     const configFilePath = path.resolve(defaultOption.cwd, configFileName);
     const config = readJsFileToObject(configFilePath) ?? {};
     options = cloneDeep(useProxyOptions(lodashMerge({}, defaultOption, config ?? {})));
+    return options;
 }

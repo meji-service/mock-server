@@ -4,7 +4,10 @@ const util = require('util');
 const os = require('os');
 const { readJsFileToObject } = require('../os');
 const getOptions = require('@mock-server/core/options').getOptions;
+const { logger } = require('node-logger-plus');
 
+exports.logger2 = logger;
+ 
 
 /**
  * 获取本地ip
@@ -45,7 +48,7 @@ exports.getLocalIP = function () {
     console.log(_str);
     return _str;
  }
- 
+
  
  /**
  * @param {*} path 
@@ -55,29 +58,30 @@ exports.getLocalIP = function () {
     const config = readJsFileToObject(pathStr) ?? {};
     return config;
  }
- 
- exports.logger = async function (...arg) {
-    const _option = await getOptions();
-    try {
-       const logWritPath = path.resolve(__dirname, _option.cwd, _option.logDir);
-       const filePath = path.join(logWritPath, _option.logFileName);
- 
-       if (!fs.existsSync(logWritPath)) {
-          fs.mkdirSync(logWritPath);
-       }
-       if (!fs.existsSync(filePath)) {
-          fs.writeFileSync(filePath, '');
-       }
- 
-       const context = `${util.inspect(...arg)}\n\n`;
-       const stat = fs.statSync(filePath);
-       if (stat.size > _option.logReplaceMaxSize) {
-          fs.writeFileSync(filePath, context);
-          console.log(`当前日志大小已经达到${stat.size}Byte已被覆盖`);
-       } else {
-          fs.appendFileSync(filePath, context);
-       }
-    } catch (err) {
-       console.log('写入日志失败', err);
-    }
- }
+ async function writeLogger(...arg) {
+   const _option = await getOptions();
+   try {
+      const logWritPath = path.resolve(__dirname, _option.cwd, _option.logDir);
+      const filePath = path.join(logWritPath, _option.logFileName);
+
+      if (!fs.existsSync(logWritPath)) {
+         fs.mkdirSync(logWritPath);
+      }
+      if (!fs.existsSync(filePath)) {
+         fs.writeFileSync(filePath, '');
+      }
+
+      const context = `${util.inspect(...arg)}\n`;
+      const stat = fs.statSync(filePath);
+      if (stat.size > _option.logReplaceMaxSize) {
+         fs.writeFileSync(filePath, context);
+         console.log(`当前日志大小已经达到${stat.size}Byte已被覆盖`);
+      } else {
+         fs.appendFileSync(filePath, context);
+      }
+   } catch (err) {
+      console.log('写入日志失败', err);
+   }
+}
+
+ exports.logger = writeLogger;

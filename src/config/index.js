@@ -4,7 +4,14 @@ const mockFileRootDir = '__mock__';
 module.exports = {
     timeout: 300, // 延迟
     model: 'local', // 强制使用本地（local）或者远程代理模式（remote）默认 auto
-    print_req: true,
+    loggerConfig: {
+        log: true,
+        debug: true,
+        info: true,
+        warn: true,
+        error: true,
+        table: true,
+    },
     fileWithEnd: '.js', // mock 的文件 目前只兼容 js
     mockSrc: mockFileRootDir, // 读取mock的目录
     /**

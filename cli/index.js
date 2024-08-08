@@ -15,7 +15,7 @@ exports.exec = function (op) {
     MockServerJs.core.main();
     fs.watchFile(path.join(MockServerJs.core.getOptions().cwd, MockServerJs.core.configFileName), function () {
         MockServerJs.core.setupOptions();
-        MockServerJs.utils.printInColor([{ color: 'green', text: 'Mock server config file changed update options end' }]);
+        MockServerJs.utils.logger2.success('Mock server config file changed update options end');
     });
 }
 

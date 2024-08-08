@@ -20,9 +20,6 @@ importers:
       cors:
         specifier: ^2.8.5
         version: 2.8.5
-      crypto:
-        specifier: ^1.0.1
-        version: 1.0.1
       express:
         specifier: ^4.19.2
         version: 4.19.2
@@ -35,6 +32,9 @@ importers:
       multer:
         specifier: 1.4.5-lts.1
         version: 1.4.5-lts.1
+      node-logger-plus:
+        specifier: ^0.2.2
+        version: 0.2.2
     devDependencies:
       '@enhances/mock-server':
         specifier: workspace:^
@@ -934,11 +934,6 @@ packages:
       which: 2.0.2
     dev: true
 
-  /crypto@1.0.1:
-    resolution: {integrity: sha512-VxBKmeNcqQdiUQUW2Tzq0t377b54N2bMtXO/qiLa+6eRRmmC4qT3D4OnTGoT/U6O9aklQ/jTwbOtRMTTY8G0Ig==}
-    deprecated: This package is no longer supported. It's now a built-in Node module. If you've depended on crypto, you should switch to the one that's built-in.
-    dev: false
-
   /debug@2.6.9:
     resolution: {integrity: sha512-bC7ElrdJaJnPbAP+1EotYvqZsb3ecl5wi6Bfi6BJTUcNowp6cvspg0jXznRTKDjm/E7AdgFBVeAPVMNcKGsHMA==}
     peerDependencies:
@@ -1542,6 +1537,10 @@ packages:
     engines: {node: '>=6.11.5'}
     dev: true
 
+  /lodash-es@4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: false
+
   /lodash@4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
 
@@ -1671,6 +1670,12 @@ packages:
     resolution: {integrity: sha512-dPEtOeMvF9VMcYV/1Wb8CPoVAXtp6MKMlcbAt4ddqmGqUJ6fQZFXkNZNkNlfevtNkGtaSoXf/vNNNSvgrdXwtA==}
     engines: {node: '>= 6.13.0'}
     dev: true
+
+  /node-logger-plus@0.2.2:
+    resolution: {integrity: sha512-eisnDiGJr7BHrtpV9WuyaVXgW9RPYrbu75GVsLBeV5NxTv0BeHWeGXwnEkZOjEi+wWfFqKwWG7rsQQj3ugj5Aw==}
+    dependencies:
+      lodash-es: 4.17.21
+    dev: false
 
   /node-releases@2.0.14:
     resolution: {integrity: sha512-y10wOWt8yZpqXmOgRo77WaHEmhYQYGNA6y421PKsKYWEK8aW+cqAphborZDhqfyKrbZEN92CN1X2KbafY2s7Yw==}

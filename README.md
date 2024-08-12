@@ -39,11 +39,39 @@ $ npm i @enhances/mock-server -D 或者 pnpm add @enhances/mock-server -D
 }
 ```
 
-### 配置
+### 常用配置
 - mock-config.js
 ```js
-module.exports = {
 // 覆盖默认配置
+const { MockServerJs } = require('@enhances/mock-server');
+module.exports = {
+    model: 'remote', // remote | local 强制使用本地（local）或者远程代理模式（remote）默认 auto
+    proxyURL: {
+        async format(api) {
+            const url = MockServerJs.utils.defineProxy({
+                '^/api': {
+                    target: 'http://192.168.0.151:8888',
+                    pathRewrite: {}
+                }
+            }, api);
+            if (!/^http:|^https:/.test(url)) {
+                // 这里判断处理没有匹配到接口
+                return 'http://localhost' + url;
+            }
+            return url;
+        }
+    },
+    staticServic: ['dist'],
+    interceptors: {
+        // 请求拦截
+        async request(data) {
+            return data;
+        },
+        // 响应拦截
+        async response(data) {
+            return data;
+        }
+    },
 }
 ```
 
@@ -165,6 +193,15 @@ exports.mock = (req, res) => {
         status: 200,
         message: 'mock'
     }
+}
+```
+### 自定义响应体
+```js
+exports.enabled = true;
+exports.mock = (_, res) => {
+    res.setHeader('content-disposition', 'filename="xxxxxx"') // 设置响应头
+    .status(200) // 设置响应状态
+    .send("响应的数据")  // 设置响应体
 }
 ```
 - mock 提供的参数如下

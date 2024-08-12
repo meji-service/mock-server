@@ -23,5 +23,6 @@ module.exports = {
         crypto: 'crypto',
         multer: 'multer',
         'form-data': 'form-data',
+        'node-logger-plus': 'node-logger-plus',
     },
 };
